@@ -5,9 +5,8 @@
  */
 package GUI;
 
-import Entities.User;
-import Utils.HibernateUtil;
-import org.hibernate.Session;
+import DAO.LoginDAO;
+import javax.persistence.NoResultException;
 import org.hibernate.SessionFactory;
 
 /**
@@ -19,19 +18,12 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    
-    	private SessionFactory sessionFactory;
+    private SessionFactory sessionFactory;
+
     public Login() {
         initComponents();
-      //  LoginDAO loginDAO = new LoginDAO();
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		org.hibernate.Transaction tr = session.beginTransaction();
-		User emp = new User( 144, "ali", "kjs", "dsf", "6665d", "kjs", 147);
-		
-		session.save(emp);
-		tr.commit();
-		System.out.println("Successfully inserted");
-		session.close();
+
+       
     }
 
     /**
@@ -64,6 +56,11 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setText("Mot de passe");
 
         loginBT.setText("Se connecter");
+        loginBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginBTActionPerformed(evt);
+            }
+        });
 
         signUp.setText("Inscription");
 
@@ -125,6 +122,18 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void loginBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBTActionPerformed
+
+        // check credentials in DB
+ LoginDAO loginDAO = new LoginDAO();
+      
+            
+            System.out.println("logged in  "+loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()));
+
+       
+        
+    }//GEN-LAST:event_loginBTActionPerformed
 
     /**
      * @param args the command line arguments

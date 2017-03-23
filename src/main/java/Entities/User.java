@@ -139,9 +139,8 @@ public class User implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 47 * hash + Objects.hashCode(this.cin);
-        hash = 47 * hash + Objects.hashCode(this.username);
+        int hash = 3;
+        hash = 79 * hash + Objects.hashCode(this.username);
         return hash;
     }
 
@@ -160,11 +159,10 @@ public class User implements Serializable{
         if (!Objects.equals(this.username, other.username)) {
             return false;
         }
-        if (!Objects.equals(this.cin, other.cin)) {
-            return false;
-        }
         return true;
     }
+
+   
     
     
     
