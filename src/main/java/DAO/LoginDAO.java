@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tn.carfleetmanagement.carfleetmanagement;
+package DAO;
 
 import Utils.HibernateUtil;
 import java.sql.Connection;
@@ -12,8 +12,14 @@ import java.sql.Connection;
  *
  * @author marwen
  */
-public class Main {
+public class LoginDAO {
+
+    Connection cnx;
+
     
-    
-    
+    public LoginDAO() {
+      //  cnx = HibernateUtil.getInstance();
+
+    }
+
 }

@@ -5,6 +5,11 @@
  */
 package GUI;
 
+import Entities.User;
+import Utils.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 /**
  *
  * @author marwen
@@ -14,8 +19,19 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    
+    	private SessionFactory sessionFactory;
     public Login() {
         initComponents();
+      //  LoginDAO loginDAO = new LoginDAO();
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		org.hibernate.Transaction tr = session.beginTransaction();
+		User emp = new User( 144, "ali", "kjs", "dsf", "6665d", "kjs", 147);
+		
+		session.save(emp);
+		tr.commit();
+		System.out.println("Successfully inserted");
+		session.close();
     }
 
     /**
