@@ -18,45 +18,41 @@ import javax.persistence.Table;
  *
  * @author marwen
  */
-
 @Entity
-@Table(name="user")
-public class User implements Serializable{
-    
+@Table(name = "user")
+public class User implements Serializable {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name = "id")
     Integer id;
-    
-    
+
     @Id
-    @Column(name="username")
+    @Column(name = "username")
     String username;
-    
-    
-    @Column(name="cin")
+
+    @Column(name = "cin")
     Integer cin;
-    
-    @Column(name="name")
+
+    @Column(name = "name")
     String name;
-    
-    @Column(name="surname")
-    String surname ;
-    
-        
-    @Column(name="password")
+
+    @Column(name = "surname")
+    String surname;
+
+    @Column(name = "password")
     String password;
-    
-    @Column(name="address")
+
+    @Column(name = "address")
     String Address;
-    
-        @Column(name="phoneNumber")
+
+    @Column(name = "phoneNumber")
 
     Integer phoneNumber;
 
     public User() {
     }
 
-     public User( Integer cin, String name, String surname, String username, String password, String Address, Integer phoneNumber) {
+    public User(Integer cin, String name, String surname, String username, String password, String Address, Integer phoneNumber) {
         this.cin = cin;
         this.name = name;
         this.surname = surname;
@@ -65,6 +61,7 @@ public class User implements Serializable{
         this.Address = Address;
         this.phoneNumber = phoneNumber;
     }
+
     public User(Integer id, Integer cin, String name, String surname, String username, String password, String Address, Integer phoneNumber) {
         this.id = id;
         this.cin = cin;
@@ -165,11 +162,4 @@ public class User implements Serializable{
         return true;
     }
 
-   
-    
-    
-    
-            
-       
-    
 }

@@ -57,20 +57,19 @@ public class LoginDAO implements LoginDAOInterface {
     // sign up
     @Override
     public Boolean signUp(User user) {
-        try{
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
-        transaction = session.beginTransaction();
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            transaction = session.beginTransaction();
 
-        session.save(user);
-        transaction.commit();
-        System.out.println("Successfully inserted");
-        session.close();
-        return true;
-        }
-        catch(Exception e)
-        {
+            session.save(user);
+            transaction.commit();
+            System.out.println("Successfully inserted");
+            session.close();
+            return true;
+        } catch (Exception e) {
+            session.close();
             return false;
-            
+
         }
     }
 

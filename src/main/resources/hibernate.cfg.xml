@@ -14,5 +14,7 @@
         <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
         <mapping class="Entities.User" />
+        <mapping class="Entities.Car" />
+
     </session-factory>
 </hibernate-configuration>
