@@ -65,6 +65,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         signUp.setText("Inscription");
+        signUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signUpActionPerformed(evt);
+            }
+        });
 
         cancel.setText("cancel");
 
@@ -148,6 +153,12 @@ public class Login extends javax.swing.JFrame {
 
         
     }//GEN-LAST:event_loginBTActionPerformed
+
+    private void signUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpActionPerformed
+        // TODO add your handling code here:
+        new SignUp().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_signUpActionPerformed
 
     /**
      * @param args the command line arguments

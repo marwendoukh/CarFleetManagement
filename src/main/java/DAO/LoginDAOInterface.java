@@ -14,6 +14,6 @@ import Entities.User;
 public interface LoginDAOInterface {
     
     Boolean signIn(String username , String password);
-    void signUp(User user);
+    Boolean signUp(User user);
     
 }

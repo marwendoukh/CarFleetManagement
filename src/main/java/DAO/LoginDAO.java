@@ -25,16 +25,14 @@ public class LoginDAO implements LoginDAOInterface {
     // constructor
     public LoginDAO() {
 
-        
-
     }
 
     // Sign in
     @Override
     public Boolean signIn(String username, String password) {
 
-       session = HibernateUtil.getSessionFactory().getCurrentSession();
-       transaction = session.beginTransaction();
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.beginTransaction();
 
         User userFoundInDB;
 
@@ -49,21 +47,31 @@ public class LoginDAO implements LoginDAOInterface {
             return false;
         }
         session.close();
-        
+
         ConnectedUser.setCurrentConnectedUser(userFoundInDB);
-        System.out.println("connected user is "+ConnectedUser.getCurrentConnectedUser().getName());
+        System.out.println("connected user is " + ConnectedUser.getCurrentConnectedUser().getName());
         return userFoundInDB.getPassword().equals(password);
 
     }
 
     // sign up
     @Override
-    public void signUp(User user) {
+    public Boolean signUp(User user) {
+        try{
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.beginTransaction();
 
         session.save(user);
         transaction.commit();
         System.out.println("Successfully inserted");
         session.close();
+        return true;
+        }
+        catch(Exception e)
+        {
+            return false;
+            
+        }
     }
 
 }

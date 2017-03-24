@@ -23,10 +23,15 @@ import javax.persistence.Table;
 @Table(name="user")
 public class User implements Serializable{
     
-    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     Integer id;
+    
+    
+    @Id
+    @Column(name="username")
+    String username;
+    
     
     @Column(name="cin")
     Integer cin;
@@ -37,9 +42,7 @@ public class User implements Serializable{
     @Column(name="surname")
     String surname ;
     
-    @Column(name="username")
-    String username;
-    
+        
     @Column(name="password")
     String password;
     
