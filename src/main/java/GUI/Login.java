@@ -7,6 +7,7 @@ package GUI;
 
 import DAO.LoginDAO;
 import javax.persistence.NoResultException;
+import javax.swing.JOptionPane;
 import org.hibernate.SessionFactory;
 
 /**
@@ -22,6 +23,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+
 
        
     }
@@ -128,10 +130,22 @@ public class Login extends javax.swing.JFrame {
         // check credentials in DB
  LoginDAO loginDAO = new LoginDAO();
       
-            
+            if(loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()))
+            {
+             System.out.println("logged in  "+loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()));
+             new AdminDashboard().setVisible(true);
+             this.setVisible(false);
+
+   
+            }
+            else
+            {
+                new JOptionPane().showMessageDialog(this, "Please re-check your login and password");
+
+            }
             System.out.println("logged in  "+loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()));
 
-       
+
         
     }//GEN-LAST:event_loginBTActionPerformed
 

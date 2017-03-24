@@ -6,6 +6,7 @@
 package DAO;
 
 import Entities.User;
+import Utils.ConnectedUser;
 import Utils.HibernateUtil;
 import javax.persistence.NoResultException;
 import org.hibernate.Query;
@@ -24,14 +25,16 @@ public class LoginDAO implements LoginDAOInterface {
     // constructor
     public LoginDAO() {
 
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
-        transaction = session.beginTransaction();
+        
 
     }
 
     // Sign in
     @Override
     public Boolean signIn(String username, String password) {
+
+       session = HibernateUtil.getSessionFactory().getCurrentSession();
+       transaction = session.beginTransaction();
 
         User userFoundInDB;
 
@@ -46,7 +49,9 @@ public class LoginDAO implements LoginDAOInterface {
             return false;
         }
         session.close();
-
+        
+        ConnectedUser.setCurrentConnectedUser(userFoundInDB);
+        System.out.println("connected user is "+ConnectedUser.getCurrentConnectedUser().getName());
         return userFoundInDB.getPassword().equals(password);
 
     }
