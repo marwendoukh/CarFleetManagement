@@ -7,11 +7,15 @@ package Entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -29,9 +33,17 @@ public class Car implements Serializable {
     @Column(name = "immatriculation")
     Integer immatriculation;
 
-    String departement;
+    @ManyToOne
+    Departement departement;
+    
+    
     @Temporal(javax.persistence.TemporalType.DATE)
     Date dateDeMiseEnCirculation;
+    
+    
+    @OneToMany(mappedBy = "car")
+    List<BonDeCarburant> bonDeCarburants;
+    
     Integer puissance;
     Integer nombreDePlaces;
     String marque;
@@ -77,11 +89,11 @@ public class Car implements Serializable {
         this.immatriculation = immatriculation;
     }
 
-    public String getDepartement() {
+    public Departement getDepartement() {
         return departement;
     }
 
-    public void setDepartement(String departement) {
+    public void setDepartement(Departement departement) {
         this.departement = departement;
     }
 

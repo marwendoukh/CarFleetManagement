@@ -7,13 +7,14 @@ package tn.carfleetmanagement.carfleetmanagement;
 
 import Utils.HibernateUtil;
 import java.sql.Connection;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
  * @author marwen
  */
 public class Main {
-    
     
     
 }

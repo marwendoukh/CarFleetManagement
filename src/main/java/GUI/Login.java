@@ -6,9 +6,17 @@
 package GUI;
 
 import DAO.LoginDAO;
-import javax.persistence.NoResultException;
+import Entities.Car;
+import Entities.Fixing;
+import Entities.Article;
+import Entities.Store;
+
+import Utils.HibernateUtil;
+import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
-import org.hibernate.SessionFactory;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 /**
  *
@@ -19,12 +27,44 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    private SessionFactory sessionFactory;
-
     public Login() {
         initComponents();
 
+        
+        // just testing the entities
+        /*
+Session session;
+    Transaction transaction;
 
+    
+    try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            transaction = session.beginTransaction();
+
+            Car c = new Car();
+            c.setCategory("sport");
+                        Article article = new Article(5, "", null, null);
+                        List<Article> articles = null;
+                        articles.add(article);
+
+            Fixing fixing = new Fixing("", c, new Date(), 0, "", "", Float.parseFloat("5"), "d", new Date(), new Date(), Float.parseFloat("5"), "sss", articles);
+            List<Fixing> fixings = null;        
+            fixings.add(fixing);
+            
+            Store store = new Store(1);
+                    article.setStore(store);
+                    
+                    
+            session.save(c);
+                        session.save(article);
+            session.save(fixing);
+            session.save(store);
+
+            
+            transaction.commit();
+            System.out.println("Successfully inserted");
+            session.close();
+        } catch (Exception e) {}*/
        
     }
 
