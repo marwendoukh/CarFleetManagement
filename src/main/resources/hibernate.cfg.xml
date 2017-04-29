@@ -11,7 +11,7 @@
         <property name="connection.pool_size">10</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
         <property name="show_sql">true</property>
-        <property name="hbm2ddl.auto">create-drop</property>
+        <property name="hbm2ddl.auto">update</property>
         <property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
         <mapping class="Entities.User" />
         <mapping class="Entities.Car" />
@@ -19,7 +19,7 @@
         <mapping class="Entities.BonDeCarburant" />
         <mapping class="Entities.Fixing" />
         <mapping class="Entities.Article" />
-
+        <mapping class="Entities.BonDeLavage" />
 
 
     </session-factory>

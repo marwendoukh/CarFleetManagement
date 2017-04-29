@@ -45,19 +45,19 @@ public class User implements Serializable {
     @Column(name = "password")
     String password;
 
-    @Column(name = "address", insertable=false, updatable=false)
+    @Column(name = "address", insertable = false, updatable = false)
     String Address;
 
     @Column(name = "phoneNumber")
 
     Integer phoneNumber;
-    
-    @Column(name="address")
+
+    @Column(name = "address")
     String address;
-    
+
     @Enumerated(EnumType.STRING)
     Role role;
-    
+
     @ManyToOne
     Departement departement;
 
@@ -76,12 +76,6 @@ public class User implements Serializable {
         this.role = role;
         this.departement = departement;
     }
-    
-    
-    
-    
-    
-    
 
     public User(Integer cin, String name, String surname, String username, String password, String Address, Integer phoneNumber) {
         this.cin = cin;
@@ -208,9 +202,5 @@ public class User implements Serializable {
     public void setDepartement(Departement departement) {
         this.departement = departement;
     }
-    
-    
-    
-    
 
 }

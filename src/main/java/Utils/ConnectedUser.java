@@ -12,22 +12,17 @@ import Entities.User;
  * @author marwen
  */
 public class ConnectedUser {
-    
+
     private static User currentUser;
-    
-    
-    public static User getCurrentConnectedUser()
-    {
-        
+
+    public static User getCurrentConnectedUser() {
+
         return currentUser;
-        
+
     }
-    
-    public static void setCurrentConnectedUser(User u)
-    {
+
+    public static void setCurrentConnectedUser(User u) {
         currentUser = u;
     }
-    
-    
-    
+
 }

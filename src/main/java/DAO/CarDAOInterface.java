@@ -6,6 +6,7 @@
 package DAO;
 
 import Entities.Car;
+import java.util.List;
 
 /**
  *
@@ -13,14 +14,14 @@ import Entities.Car;
  */
 public interface CarDAOInterface {
 
-       Boolean addCar(Car user);
+    Boolean addCar(Car user);
 
-       Car getCarByImmatriculation(Integer immatriculation);
+    Car getCarByImmatriculation(Integer immatriculation);
 
-       Car getCarByCategory(String category);
-       
-       Car getCarByUtilisation(String utilisation);
+    Car getCarByCategory(String category);
 
+    Car getCarByUtilisation(String utilisation);
 
+    List<Car> findAllCars();
 
 }

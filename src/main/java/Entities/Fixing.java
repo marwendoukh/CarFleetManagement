@@ -7,11 +7,9 @@ package Entities;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 
@@ -25,44 +23,30 @@ public class Fixing implements Serializable {
     @Id
     String soucheNumber;
 
-    
     @ManyToOne
     @JoinColumn(name = "immatriculation", referencedColumnName = "immatriculation", insertable = true, updatable = true)
     Car car;
-    
-    
-	@ManyToOne
-        @JoinColumn(name = "id", referencedColumnName = "id", insertable = true, updatable = true)
+
+    @ManyToOne
+    @JoinColumn(name = "id", referencedColumnName = "id", insertable = true, updatable = true)
     Article article;
 
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     Date fixingDate;
-    
-   
-     
-     String supplier;
-     
-   String fixingDestination;
-   
-   
-   
-    
+
+    String supplier;
+
+    String fixingDestination;
+
     String designationD;
-    
-    
-  
-     @Temporal(javax.persistence.TemporalType.DATE)
+
+    @Temporal(javax.persistence.TemporalType.DATE)
     Date dateDemande;
-    
-     
-     String responsableMission;  
+
+    String responsableMission;
 
     public Fixing() {
     }
-     
-     
-     
-     
 
     public Fixing(String soucheNumber, Car car, Article article, Date fixingDate, String supplier, String fixingDestination, String designationD, Date dateDemande, String responsableMission) {
         this.soucheNumber = soucheNumber;
@@ -75,16 +59,6 @@ public class Fixing implements Serializable {
         this.dateDemande = dateDemande;
         this.responsableMission = responsableMission;
     }
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
 
     public String getSoucheNumber() {
         return soucheNumber;
@@ -157,11 +131,5 @@ public class Fixing implements Serializable {
     public void setResponsableMission(String responsableMission) {
         this.responsableMission = responsableMission;
     }
-
-     
-     
-     
-     
-     
 
 }

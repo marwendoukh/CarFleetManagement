@@ -37,15 +37,16 @@ public class Car implements Serializable {
 
     @ManyToOne
     Departement departement;
-    
-    
+
     @Temporal(javax.persistence.TemporalType.DATE)
     Date dateDeMiseEnCirculation;
-    
-    
+
     @OneToMany(mappedBy = "car")
     List<BonDeCarburant> bonDeCarburants;
-    
+
+    @OneToMany(mappedBy = "car")
+    List<BonDeLavage> bonDeLavages;
+
     Integer puissance;
     Integer nombreDePlaces;
     String marque;
@@ -75,23 +76,17 @@ public class Car implements Serializable {
     Date dateProchaineVigniette;
     Float montantVigniette;
     Float montantTaxeVigniette;
-    
+
     Float prixAchat;
-    
+
     String concessionnaire;
-    
-    
-    
-    @OneToMany(mappedBy = "car",fetch=FetchType.EAGER)
-    
+
+    @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
+
     private List<Fixing> fixings;
-    
 
     public Car() {
     }
-    
-    
-    
 
     public Car(String immatriculation, Departement departement, Date dateDeMiseEnCirculation, List<BonDeCarburant> bonDeCarburants, Integer puissance, Integer nombreDePlaces, String marque, String category, Integer numDeChassis, String carburant, String utilisation, String etat, Date dateDeReforme, String compagnieDassurance, Date dateDebutDassurance, Date dateProchaineAssurance, Float montantAssurance, Date dateVisiteTechnique, Date dateProchaineVisiteTechnique, Float montantVisiteTechnique, String agenceVisiteTechnique, Date dateProchaineVigniette, Float montantVigniette, Float montantTaxeVigniette, Float prixAchat, String concessionnaire) {
         this.immatriculation = immatriculation;
@@ -121,12 +116,6 @@ public class Car implements Serializable {
         this.prixAchat = prixAchat;
         this.concessionnaire = concessionnaire;
     }
-    
-    
-    
-    
-    
-    
 
     public Integer getId() {
         return id;
@@ -352,8 +341,20 @@ public class Car implements Serializable {
         this.fixings = fixing;
     }
 
-    
-    
-    
-    
+    public List<BonDeLavage> getBonDeLavages() {
+        return bonDeLavages;
+    }
+
+    public void setBonDeLavages(List<BonDeLavage> bonDeLavages) {
+        this.bonDeLavages = bonDeLavages;
+    }
+
+    public List<Fixing> getFixings() {
+        return fixings;
+    }
+
+    public void setFixings(List<Fixing> fixings) {
+        this.fixings = fixings;
+    }
+
 }

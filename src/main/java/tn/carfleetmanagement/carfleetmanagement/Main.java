@@ -15,6 +15,5 @@ import org.hibernate.Transaction;
  * @author marwen
  */
 public class Main {
-    
-    
+
 }

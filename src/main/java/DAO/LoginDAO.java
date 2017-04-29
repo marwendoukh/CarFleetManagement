@@ -24,6 +24,7 @@ public class LoginDAO implements LoginDAOInterface {
 
     // constructor
     public LoginDAO() {
+        
 
     }
 
@@ -37,7 +38,7 @@ public class LoginDAO implements LoginDAOInterface {
         User userFoundInDB;
 
         try {
-            String hql = "from User where username = :username and password=:password";
+            String hql = "FROM User WHERE username = :username AND password=:password";
             Query query = session.createQuery(hql);
             query.setString("username", username);
             query.setString("password", password);
@@ -72,5 +73,5 @@ public class LoginDAO implements LoginDAOInterface {
 
         }
     }
-    
-   }
+
+}

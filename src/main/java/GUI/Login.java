@@ -5,6 +5,8 @@
  */
 package GUI;
 
+import DAO.CarDAO;
+import DAO.FixingDAO;
 import DAO.LoginDAO;
 import Entities.Car;
 import Entities.Fixing;
@@ -30,9 +32,8 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
 
-        
         // just testing the entities
-        
+        /*
 Session session;
     Transaction transaction;
 
@@ -77,7 +78,7 @@ Session session;
             session.merge(c);
 
                         transaction.commit();
-                                                System.out.println("Successfully inserted");
+                         System.out.println("Successfully inserted");
 
             session = HibernateUtil.getSessionFactory().getCurrentSession();
                transaction = session.beginTransaction();
@@ -86,35 +87,18 @@ Session session;
        Car car = session.get(Car.class, "22222222");
         System.out.println("car cat " +car.getFixing().get(0).getCar().getCategory());
 
-
-       /*     Car c = new Car();
-            c.setCategory("sport");
-                        Article article = new Article(5, "", null, null);
-                        List<Article> articles = null;
-                        articles.add(article);
-
-            Fixing fixing = new Fixing("", c, new Date(), 0, "", "", Float.parseFloat("5"), "d", new Date(), new Date(), Float.parseFloat("5"), "sss", articles);
-            List<Fixing> fixings = null;        
-            fixings.add(fixing);
-            
-            Store store = new Store(1);
-                    article.setStore(store);
-                    
-                    
-            session.save(c);
-                        session.save(article);
-            session.save(fixing);
-            session.save(store);
-
-            */
             transaction.commit();
             session.close();
+            
+            
+            System.out.println("fixing for 2017 "+new FixingDAO().findFixingByYear(2017).get(0).getSupplier());
+            
+            
         } catch (Exception e) {
         System.out.println("exception "+e.toString());
         }
     
     //*/
-       
     }
 
     /**
@@ -222,25 +206,19 @@ Session session;
     private void loginBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBTActionPerformed
 
         // check credentials in DB
- LoginDAO loginDAO = new LoginDAO();
-      
-            if(loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()))
-            {
-             System.out.println("logged in  "+loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()));
-             new AdminDashboard().setVisible(true);
-             this.setVisible(false);
+        LoginDAO loginDAO = new LoginDAO();
 
-   
-            }
-            else
-            {
-                new JOptionPane().showMessageDialog(this, "Please re-check your login and password");
+        if (loginDAO.signIn(LoginTF.getText(), PasswordTF.getText())) {
+            System.out.println("logged in  " + loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()));
+            new AdminDashboard().setVisible(true);
+            this.setVisible(false);
 
-            }
-            System.out.println("logged in  "+loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()));
+        } else {
+            new JOptionPane().showMessageDialog(this, "Please re-check your login and password");
 
+        }
+        System.out.println("logged in  " + loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()));
 
-        
     }//GEN-LAST:event_loginBTActionPerformed
 
     private void signUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signUpActionPerformed

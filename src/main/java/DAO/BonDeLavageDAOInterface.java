@@ -3,13 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package DAO;
+
+import Entities.BonDeLavage;
 
 /**
  *
  * @author marwen
  */
-public enum Role {
+public interface BonDeLavageDAOInterface {
 
-    CHEF_DE_PARK, CHEF_DEPARTEMENT
+    void addBonDeLavage(BonDeLavage bdl);
+
 }

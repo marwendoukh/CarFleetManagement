@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package DAO;
+
+import Entities.Fixing;
+import java.util.List;
 
 /**
  *
  * @author marwen
  */
-public enum Role {
+public interface FixingDAOInterface {
 
-    CHEF_DE_PARK, CHEF_DEPARTEMENT
+    void addFixing(Fixing f);
+
+    List<Fixing> findFixingByYear(Integer year);
+
 }

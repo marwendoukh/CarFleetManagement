@@ -3,13 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Entities;
+package DAO;
+
+import Entities.Article;
+import java.util.List;
 
 /**
  *
  * @author marwen
  */
-public enum Role {
+public interface ArticleDAOInterface {
 
-    CHEF_DE_PARK, CHEF_DEPARTEMENT
+    void addArticle(Article article);
+
+    List<Article> findArticleByDesignation(String designation);
+
 }

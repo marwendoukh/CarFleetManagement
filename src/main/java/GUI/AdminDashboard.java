@@ -18,7 +18,7 @@ public class AdminDashboard extends javax.swing.JFrame {
      */
     public AdminDashboard() {
         initComponents();
-        welcomeMrLB.setText("Bienvenue MR "+ConnectedUser.getCurrentConnectedUser().getName());
+        welcomeMrLB.setText("Bienvenue MR " + ConnectedUser.getCurrentConnectedUser().getName());
     }
 
     /**
@@ -146,7 +146,7 @@ public class AdminDashboard extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AdminDashboard().setVisible(true);
-                
+
             }
         });
     }

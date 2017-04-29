@@ -17,16 +17,12 @@ import javax.persistence.Temporal;
  * @author marwen
  */
 @Entity
-public class BonDeCarburant implements Serializable {
+public class BonDeLavage implements Serializable {
 
     @Id
-    String soucheNumber;
+    String bonNumber;
 
-    String immatriculation;
-
-    String useType;
-
-    Integer quantity;
+    String Supplier;
 
     Float unitPrice;
 

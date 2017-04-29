@@ -20,7 +20,7 @@ public class SignUp extends javax.swing.JFrame {
      */
     public SignUp() {
         initComponents();
-        
+
     }
 
     /**
@@ -202,42 +202,33 @@ public class SignUp extends javax.swing.JFrame {
 
     private void saveBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBTActionPerformed
         // TODO add your handling code here:
-        if(PasswordTF.getText().equals(confirmPasswordTF.getText()))
-        {
+        if (PasswordTF.getText().equals(confirmPasswordTF.getText())) {
 
-        User newUser = new User();
-        newUser.setName(nameTF.getText());
-        newUser.setSurname(surnameTF.getText());
-        newUser.setUsername(UsernameTF.getText());
-        newUser.setPhoneNumber(Integer.parseInt(PhoneTF.getText()));
-        newUser.setPassword(PasswordTF.getText());
-        newUser.setCin(Integer.parseInt(CINTF.getText()));
-        newUser.setAddress(AddressTF.getText());
+            User newUser = new User();
+            newUser.setName(nameTF.getText());
+            newUser.setSurname(surnameTF.getText());
+            newUser.setUsername(UsernameTF.getText());
+            newUser.setPhoneNumber(Integer.parseInt(PhoneTF.getText()));
+            newUser.setPassword(PasswordTF.getText());
+            newUser.setCin(Integer.parseInt(CINTF.getText()));
+            newUser.setAddress(AddressTF.getText());
 
-        
-        
-         LoginDAO loginDAO = new LoginDAO();
-         
-         if(loginDAO.signUp(newUser))
-         {
-            new JOptionPane().showMessageDialog(this, "Vous etes inscrit ! Bienvenue");
-            new Login().setVisible(true);
-            this.setVisible(false);
-         }
-         else
-         {
-           new JOptionPane().showMessageDialog(this, "Username est deja utilisé");
+            LoginDAO loginDAO = new LoginDAO();
 
-         }
-         
-        }
-        else
-        {
-          new JOptionPane().showMessageDialog(this, "Please re-check password");
+            if (loginDAO.signUp(newUser)) {
+                new JOptionPane().showMessageDialog(this, "Vous etes inscrit ! Bienvenue");
+                new Login().setVisible(true);
+                this.setVisible(false);
+            } else {
+                new JOptionPane().showMessageDialog(this, "Username est deja utilisé");
+
+            }
+
+        } else {
+            new JOptionPane().showMessageDialog(this, "Please re-check password");
 
         }
-        
-        
+
     }//GEN-LAST:event_saveBTActionPerformed
 
     /**

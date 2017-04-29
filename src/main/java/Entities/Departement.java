@@ -13,30 +13,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-
 /**
  *
  * @author marwen
  */
-
-@Entity 
+@Entity
 public class Departement implements Serializable {
-    
-    
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
     @Id
     String nom;
-    
+
     String address;
-    
-    
+
     @OneToMany(mappedBy = "departement")
     List<Car> cars;
-    
-    
+
     @OneToMany(mappedBy = "departement")
     List<User> users;
-    
+
 }

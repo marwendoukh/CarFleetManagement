@@ -10,33 +10,26 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 /**
  *
  * @author marwen
  */
-
 @Entity
- public class Article implements Serializable {
-    
+public class Article implements Serializable {
+
     @Id
     Integer id;
-    
+
     String designation;
-    
-	@OneToMany(mappedBy = "article",fetch=FetchType.EAGER)
-        List<Fixing> fixings;
+
+    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+    List<Fixing> fixings;
 
     public Article() {
     }
-    
-    
-    
-    
+
     public Article(Integer id, String designation, List<Fixing> fixings) {
         this.id = id;
         this.designation = designation;
@@ -67,10 +60,4 @@ import javax.persistence.OneToOne;
         this.fixings = fixings;
     }
 
-   
-
-    
-    
-    
-    
 }

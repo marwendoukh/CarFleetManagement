@@ -7,6 +7,7 @@ package DAO;
 
 import Entities.Car;
 import Utils.HibernateUtil;
+import java.util.List;
 import javax.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -16,9 +17,9 @@ import org.hibernate.query.Query;
  *
  * @author marwen
  */
-public class CarDAO implements CarDAOInterface{
-    
-     Session session;
+public class CarDAO implements CarDAOInterface {
+
+    Session session;
     Transaction transaction;
 
     public CarDAO() {
@@ -26,21 +27,19 @@ public class CarDAO implements CarDAOInterface{
 
     @Override
     public Boolean addCar(Car car) {
-        try{
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
-        transaction = session.beginTransaction();
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            transaction = session.beginTransaction();
 
-        session.save(car);
-        transaction.commit();
-        System.out.println("Successfully inserted");
-        session.close();
-        return true;
-        }
-        catch(Exception e)
-        {
+            session.save(car);
+            transaction.commit();
+            System.out.println("Successfully inserted");
+            session.close();
+            return true;
+        } catch (Exception e) {
             session.close();
             return false;
-            
+
         }
 
     }
@@ -49,11 +48,11 @@ public class CarDAO implements CarDAOInterface{
     public Car getCarByImmatriculation(Integer immatriculation) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.beginTransaction();
-        
-       Car car = session.get(Car.class, immatriculation);
-      
-       session.close();
-       return car;
+
+        Car car = session.get(Car.class, immatriculation);
+
+        session.close();
+        return car;
     }
 
     @Override
@@ -64,7 +63,7 @@ public class CarDAO implements CarDAOInterface{
         Car car;
 
         try {
-            String hql = "from Car where category = :category";
+            String hql = "FROM Car WHERE category = :category";
             Query query = session.createQuery(hql);
             query.setString("category", category);
             car = (Car) query.getSingleResult();
@@ -77,7 +76,6 @@ public class CarDAO implements CarDAOInterface{
         System.out.println("car found is " + car.getMarque());
         return car;
 
-
     }
 
     @Override
@@ -88,7 +86,7 @@ public class CarDAO implements CarDAOInterface{
         Car car;
 
         try {
-            String hql = "from Car where utilisation = :utilisation";
+            String hql = "FROM Car WHERE utilisation = :utilisation";
             Query query = session.createQuery(hql);
             query.setString("utilisation", utilisation);
             car = (Car) query.getSingleResult();
@@ -101,7 +99,13 @@ public class CarDAO implements CarDAOInterface{
         System.out.println("car found is " + car.getMarque());
         return car;
     }
-    
-    
-    
+
+    @Override
+    public List<Car> findAllCars() {
+
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.beginTransaction();
+        return session.createCriteria(Car.class).list();
+    }
+
 }
