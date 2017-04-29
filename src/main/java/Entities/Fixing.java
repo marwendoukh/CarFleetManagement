@@ -8,11 +8,11 @@ package Entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -25,35 +25,66 @@ public class Fixing implements Serializable {
     @Id
     String soucheNumber;
 
+    
     @ManyToOne
+    @JoinColumn(name = "immatriculation", referencedColumnName = "immatriculation", insertable = true, updatable = true)
     Car car;
+    
+    
+	@ManyToOne
+        @JoinColumn(name = "id", referencedColumnName = "id", insertable = true, updatable = true)
+    Article article;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     Date fixingDate;
     
-    Integer index;
-    
-    String useType;
-    
-    String fixingType;
-    
-    Float fixingPrice;
-    
-    String visiteTechniqueAgency;
-    
-    @Temporal(javax.persistence.TemporalType.DATE)
-    Date visiteTechniqueDate;
-    
-     @Temporal(javax.persistence.TemporalType.DATE)
-    Date nextVisiteDate;
-    
-     
-     Float totalPriceVisite;
+   
      
      String supplier;
      
-     @OneToMany
-    List<Article> article;
+   String fixingDestination;
+   
+   
+   
+    
+    String designationD;
+    
+    
+  
+     @Temporal(javax.persistence.TemporalType.DATE)
+    Date dateDemande;
+    
+     
+     String responsableMission;  
+
+    public Fixing() {
+    }
+     
+     
+     
+     
+
+    public Fixing(String soucheNumber, Car car, Article article, Date fixingDate, String supplier, String fixingDestination, String designationD, Date dateDemande, String responsableMission) {
+        this.soucheNumber = soucheNumber;
+        this.car = car;
+        this.article = article;
+        this.fixingDate = fixingDate;
+        this.supplier = supplier;
+        this.fixingDestination = fixingDestination;
+        this.designationD = designationD;
+        this.dateDemande = dateDemande;
+        this.responsableMission = responsableMission;
+    }
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
 
     public String getSoucheNumber() {
         return soucheNumber;
@@ -71,76 +102,20 @@ public class Fixing implements Serializable {
         this.car = car;
     }
 
+    public Article getArticle() {
+        return article;
+    }
+
+    public void setArticle(Article article) {
+        this.article = article;
+    }
+
     public Date getFixingDate() {
         return fixingDate;
     }
 
     public void setFixingDate(Date fixingDate) {
         this.fixingDate = fixingDate;
-    }
-
-    public Integer getIndex() {
-        return index;
-    }
-
-    public void setIndex(Integer index) {
-        this.index = index;
-    }
-
-    public String getUseType() {
-        return useType;
-    }
-
-    public void setUseType(String useType) {
-        this.useType = useType;
-    }
-
-    public String getFixingType() {
-        return fixingType;
-    }
-
-    public void setFixingType(String fixingType) {
-        this.fixingType = fixingType;
-    }
-
-    public Float getFixingPrice() {
-        return fixingPrice;
-    }
-
-    public void setFixingPrice(Float fixingPrice) {
-        this.fixingPrice = fixingPrice;
-    }
-
-    public String getVisiteTechniqueAgency() {
-        return visiteTechniqueAgency;
-    }
-
-    public void setVisiteTechniqueAgency(String visiteTechniqueAgency) {
-        this.visiteTechniqueAgency = visiteTechniqueAgency;
-    }
-
-    public Date getVisiteTechniqueDate() {
-        return visiteTechniqueDate;
-    }
-
-    public void setVisiteTechniqueDate(Date visiteTechniqueDate) {
-        this.visiteTechniqueDate = visiteTechniqueDate;
-    }
-
-    public Date getNextVisiteDate() {
-        return nextVisiteDate;
-    }
-
-    public void setNextVisiteDate(Date nextVisiteDate) {
-        this.nextVisiteDate = nextVisiteDate;
-    }
-
-    public Float getTotalPriceVisite() {
-        return totalPriceVisite;
-    }
-
-    public void setTotalPriceVisite(Float totalPriceVisite) {
-        this.totalPriceVisite = totalPriceVisite;
     }
 
     public String getSupplier() {
@@ -151,29 +126,39 @@ public class Fixing implements Serializable {
         this.supplier = supplier;
     }
 
-    public List<Article> getArticle() {
-        return article;
+    public String getFixingDestination() {
+        return fixingDestination;
     }
 
-    public void setArticle(List<Article> article) {
-        this.article = article;
+    public void setFixingDestination(String fixingDestination) {
+        this.fixingDestination = fixingDestination;
     }
 
-    public Fixing(String soucheNumber, Car car, Date fixingDate, Integer index, String useType, String fixingType, Float fixingPrice, String visiteTechniqueAgency, Date visiteTechniqueDate, Date nextVisiteDate, Float totalPriceVisite, String supplier, List<Article> article) {
-        this.soucheNumber = soucheNumber;
-        this.car = car;
-        this.fixingDate = fixingDate;
-        this.index = index;
-        this.useType = useType;
-        this.fixingType = fixingType;
-        this.fixingPrice = fixingPrice;
-        this.visiteTechniqueAgency = visiteTechniqueAgency;
-        this.visiteTechniqueDate = visiteTechniqueDate;
-        this.nextVisiteDate = nextVisiteDate;
-        this.totalPriceVisite = totalPriceVisite;
-        this.supplier = supplier;
-        this.article = article;
+    public String getDesignationD() {
+        return designationD;
     }
+
+    public void setDesignationD(String designationD) {
+        this.designationD = designationD;
+    }
+
+    public Date getDateDemande() {
+        return dateDemande;
+    }
+
+    public void setDateDemande(Date dateDemande) {
+        this.dateDemande = dateDemande;
+    }
+
+    public String getResponsableMission() {
+        return responsableMission;
+    }
+
+    public void setResponsableMission(String responsableMission) {
+        this.responsableMission = responsableMission;
+    }
+
+     
      
      
      

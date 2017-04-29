@@ -8,9 +8,12 @@ package Entities;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -25,17 +28,19 @@ import javax.persistence.ManyToOne;
     
     String designation;
     
-    @ManyToMany(mappedBy = "article")
-    List<Fixing> fixings;
-    
-    @ManyToOne
-    Store store;
+	@OneToMany(mappedBy = "article",fetch=FetchType.EAGER)
+        List<Fixing> fixings;
 
-    public Article(Integer id, String designation, List<Fixing> fixings, Store store) {
+    public Article() {
+    }
+    
+    
+    
+    
+    public Article(Integer id, String designation, List<Fixing> fixings) {
         this.id = id;
         this.designation = designation;
         this.fixings = fixings;
-        this.store = store;
     }
 
     public Integer getId() {
@@ -62,13 +67,8 @@ import javax.persistence.ManyToOne;
         this.fixings = fixings;
     }
 
-    public Store getStore() {
-        return store;
-    }
+   
 
-    public void setStore(Store store) {
-        this.store = store;
-    }
     
     
     

@@ -9,10 +9,11 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -44,19 +45,43 @@ public class User implements Serializable {
     @Column(name = "password")
     String password;
 
-    @Column(name = "address")
+    @Column(name = "address", insertable=false, updatable=false)
     String Address;
 
     @Column(name = "phoneNumber")
 
     Integer phoneNumber;
     
+    @Column(name="address")
+    String address;
+    
+    @Enumerated(EnumType.STRING)
+    Role role;
     
     @ManyToOne
     Departement departement;
 
     public User() {
     }
+
+    public User(String username, Integer cin, String name, String surname, String password, String Address, Integer phoneNumber, String address, Role role, Departement departement) {
+        this.username = username;
+        this.cin = cin;
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.Address = Address;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.role = role;
+        this.departement = departement;
+    }
+    
+    
+    
+    
+    
+    
 
     public User(Integer cin, String name, String surname, String username, String password, String Address, Integer phoneNumber) {
         this.cin = cin;
@@ -167,5 +192,25 @@ public class User implements Serializable {
         }
         return true;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Departement getDepartement() {
+        return departement;
+    }
+
+    public void setDepartement(Departement departement) {
+        this.departement = departement;
+    }
+    
+    
+    
+    
 
 }

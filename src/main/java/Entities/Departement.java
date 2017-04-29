@@ -29,7 +29,7 @@ public class Departement implements Serializable {
     @Id
     String nom;
     
-    String designation;
+    String address;
     
     
     @OneToMany(mappedBy = "departement")

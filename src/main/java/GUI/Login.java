@@ -9,9 +9,9 @@ import DAO.LoginDAO;
 import Entities.Car;
 import Entities.Fixing;
 import Entities.Article;
-import Entities.Store;
 
 import Utils.HibernateUtil;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -32,7 +32,7 @@ public class Login extends javax.swing.JFrame {
 
         
         // just testing the entities
-        /*
+        
 Session session;
     Transaction transaction;
 
@@ -40,8 +40,54 @@ Session session;
     try {
             session = HibernateUtil.getSessionFactory().getCurrentSession();
             transaction = session.beginTransaction();
+            
+             Car c = new Car();
+             c.setCategory("aaaa");
+             c.setImmatriculation("22222222");
+             
+                                      session.save(c);
 
-            Car c = new Car();
+                                     transaction.commit();
+
+                                       session = HibernateUtil.getSessionFactory().getCurrentSession();
+            transaction = session.beginTransaction();
+            
+             List<Fixing> fixings = new ArrayList<Fixing>();
+             
+           Article a =  new Article(111,   "design", fixings);
+                         session.save(a);
+
+                          transaction.commit();
+
+                                       session = HibernateUtil.getSessionFactory().getCurrentSession();
+            transaction = session.beginTransaction();
+             Fixing f = new Fixing("aaa", c, a, new Date(), "ss", "ss", "ss", new Date(), "zz");
+             
+              session.save(f);
+
+                        transaction.commit();
+                        
+                   session = HibernateUtil.getSessionFactory().getCurrentSession();
+            transaction = session.beginTransaction();
+                 
+             fixings.add(f);
+             c.setFixing(fixings);
+             
+             
+            session.merge(c);
+
+                        transaction.commit();
+                                                System.out.println("Successfully inserted");
+
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+               transaction = session.beginTransaction();
+
+                        
+       Car car = session.get(Car.class, "22222222");
+        System.out.println("car cat " +car.getFixing().get(0).getCar().getCategory());
+
+
+       /*     Car c = new Car();
             c.setCategory("sport");
                         Article article = new Article(5, "", null, null);
                         List<Article> articles = null;
@@ -60,11 +106,14 @@ Session session;
             session.save(fixing);
             session.save(store);
 
-            
+            */
             transaction.commit();
-            System.out.println("Successfully inserted");
             session.close();
-        } catch (Exception e) {}*/
+        } catch (Exception e) {
+        System.out.println("exception "+e.toString());
+        }
+    
+    //*/
        
     }
 

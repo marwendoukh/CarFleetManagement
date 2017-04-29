@@ -8,15 +8,17 @@ package Entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -31,7 +33,7 @@ public class Car implements Serializable {
 
     @Id
     @Column(name = "immatriculation")
-    Integer immatriculation;
+    String immatriculation;
 
     @ManyToOne
     Departement departement;
@@ -67,11 +69,64 @@ public class Car implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     Date dateProchaineVisiteTechnique;
     Float montantVisiteTechnique;
+    String agenceVisiteTechnique;
 
     @Temporal(javax.persistence.TemporalType.DATE)
     Date dateProchaineVigniette;
     Float montantVigniette;
     Float montantTaxeVigniette;
+    
+    Float prixAchat;
+    
+    String concessionnaire;
+    
+    
+    
+    @OneToMany(mappedBy = "car",fetch=FetchType.EAGER)
+    
+    private List<Fixing> fixings;
+    
+
+    public Car() {
+    }
+    
+    
+    
+
+    public Car(String immatriculation, Departement departement, Date dateDeMiseEnCirculation, List<BonDeCarburant> bonDeCarburants, Integer puissance, Integer nombreDePlaces, String marque, String category, Integer numDeChassis, String carburant, String utilisation, String etat, Date dateDeReforme, String compagnieDassurance, Date dateDebutDassurance, Date dateProchaineAssurance, Float montantAssurance, Date dateVisiteTechnique, Date dateProchaineVisiteTechnique, Float montantVisiteTechnique, String agenceVisiteTechnique, Date dateProchaineVigniette, Float montantVigniette, Float montantTaxeVigniette, Float prixAchat, String concessionnaire) {
+        this.immatriculation = immatriculation;
+        this.departement = departement;
+        this.dateDeMiseEnCirculation = dateDeMiseEnCirculation;
+        this.bonDeCarburants = bonDeCarburants;
+        this.puissance = puissance;
+        this.nombreDePlaces = nombreDePlaces;
+        this.marque = marque;
+        this.category = category;
+        this.numDeChassis = numDeChassis;
+        this.carburant = carburant;
+        this.utilisation = utilisation;
+        this.etat = etat;
+        this.dateDeReforme = dateDeReforme;
+        this.compagnieDassurance = compagnieDassurance;
+        this.dateDebutDassurance = dateDebutDassurance;
+        this.dateProchaineAssurance = dateProchaineAssurance;
+        this.montantAssurance = montantAssurance;
+        this.dateVisiteTechnique = dateVisiteTechnique;
+        this.dateProchaineVisiteTechnique = dateProchaineVisiteTechnique;
+        this.montantVisiteTechnique = montantVisiteTechnique;
+        this.agenceVisiteTechnique = agenceVisiteTechnique;
+        this.dateProchaineVigniette = dateProchaineVigniette;
+        this.montantVigniette = montantVigniette;
+        this.montantTaxeVigniette = montantTaxeVigniette;
+        this.prixAchat = prixAchat;
+        this.concessionnaire = concessionnaire;
+    }
+    
+    
+    
+    
+    
+    
 
     public Integer getId() {
         return id;
@@ -81,11 +136,11 @@ public class Car implements Serializable {
         this.id = id;
     }
 
-    public Integer getImmatriculation() {
+    public String getImmatriculation() {
         return immatriculation;
     }
 
-    public void setImmatriculation(Integer immatriculation) {
+    public void setImmatriculation(String immatriculation) {
         this.immatriculation = immatriculation;
     }
 
@@ -257,4 +312,48 @@ public class Car implements Serializable {
         this.montantTaxeVigniette = montantTaxeVigniette;
     }
 
+    public List<BonDeCarburant> getBonDeCarburants() {
+        return bonDeCarburants;
+    }
+
+    public void setBonDeCarburants(List<BonDeCarburant> bonDeCarburants) {
+        this.bonDeCarburants = bonDeCarburants;
+    }
+
+    public String getAgenceVisiteTechnique() {
+        return agenceVisiteTechnique;
+    }
+
+    public void setAgenceVisiteTechnique(String agenceVisiteTechnique) {
+        this.agenceVisiteTechnique = agenceVisiteTechnique;
+    }
+
+    public Float getPrixAchat() {
+        return prixAchat;
+    }
+
+    public void setPrixAchat(Float prixAchat) {
+        this.prixAchat = prixAchat;
+    }
+
+    public String getConcessionnaire() {
+        return concessionnaire;
+    }
+
+    public void setConcessionnaire(String concessionnaire) {
+        this.concessionnaire = concessionnaire;
+    }
+
+    public List<Fixing> getFixing() {
+        return fixings;
+    }
+
+    public void setFixing(List<Fixing> fixing) {
+        this.fixings = fixing;
+    }
+
+    
+    
+    
+    
 }
