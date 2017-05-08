@@ -16,6 +16,7 @@ import java.util.List;
 public interface DepartementDAOInterface {
 
     Departement findDepartement(String name);
+    void addDepartement(String name);
 
     
 

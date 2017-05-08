@@ -37,6 +37,7 @@ public class CarDAO implements CarDAOInterface {
             session.close();
             return true;
         } catch (Exception e) {
+            System.out.println("Exception "+e.toString());
             session.close();
             return false;
 

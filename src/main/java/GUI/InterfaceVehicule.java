@@ -5,10 +5,17 @@
  */
 package GUI;
 
+import DAO.CarDAO;
 import DAO.DepartementDAO;
 import Entities.Car;
 import Entities.Departement;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -70,7 +77,6 @@ public class InterfaceVehicule extends javax.swing.JFrame {
         montantAssuranceET = new javax.swing.JTextField();
         jComboBox5 = new javax.swing.JComboBox();
         compagnieAssuranceET = new javax.swing.JTextField();
-        jComboBox6 = new javax.swing.JComboBox();
         etatSP = new javax.swing.JComboBox();
         jLabel17 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
@@ -93,6 +99,7 @@ public class InterfaceVehicule extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         addCarBT = new javax.swing.JButton();
+        dateReformeET = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -180,7 +187,7 @@ public class InterfaceVehicule extends javax.swing.JFrame {
 
         indexKmET.setText("jTextField9");
 
-        carburantSP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        carburantSP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Essence", "Diesel", "Gaz" }));
 
         typeUtilisationET.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -208,8 +215,6 @@ public class InterfaceVehicule extends javax.swing.JFrame {
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         compagnieAssuranceET.setText("jTextField11");
-
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         etatSP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -278,6 +283,8 @@ public class InterfaceVehicule extends javax.swing.JFrame {
                 addCarBTActionPerformed(evt);
             }
         });
+
+        dateReformeET.setText("jTextField1");
 
         jMenu1.setText("Vehicule");
 
@@ -438,18 +445,21 @@ public class InterfaceVehicule extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20)
                             .addComponent(jLabel19)
-                            .addComponent(jLabel18)
-                            .addComponent(jCheckBox1)
                             .addComponent(jLabel16)
-                            .addComponent(jLabel21))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(etatSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(compagnieAssuranceET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(montantAssuranceET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel21)
+                            .addComponent(jLabel18)
+                            .addComponent(jCheckBox1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(etatSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(compagnieAssuranceET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(montantAssuranceET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(dateReformeET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -531,9 +541,9 @@ public class InterfaceVehicule extends javax.swing.JFrame {
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(categorieSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jCheckBox1)
-                                                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel22)
-                                                .addComponent(montantVignietteET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                .addComponent(montantVignietteET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(dateReformeET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                     .addComponent(jLabel11))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -650,19 +660,46 @@ Departement dep = new Departement();
         DepartementDAO depDAO = new DepartementDAO();
        if(depDAO.findDepartement(departmentET.getText())!= null)
            dep = depDAO.findDepartement(departmentET.getText());
+       else
+       {
+           depDAO.addDepartement(departmentET.getText());
+          dep = depDAO.findDepartement(departmentET.getText());
+
+       }
         
        car.setDepartement(dep);
        
        car.setConcessionnaire(concessionnaireET.getText());
        
-       car.setDateDeMiseEnCirculation(new Date(dateMiseEnCirculationET.getText()));
+       
+        try {
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+        Date date;
+            date = format.parse(dateMiseEnCirculationET.getText());
+                   car.setDateDeMiseEnCirculation(date);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(InterfaceVehicule.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
        car.setPuissance(Integer.parseInt(puissanceET.getText()));
        car.setNombreDePlaces(Integer.parseInt(nombreDePlaceET.getText()));
        car.setMarque(marqueET.getText());
        car.setNumDeChassis(Integer.parseInt(numChassisET.getText()));
        car.setIndexKm(Integer.parseInt(indexKmET.getText()));
+       car.setCarburant(carburantSP.getSelectedItem().toString());
+       car.setUtilisation(typeUtilisationET.getSelectedItem().toString());
+       car.setEtat(etatSP.getSelectedItem().toString());
+      // car.setDateDeReforme(Date.parse(dateReformeET.getText()));
+       car.setCompagnieDassurance(compagnieAssuranceET.getText());
+       car.setMontantAssurance(Float.parseFloat(montantAssuranceET.getText()));
+       car.setMontantVigniette(Float.parseFloat(montantVignietteET.getText()));
+       car.setMontantTaxeVigniette(Float.parseFloat(montantTaxeET.getText()));
+       car.setPrixAchat(Float.parseFloat(prixAchatET.getText()));
 
+       
+        CarDAO carDAO = new CarDAO();
+        carDAO.addCar(car);
     }//GEN-LAST:event_addCarBTActionPerformed
 
     /**
@@ -707,6 +744,7 @@ Departement dep = new Departement();
     private javax.swing.JTextField compagnieAssuranceET;
     private javax.swing.JTextField concessionnaireET;
     private javax.swing.JTextField dateMiseEnCirculationET;
+    private javax.swing.JTextField dateReformeET;
     private javax.swing.JTextField departmentET;
     private javax.swing.JComboBox etatSP;
     private javax.swing.JTextField immatriculationET;
@@ -720,7 +758,6 @@ Departement dep = new Departement();
     private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JComboBox jComboBox4;
     private javax.swing.JComboBox jComboBox5;
-    private javax.swing.JComboBox jComboBox6;
     private javax.swing.JComboBox jComboBox8;
     private javax.swing.JComboBox jComboBox9;
     private javax.swing.JLabel jLabel1;

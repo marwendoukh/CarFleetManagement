@@ -5,13 +5,10 @@
  */
 package DAO;
 
-import Entities.Article;
 import Entities.Departement;
 import Utils.HibernateUtil;
-import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
 /**
  *
@@ -25,7 +22,31 @@ public class DepartementDAO implements DepartementDAOInterface {
     @Override
     public Departement findDepartement(String name) {
 
-        return session.find(Departement.class, name);
+        Departement dep = null;
+        try {
+           dep= session.find(Departement.class, name);
+           
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
+        session.close();
+        return dep;
+    }
+
+    @Override
+    public void addDepartement(String name) {
+ 
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            transaction = session.beginTransaction();
+
+            Departement dep = new Departement();
+            dep.setNom(name);
+            session.save(dep);
+            transaction.commit();
+            System.out.println("Successfully inserted");
+            session.close();
     }
 
     

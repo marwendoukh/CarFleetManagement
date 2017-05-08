@@ -239,19 +239,24 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel20" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel21" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCheckBox1" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="etatSP" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox6" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="compagnieAssuranceET" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox5" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jComboBox4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="montantAssuranceET" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="74" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Component id="etatSP" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="compagnieAssuranceET" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBox5" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="jComboBox4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="montantAssuranceET" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="dateReformeET" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -355,9 +360,9 @@
                                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                               <Component id="categorieSP" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jComboBox6" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jLabel22" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="montantVignietteET" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="dateReformeET" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -615,11 +620,10 @@
     <Component class="javax.swing.JComboBox" name="carburantSP">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
+          <StringArray count="3">
+            <StringItem index="0" value="Essence"/>
+            <StringItem index="1" value="Diesel"/>
+            <StringItem index="2" value="Gaz"/>
           </StringArray>
         </Property>
       </Properties>
@@ -701,18 +705,6 @@
     <Component class="javax.swing.JTextField" name="compagnieAssuranceET">
       <Properties>
         <Property name="text" type="java.lang.String" value="jTextField11"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jComboBox6">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
-        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="etatSP">
@@ -934,6 +926,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCarBTActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="dateReformeET">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jTextField1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
