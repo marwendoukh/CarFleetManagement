@@ -17,8 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+
 
 /**
  *
@@ -80,6 +79,8 @@ public class Car implements Serializable {
     Float prixAchat;
 
     String concessionnaire;
+    
+    Integer indexKm;
 
     @OneToMany(mappedBy = "car", fetch = FetchType.EAGER)
 
@@ -117,6 +118,17 @@ public class Car implements Serializable {
         this.concessionnaire = concessionnaire;
     }
 
+    public Integer getIndexKm() {
+        return indexKm;
+    }
+
+    public void setIndexKm(Integer indexKm) {
+        this.indexKm = indexKm;
+    }
+
+    
+    
+    
     public Integer getId() {
         return id;
     }
