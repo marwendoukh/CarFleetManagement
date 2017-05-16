@@ -5,20 +5,21 @@
  */
 package GUI;
 
-import Utils.ConnectedUser;
+import DAO.CarDAO;
+import Entities.Car;
 
 /**
  *
  * @author marwen
  */
-public class AdminDashboard extends javax.swing.JFrame {
+public class AddCarOldVersion extends javax.swing.JFrame {
 
     /**
-     * Creates new form AdminDashboard
+     * Creates new form Vehicule
      */
-    public AdminDashboard() {
+    public AddCarOldVersion() {
         initComponents();
-        welcomeMrLB.setText("Bienvenue MR " + ConnectedUser.getCurrentConnectedUser().getName());
+
     }
 
     /**
@@ -38,6 +39,8 @@ public class AdminDashboard extends javax.swing.JFrame {
         parametresBT = new javax.swing.JButton();
         welcomeMrLB = new javax.swing.JLabel();
         signOutBT = new javax.swing.JButton();
+        addCarBT = new javax.swing.JButton();
+        carsStateBT = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,24 +63,36 @@ public class AdminDashboard extends javax.swing.JFrame {
 
         signOutBT.setText("Deconnexion");
 
+        addCarBT.setText("Ajouter vehicule");
+
+        carsStateBT.setText("Etat des vehicules dans une année");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(VehiculesBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(reparationBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(carburantBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(magasinsBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(parametresBT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(welcomeMrLB)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                .addComponent(signOutBT))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(addCarBT)
+                        .addGap(18, 18, 18)
+                        .addComponent(carsStateBT))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(VehiculesBT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(reparationBT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(carburantBT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(magasinsBT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(parametresBT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(welcomeMrLB)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(signOutBT)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,7 +105,11 @@ public class AdminDashboard extends javax.swing.JFrame {
                     .addComponent(parametresBT)
                     .addComponent(welcomeMrLB)
                     .addComponent(signOutBT))
-                .addGap(0, 275, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addCarBT)
+                    .addComponent(carsStateBT))
+                .addGap(0, 244, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -111,8 +130,6 @@ public class AdminDashboard extends javax.swing.JFrame {
 
     private void VehiculesBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VehiculesBTActionPerformed
         // TODO add your handling code here:
-        new AddCarOldVersion().setVisible(true);
-        this.setVisible(false);
     }//GEN-LAST:event_VehiculesBTActionPerformed
 
     /**
@@ -132,28 +149,32 @@ public class AdminDashboard extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddCarOldVersion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddCarOldVersion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddCarOldVersion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminDashboard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddCarOldVersion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminDashboard().setVisible(true);
-
+                new AddCarOldVersion().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton VehiculesBT;
+    private javax.swing.JButton addCarBT;
     private javax.swing.JButton carburantBT;
+    private javax.swing.JButton carsStateBT;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton magasinsBT;
     private javax.swing.JButton parametresBT;

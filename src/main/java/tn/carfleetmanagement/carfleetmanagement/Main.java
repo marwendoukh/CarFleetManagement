@@ -5,10 +5,8 @@
  */
 package tn.carfleetmanagement.carfleetmanagement;
 
-import Utils.HibernateUtil;
-import java.sql.Connection;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+
+
 
 /**
  *
@@ -16,4 +14,5 @@ import org.hibernate.Transaction;
  */
 public class Main {
 
+    
 }

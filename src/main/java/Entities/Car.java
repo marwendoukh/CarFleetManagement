@@ -73,7 +73,12 @@ public class Car implements Serializable {
 
     @Temporal(javax.persistence.TemporalType.DATE)
     Date dateProchaineVigniette;
+    
     Float montantVigniette;
+    
+    @Temporal(javax.persistence.TemporalType.DATE)
+    Date dateProchaineTaxe;
+    
     Float montantTaxeVigniette;
 
     Float prixAchat;
@@ -124,6 +129,14 @@ public class Car implements Serializable {
 
     public void setIndexKm(Integer indexKm) {
         this.indexKm = indexKm;
+    }
+
+    public Date getDateProchaineTaxe() {
+        return dateProchaineTaxe;
+    }
+
+    public void setDateProchaineTaxe(Date dateProchaineTaxe) {
+        this.dateProchaineTaxe = dateProchaineTaxe;
     }
 
     
