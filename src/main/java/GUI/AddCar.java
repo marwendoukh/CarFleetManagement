@@ -12,10 +12,13 @@ import Entities.Departement;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -83,15 +86,15 @@ public class AddCar extends javax.swing.JFrame {
         montantVignietteET = new javax.swing.JTextField();
         montantTaxeET = new javax.swing.JTextField();
         prixAchatET = new javax.swing.JTextField();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        immatriculationCB = new javax.swing.JCheckBox();
         searchImmatriculationET = new javax.swing.JTextField();
-        jCheckBox3 = new javax.swing.JCheckBox();
-        jCheckBox4 = new javax.swing.JCheckBox();
+        departementCB = new javax.swing.JCheckBox();
+        utilisationCB = new javax.swing.JCheckBox();
         searchDepartementET = new javax.swing.JTextField();
         searchUtilisationET = new javax.swing.JTextField();
         seachBT = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableJT = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         addCarBT = new javax.swing.JButton();
         dateReformeET = new javax.swing.JTextField();
@@ -196,16 +199,16 @@ public class AddCar extends javax.swing.JFrame {
 
         jLabel25.setText("Prix d'achat");
 
-        jCheckBox2.setText("Immatriculation");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+        immatriculationCB.setText("Immatriculation");
+        immatriculationCB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
+                immatriculationCBActionPerformed(evt);
             }
         });
 
-        jCheckBox3.setText("Département");
+        departementCB.setText("Département");
 
-        jCheckBox4.setText("Utilisation");
+        utilisationCB.setText("Utilisation");
 
         seachBT.setText("Afficher");
         seachBT.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +217,7 @@ public class AddCar extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableJT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null},
@@ -225,7 +228,7 @@ public class AddCar extends javax.swing.JFrame {
                 "Immatriculation", "Marque", "Categorie", "Date PMC", "Département", "Prix d'achat", "Prochaine assurance", "Prochaine taxes", "Prochaine visite", "Etat", "Utilisation"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableJT);
 
         jButton3.setText("Imprimmer");
 
@@ -383,11 +386,11 @@ public class AddCar extends javax.swing.JFrame {
                                 .addGap(90, 90, 90)
                                 .addComponent(jLabel9))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckBox2)
+                        .addComponent(immatriculationCB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchImmatriculationET, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jCheckBox3)))
+                        .addComponent(departementCB)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
@@ -413,7 +416,7 @@ public class AddCar extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchDepartementET, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckBox4)
+                        .addComponent(utilisationCB)
                         .addGap(18, 18, 18)
                         .addComponent(searchUtilisationET, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -547,15 +550,15 @@ public class AddCar extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCheckBox2)
+                                    .addComponent(immatriculationCB)
                                     .addComponent(searchImmatriculationET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel9)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jCheckBox3)
+                                    .addComponent(departementCB)
                                     .addComponent(searchDepartementET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jCheckBox4)
+                                    .addComponent(utilisationCB)
                                     .addComponent(searchUtilisationET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(seachBT))))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -592,12 +595,63 @@ public class AddCar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_immatriculationETActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+    private void immatriculationCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_immatriculationCBActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
+    }//GEN-LAST:event_immatriculationCBActionPerformed
 
     private void seachBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seachBTActionPerformed
-        // TODO add your handling code here:
+
+         CarDAO carDao = new CarDAO();
+         List<Car> cars= new ArrayList<>();
+            if(immatriculationCB.isSelected() && !departementCB.isSelected() && !utilisationCB.isSelected())
+            {
+               cars.add(carDao.getCarByImmatriculation(searchImmatriculationET.getText()));
+            }
+            else if(!immatriculationCB.isSelected() && departementCB.isSelected() && !utilisationCB.isSelected())
+            {
+                cars.addAll(carDao.getCarByDepartement(searchDepartementET.getText()));
+            }
+             else if(!immatriculationCB.isSelected() && !departementCB.isSelected() && utilisationCB.isSelected())
+            {
+                cars.addAll(carDao.getCarByUtilisation(searchUtilisationET.getText()));
+            }
+            
+            
+            /// add to the table
+            
+            Object[] tableColumnNames = new Object[11];
+        tableColumnNames[0]="Immatriculation";
+        tableColumnNames[1]="Marque";
+        tableColumnNames[2]="Categorie";
+        tableColumnNames[3]="Date fin Assurance";
+        tableColumnNames[4]="Departement";
+        tableColumnNames[5]="Prix achat";
+        tableColumnNames[6]="Date fin Assurance";
+        tableColumnNames[7]="Date fin Vignette";
+        tableColumnNames[8]="Date fin taxes";
+        tableColumnNames[9]="Etat";
+        tableColumnNames[10]="Utilisation";
+         DefaultTableModel tbd = new DefaultTableModel() ;
+         tbd.setColumnIdentifiers(tableColumnNames);
+        Object [] RowService=new Object[11];
+        this.tableJT.setModel(tbd);
+        for (int i=0;i<cars.size();i++){
+            RowService[0]=cars.get(i).getImmatriculation();
+            RowService[1]=cars.get(i).getMarque();
+            RowService[2]=cars.get(i).getCategory();
+            RowService[3]=cars.get(i).getDateProchaineAssurance().toString();
+            RowService[4]=cars.get(i).getDepartement().getNom();
+            RowService[5]=cars.get(i).getPrixAchat();
+            RowService[6]=cars.get(i).getDateProchaineAssurance().toString();
+            RowService[7]=cars.get(i).getDateProchaineVigniette().toString();
+            RowService[8]=cars.get(i).getDateProchaineTaxe().toString();
+            RowService[9]=cars.get(i).getEtat();
+            RowService[10]=cars.get(i).getUtilisation();
+            tbd.addRow(RowService);
+
+        }
+           
+        
     }//GEN-LAST:event_seachBTActionPerformed
 
     private void addCarBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCarBTActionPerformed
@@ -747,15 +801,14 @@ Departement dep = new Departement();
     private javax.swing.JTextField dateProchaineTaxeET;
     private javax.swing.JTextField dateProchaineVignietteET;
     private javax.swing.JTextField dateReformeET;
+    private javax.swing.JCheckBox departementCB;
     private javax.swing.JTextField departmentET;
     private javax.swing.JComboBox etatSP;
+    private javax.swing.JCheckBox immatriculationCB;
     private javax.swing.JTextField immatriculationET;
     private javax.swing.JTextField indexKmET;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private javax.swing.JCheckBox jCheckBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -804,7 +857,6 @@ Departement dep = new Departement();
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField marqueET;
     private javax.swing.JTextField montantAssuranceET;
     private javax.swing.JTextField montantTaxeET;
@@ -817,6 +869,8 @@ Departement dep = new Departement();
     private javax.swing.JTextField searchDepartementET;
     private javax.swing.JTextField searchImmatriculationET;
     private javax.swing.JTextField searchUtilisationET;
+    private javax.swing.JTable tableJT;
     private javax.swing.JComboBox typeUtilisationET;
+    private javax.swing.JCheckBox utilisationCB;
     // End of variables declaration//GEN-END:variables
 }

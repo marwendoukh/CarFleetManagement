@@ -224,11 +224,11 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jCheckBox2" min="-2" max="-2" attributes="0"/>
+                      <Component id="immatriculationCB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="searchImmatriculationET" min="-2" pref="69" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jCheckBox3" min="-2" max="-2" attributes="0"/>
+                      <Component id="departementCB" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -262,7 +262,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="searchDepartementET" min="-2" pref="77" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jCheckBox4" min="-2" max="-2" attributes="0"/>
+                      <Component id="utilisationCB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="searchUtilisationET" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -432,7 +432,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jCheckBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="immatriculationCB" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="searchImmatriculationET" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -440,9 +440,9 @@
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jCheckBox3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="departementCB" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="searchDepartementET" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jCheckBox4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="utilisationCB" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="searchUtilisationET" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="seachBT" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -685,22 +685,22 @@
     </Component>
     <Component class="javax.swing.JTextField" name="prixAchatET">
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox2">
+    <Component class="javax.swing.JCheckBox" name="immatriculationCB">
       <Properties>
         <Property name="text" type="java.lang.String" value="Immatriculation"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckBox2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="immatriculationCBActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="searchImmatriculationET">
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox3">
+    <Component class="javax.swing.JCheckBox" name="departementCB">
       <Properties>
         <Property name="text" type="java.lang.String" value="D&#xe9;partement"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JCheckBox" name="jCheckBox4">
+    <Component class="javax.swing.JCheckBox" name="utilisationCB">
       <Properties>
         <Property name="text" type="java.lang.String" value="Utilisation"/>
       </Properties>
@@ -724,7 +724,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="tableJT">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="11" rowCount="4">

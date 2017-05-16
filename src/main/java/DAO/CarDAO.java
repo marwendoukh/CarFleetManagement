@@ -7,6 +7,7 @@ package DAO;
 
 import Entities.Car;
 import Utils.HibernateUtil;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.NoResultException;
 import org.hibernate.Session;
@@ -23,13 +24,26 @@ public class CarDAO implements CarDAOInterface {
     Transaction transaction;
 
     public CarDAO() {
+         
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        
+        try{
+               transaction.isActive();
+        }
+        catch(Exception e)
+        {
+        transaction = session.beginTransaction();
+
+        }
+
+        
     }
 
     @Override
     public Boolean addCar(Car car) {
         try {
             session = HibernateUtil.getSessionFactory().getCurrentSession();
-            transaction = session.beginTransaction();
+            transaction = session.getTransaction();
 
             session.save(car);
             transaction.commit();
@@ -46,9 +60,9 @@ public class CarDAO implements CarDAOInterface {
     }
 
     @Override
-    public Car getCarByImmatriculation(Integer immatriculation) {
+    public Car getCarByImmatriculation(String immatriculation) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
-        transaction = session.beginTransaction();
+        transaction = session.getTransaction();
 
         Car car = session.get(Car.class, immatriculation);
 
@@ -57,56 +71,77 @@ public class CarDAO implements CarDAOInterface {
     }
 
     @Override
-    public Car getCarByCategory(String category) {
+    public List<Car> getCarByCategory(String category) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
-        transaction = session.beginTransaction();
+        transaction = session.getTransaction();
 
-        Car car;
+        List<Car> cars = new ArrayList<>();
 
         try {
             String hql = "FROM Car WHERE category = :category";
             Query query = session.createQuery(hql);
             query.setString("category", category);
-            car = (Car) query.getSingleResult();
+            cars.addAll(query.getResultList());
         } catch (NoResultException e) {
             session.close();
             return null;
         }
         session.close();
 
-        System.out.println("car found is " + car.getMarque());
-        return car;
+
+        return cars;
 
     }
 
     @Override
-    public Car getCarByUtilisation(String utilisation) {
+    public List<Car> getCarByUtilisation(String utilisation) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
-        transaction = session.beginTransaction();
+        transaction = session.getTransaction();
 
-        Car car;
+        List<Car> cars = new ArrayList<>();
 
         try {
             String hql = "FROM Car WHERE utilisation = :utilisation";
             Query query = session.createQuery(hql);
             query.setString("utilisation", utilisation);
-            car = (Car) query.getSingleResult();
+            cars.addAll(query.getResultList());
         } catch (NoResultException e) {
             session.close();
             return null;
         }
         session.close();
 
-        System.out.println("car found is " + car.getMarque());
-        return car;
+         return cars;
     }
 
     @Override
     public List<Car> findAllCars() {
 
         session = HibernateUtil.getSessionFactory().getCurrentSession();
-        transaction = session.beginTransaction();
+        transaction = session.getTransaction();
         return session.createCriteria(Car.class).list();
+    }
+
+    @Override
+    public List<Car> getCarByDepartement(String departement) {
+
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.getTransaction();
+
+        List<Car> cars = new ArrayList<>();
+
+        try {
+            String hql = "FROM Car WHERE departement.nom = :departement";
+            Query query = session.createQuery(hql);
+            query.setString("departement", departement);
+            cars.addAll(query.getResultList());
+        } catch (NoResultException e) {
+            session.close();
+            return null;
+        }
+        session.close();
+
+        return cars;
     }
 
 }

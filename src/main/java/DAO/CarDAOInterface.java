@@ -16,12 +16,15 @@ public interface CarDAOInterface {
 
     Boolean addCar(Car user);
 
-    Car getCarByImmatriculation(Integer immatriculation);
+    Car getCarByImmatriculation(String immatriculation);
 
-    Car getCarByCategory(String category);
+    List<Car> getCarByCategory(String category);
 
-    Car getCarByUtilisation(String utilisation);
+    List<Car> getCarByUtilisation(String utilisation);
 
     List<Car> findAllCars();
+    
+    List<Car> getCarByDepartement(String departement);
+
 
 }
