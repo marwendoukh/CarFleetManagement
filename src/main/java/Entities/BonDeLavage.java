@@ -31,5 +31,61 @@ public class BonDeLavage implements Serializable {
 
     @ManyToOne
     Car car;
+    
+    String useType;
 
+    public BonDeLavage() {
+    }
+
+    public String getBonNumber() {
+        return bonNumber;
+    }
+
+    public void setBonNumber(String bonNumber) {
+        this.bonNumber = bonNumber;
+    }
+
+    public String getSupplier() {
+        return Supplier;
+    }
+
+    public void setSupplier(String Supplier) {
+        this.Supplier = Supplier;
+    }
+
+    public Float getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Float unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public Car getCar() {
+        return car;
+    }
+
+    public void setCar(Car car) {
+        this.car = car;
+    }
+
+    public String getUseType() {
+        return useType;
+    }
+
+    public void setUseType(String useType) {
+        this.useType = useType;
+    }
+
+    
+    
+    
 }
