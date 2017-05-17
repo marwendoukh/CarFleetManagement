@@ -395,7 +395,6 @@ public class InterfaceAtelier extends javax.swing.JFrame {
             // get car object
             CarDAO carDAO = new CarDAO();
             Car car= carDAO.getCarByImmatriculation(immatriculationET.getText());
-            //carDAO.closeSession();
 
             bonLavage.setCar(car);
             

@@ -25,17 +25,20 @@ public class CarDAO implements CarDAOInterface {
 
     public CarDAO() {
          
-        session = HibernateUtil.getSessionFactory().getCurrentSession();
+         session = HibernateUtil.getSessionFactory().getCurrentSession();
         
-        try{
-               transaction.isActive();
+       try{
+            transaction.isActive();
         }
         catch(Exception e)
         {
-        transaction = session.beginTransaction();
-
+            transaction = session.beginTransaction();
         }
-
+       
+        
+    }
+    
+    public CarDAO(Boolean flase) {
         
     }
 
@@ -65,6 +68,7 @@ public class CarDAO implements CarDAOInterface {
         transaction = session.getTransaction();
 
         Car car = session.get(Car.class, immatriculation);
+       
 
         session.close();
         return car;
@@ -119,6 +123,8 @@ public class CarDAO implements CarDAOInterface {
 
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.getTransaction();
+        
+        session.close();
         return session.createCriteria(Car.class).list();
     }
 
@@ -143,5 +149,8 @@ public class CarDAO implements CarDAOInterface {
 
         return cars;
     }
+
+    
+    
 
 }
