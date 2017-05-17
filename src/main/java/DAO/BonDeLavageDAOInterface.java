@@ -6,6 +6,7 @@
 package DAO;
 
 import Entities.BonDeLavage;
+import java.util.List;
 
 /**
  *
@@ -14,5 +15,7 @@ import Entities.BonDeLavage;
 public interface BonDeLavageDAOInterface {
 
     void addBonDeLavage(BonDeLavage bdl);
+    BonDeLavage findBonLavageByNumBon(String numBon);
+    List<BonDeLavage> findBonLavageByImmatriculation(String immatriculation);
 
 }
