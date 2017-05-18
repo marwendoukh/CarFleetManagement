@@ -548,7 +548,7 @@ public class Fixings extends javax.swing.JFrame {
             // open new session
            ArticleDAO articleDAO  = new ArticleDAO();
             article.setDesignation(DesginationArticleET.getText());
-            articleDAO.addArticle(article);
+            articleDAO.addOrMergeArticle(article);
              // open new session
             articleDAO = new ArticleDAO();
             article = articleDAO.findArticleByDesignation(DesginationArticleET.getText()).get(0);
@@ -557,8 +557,9 @@ public class Fixings extends javax.swing.JFrame {
         }
                 
               
-            
+       
         fixing.setArticle(article);
+        
 
             
         try {
@@ -604,7 +605,7 @@ public class Fixings extends javax.swing.JFrame {
 
 
          FixingDAO fixingDao= new FixingDAO();
-         fixingDao.addFixing(fixing);
+         fixingDao.addOrUpdateFixing(fixing);
         
         
     }//GEN-LAST:event_addBTActionPerformed

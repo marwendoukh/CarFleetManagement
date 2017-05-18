@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface FixingDAOInterface {
 
-    void addFixing(Fixing f);
+    void addOrUpdateFixing(Fixing f);
 
     List<Fixing> findFixingByYear(Integer year);
     
@@ -24,5 +24,7 @@ public interface FixingDAOInterface {
     List<Fixing> findFixingsByDepartement(String departementName);
     
     List<Fixing> findFixingsByDate(Date date);
+    
+    Fixing findFixingBySoucheNumer (String soucheNum);
 
 }

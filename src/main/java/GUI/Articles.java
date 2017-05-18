@@ -500,7 +500,7 @@ public class Articles extends javax.swing.JFrame {
              
             ArticleDAO articleDao = new ArticleDAO();
 
-             articleDao.addArticle(article);
+             articleDao.addOrMergeArticle(article);
 
     }//GEN-LAST:event_addBTActionPerformed
 

@@ -37,12 +37,14 @@ public class ArticleDAO implements ArticleDAOInterface {
     
 
     @Override
-    public void addArticle(Article article) {
+    public void addOrMergeArticle(Article article) {
 
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.getTransaction();
+        
+        session.flush();
 
-        session.save(article);
+        session.saveOrUpdate(article);
         transaction.commit();
         session.close();
 

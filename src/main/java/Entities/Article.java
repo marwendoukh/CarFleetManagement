@@ -8,14 +8,24 @@ package Entities;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.AssociationOverride;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -30,7 +40,11 @@ public class Article implements Serializable {
 
     String designation;
 
-    @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, targetEntity = Fixing.class)
+    @JoinTable(foreignKey = @ForeignKey,joinColumns = @JoinColumn,inverseJoinColumns = {
+    @JoinColumn(columnDefinition = "ee",unique = false)}) 
+    @LazyCollection(LazyCollectionOption.FALSE) 
+            
     List<Fixing> fixings;
     
     Integer quantity;

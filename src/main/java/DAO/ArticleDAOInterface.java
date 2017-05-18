@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface ArticleDAOInterface {
 
-    void addArticle(Article article);
+    void addOrMergeArticle(Article article);
 
     List<Article> findArticleByDesignation(String designation);
     

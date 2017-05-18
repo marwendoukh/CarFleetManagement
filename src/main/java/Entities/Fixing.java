@@ -7,12 +7,15 @@ package Entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.Cascade;
 
 /**
  *
@@ -28,7 +31,7 @@ public class Fixing implements Serializable {
     @JoinColumn(name = "immatriculation", referencedColumnName = "immatriculation", insertable = true, updatable = true)
     Car car;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)        
     @JoinColumn(name = "idArticle", referencedColumnName = "id", insertable = true, updatable = true)
     Article article;
 
@@ -55,18 +58,7 @@ public class Fixing implements Serializable {
     public Fixing() {
     }
 
-    public Fixing(String soucheNumber, Car car, Article article, Date fixingDate, String supplier, String fixingDestination, String designationD, Date dateDemande, String responsableMission) {
-        this.soucheNumber = soucheNumber;
-        this.car = car;
-        this.article = article;
-        this.fixingDate = fixingDate;
-        this.supplier = supplier;
-        this.fixingDestination = fixingDestination;
-        this.designationD = designationD;
-        this.dateDemande = dateDemande;
-        this.responsableMission = responsableMission;
-    }
-
+   
     public String getSoucheNumber() {
         return soucheNumber;
     }
@@ -91,6 +83,10 @@ public class Fixing implements Serializable {
         this.article = article;
     }
 
+   
+    
+
+    
     public Date getFixingDate() {
         return fixingDate;
     }

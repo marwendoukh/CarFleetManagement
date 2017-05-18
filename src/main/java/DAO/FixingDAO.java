@@ -37,11 +37,11 @@ public class FixingDAO implements FixingDAOInterface {
     }
 
     @Override
-    public void addFixing(Fixing f) {
+    public void addOrUpdateFixing(Fixing f) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.getTransaction();
 
-        session.save(f);
+        session.saveOrUpdate(f);
         transaction.commit();
 
         session.close();
@@ -151,6 +151,20 @@ public class FixingDAO implements FixingDAOInterface {
         session.close();
 
         return fixings;
+
+    }
+
+    @Override
+    public Fixing findFixingBySoucheNumer(String soucheNum) {
+            
+         session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.getTransaction();
+
+        Fixing fixing = session.get(Fixing.class, soucheNum);
+       
+
+        session.close();
+        return fixing;
 
     }
 
