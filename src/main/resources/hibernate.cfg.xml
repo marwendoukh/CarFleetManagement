@@ -20,6 +20,8 @@
         <mapping class="Entities.Fixing" />
         <mapping class="Entities.Article" />
         <mapping class="Entities.BonDeLavage" />
+        <mapping class="Entities.DemandeArticle" />
+
 
 
     </session-factory>

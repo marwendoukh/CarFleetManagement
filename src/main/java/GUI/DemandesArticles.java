@@ -6,8 +6,10 @@
 package GUI;
 
 import DAO.ArticleDAO;
+import DAO.DemandeArticlesDAO;
 import DAO.FixingDAO;
 import Entities.Article;
+import Entities.DemandeArticle;
 import Entities.Fixing;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -56,7 +58,7 @@ public class DemandesArticles extends javax.swing.JFrame {
         addBT = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        marqueCB = new javax.swing.JCheckBox();
         jComboBox3 = new javax.swing.JComboBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jTextField5 = new javax.swing.JTextField();
@@ -129,7 +131,7 @@ public class DemandesArticles extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Demander Article");
 
-        jCheckBox1.setText("Marque");
+        marqueCB.setText("Marque");
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -258,7 +260,7 @@ public class DemandesArticles extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
-                        .addComponent(jCheckBox1)
+                        .addComponent(marqueCB)
                         .addGap(52, 52, 52))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -358,7 +360,7 @@ public class DemandesArticles extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
+                    .addComponent(marqueCB)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckBox2)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -412,8 +414,53 @@ public class DemandesArticles extends javax.swing.JFrame {
         
         
        
+       
+        
+        
+        fixing.setResponsableMission(responsablMissionET.getText());
+        
+         try {
+            DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+            Date date;
+            date = format.parse(dateET.getText());
+            fixing.setDateDemande(date);
+
+        } catch (ParseException ex) {
+            Logger.getLogger(Cars.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
+          // restart session and update Fixing
+        fixingDao = new FixingDAO();        
+        fixingDao.addOrUpdateFixing(fixing);
+        
+        DemandeArticle demandeArticle = new DemandeArticle();
+        demandeArticle.setFixing(fixing);
+        
         try{
-                  
+        demandeArticle.getArticles().add(article);
+        }
+        catch(Exception e)
+        {
+            // DemandeArticle does not have any Articles
+            List<Article> articles=new ArrayList<>();
+            articles.add(article);
+            demandeArticle.setArticles(articles);
+        }
+         
+        
+        DemandeArticlesDAO demandeArticleDao= new DemandeArticlesDAO();
+        demandeArticleDao.addDemandeArticles(demandeArticle);
+         
+         
+       /* 
+        // restart session and update Article
+        articleDao = new ArticleDAO();        
+        articleDao.addOrMergeArticle(article);
+        
+        
+        
+        /* try{
+                        
         // add article*quantity to the Fixing
             article.getFixings().add(fixing);
         
@@ -430,31 +477,7 @@ public class DemandesArticles extends javax.swing.JFrame {
        // remove article*quantity from the Quantity
 
        article.setQuantity(article.getQuantity()-Integer.parseInt(quantityET.getText()));
-
-        
-        
-        fixing.setResponsableMission(responsablMissionET.getText());
-        
-         try {
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-            Date date;
-            date = format.parse(dateET.getText());
-            fixing.setDateDemande(date);
-
-        } catch (ParseException ex) {
-            Logger.getLogger(Cars.class.getName()).log(Level.SEVERE, null, ex);
-        }
-             
-        
-        // restart session and update Article
-        articleDao = new ArticleDAO();        
-        articleDao.addOrMergeArticle(article);
-        
-         // restart session and update Fixing
-        fixingDao = new FixingDAO();        
-        fixingDao.addOrUpdateFixing(fixing);
-        
-        
+*/
 
 
     }//GEN-LAST:event_addBTActionPerformed
@@ -502,7 +525,6 @@ public class DemandesArticles extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JComboBox jComboBox3;
@@ -540,6 +562,7 @@ public class DemandesArticles extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
+    private javax.swing.JCheckBox marqueCB;
     private javax.swing.JTextField numSoucheET;
     private javax.swing.JTextField quantityET;
     private javax.swing.JTextField responsablMissionET;
