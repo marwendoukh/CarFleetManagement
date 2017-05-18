@@ -7,6 +7,7 @@ package Entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -23,15 +24,15 @@ public class Fixing implements Serializable {
     @Id
     String soucheNumber;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "immatriculation", referencedColumnName = "immatriculation", insertable = true, updatable = true)
     Car car;
 
-    @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id", insertable = true, updatable = true)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idArticle", referencedColumnName = "id", insertable = true, updatable = true)
     Article article;
 
-    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    @Temporal(javax.persistence.TemporalType.DATE)
     Date fixingDate;
 
     String supplier;
@@ -44,6 +45,12 @@ public class Fixing implements Serializable {
     Date dateDemande;
 
     String responsableMission;
+    
+    String utilisation;
+    
+    Float price;
+    
+    Integer indexKM;
 
     public Fixing() {
     }
@@ -131,5 +138,32 @@ public class Fixing implements Serializable {
     public void setResponsableMission(String responsableMission) {
         this.responsableMission = responsableMission;
     }
+
+    public String getUtilisation() {
+        return utilisation;
+    }
+
+    public void setUtilisation(String utilisation) {
+        this.utilisation = utilisation;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public Integer getIndexKM() {
+        return indexKM;
+    }
+
+    public void setIndexKM(Integer indexKM) {
+        this.indexKM = indexKM;
+    }
+    
+    
+    
 
 }

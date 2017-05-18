@@ -6,6 +6,7 @@
 package DAO;
 
 import Entities.Fixing;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,5 +18,11 @@ public interface FixingDAOInterface {
     void addFixing(Fixing f);
 
     List<Fixing> findFixingByYear(Integer year);
+    
+    List<Fixing> findFixingsByImmatriculation(String immatriculation);
+    
+    List<Fixing> findFixingsByDepartement(String departementName);
+    
+    List<Fixing> findFixingsByDate(Date date);
 
 }

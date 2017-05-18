@@ -410,7 +410,7 @@ public class BonLavage extends javax.swing.JFrame {
 
                  } 
              catch (ParseException ex) {
-            Logger.getLogger(AddCar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
         }
        
             BonDeLavageDAO bonLavageDao = new BonDeLavageDAO();

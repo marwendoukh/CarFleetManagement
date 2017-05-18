@@ -476,7 +476,7 @@ public class Carburant extends javax.swing.JFrame {
                    bonCarburant.setDeliveryDate(date);
 
         } catch (ParseException ex) {
-            Logger.getLogger(AddCar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
         }           
 
         BonCarburantDAO bonCarburantDao = new BonCarburantDAO();
@@ -515,7 +515,7 @@ public class Carburant extends javax.swing.JFrame {
                          bonCarburants.addAll(bonCarburantDao.findBonCarburantByDate(date));
 
                   } catch (ParseException ex) {
-                         Logger.getLogger(AddCar.class.getName()).log(Level.SEVERE, null, ex);
+                         Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
                      }        
             }
              
