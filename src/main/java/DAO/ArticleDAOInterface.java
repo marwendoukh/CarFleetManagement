@@ -17,5 +17,7 @@ public interface ArticleDAOInterface {
     void addArticle(Article article);
 
     List<Article> findArticleByDesignation(String designation);
+    
+    List<Article> findAllAlertes();
 
 }

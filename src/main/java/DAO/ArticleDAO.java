@@ -7,6 +7,7 @@ package DAO;
 
 import Entities.Article;
 import Utils.HibernateUtil;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -42,6 +43,20 @@ public class ArticleDAO implements ArticleDAOInterface {
         String hql = "FROM Article WHERE designation = :designation ";
         Query query = session.createQuery(hql);
         query.setString("designation", designation);
+        
+        return query.getResultList();
+
+    }
+
+    @Override
+    public List<Article> findAllAlertes() {
+            
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.beginTransaction();
+
+        // get all products that the quantity hits a critical level (minimal quanity+10)
+        String hql = "FROM Article WHERE quantity < minimalQuantity+10 ";
+        Query query = session.createQuery(hql);
         
         return query.getResultList();
 

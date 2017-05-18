@@ -6,11 +6,14 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -26,6 +29,23 @@ public class Article implements Serializable {
 
     @OneToMany(mappedBy = "article", fetch = FetchType.EAGER)
     List<Fixing> fixings;
+    
+    Integer quantity;
+    
+    @Temporal(TemporalType.DATE)
+    Date dateAchat;
+    
+    Integer price;
+    
+    Integer totalPrice;
+    
+    String provider;
+    
+    Integer minimalQuantity;
+    
+    String marqueArticle;
+    
+    
 
     public Article() {
     }
@@ -59,5 +79,63 @@ public class Article implements Serializable {
     public void setFixings(List<Fixing> fixings) {
         this.fixings = fixings;
     }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Date getDateAchat() {
+        return dateAchat;
+    }
+
+    public void setDateAchat(Date dateAchat) {
+        this.dateAchat = dateAchat;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
+    }
+
+    public Integer getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Integer totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public String getProvider() {
+        return provider;
+    }
+
+    public void setProvider(String provider) {
+        this.provider = provider;
+    }
+
+    public Integer getMinimalQuantity() {
+        return minimalQuantity;
+    }
+
+    public void setMinimalQuantity(Integer minimalQuantity) {
+        this.minimalQuantity = minimalQuantity;
+    }
+
+    public String getMarqueArticle() {
+        return marqueArticle;
+    }
+
+    public void setMarqueArticle(String marqueArticle) {
+        this.marqueArticle = marqueArticle;
+    }
+    
+    
 
 }
