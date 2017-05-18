@@ -25,6 +25,8 @@ public interface CarDAOInterface {
     List<Car> findAllCars();
     
     List<Car> getCarByDepartement(String departement);
+    
+    List<Car> findAllCarsAlerts();
 
 
 }
