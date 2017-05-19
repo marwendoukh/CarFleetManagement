@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="Multi-file class diagram">
+  <ClassDiagramComponents>
+    <Class name="Article" package="Entities" visibility="public" xPosition="227.0" yPosition="497.0">
+      <Fields>
+        <Field name="id" type="Integer" visibility="package"/>
+        <Field name="designation" type="String" visibility="package"/>
+        <Field name="fixings" type="List&lt;Fixing&gt;" visibility="package"/>
+        <Field name="quantity" type="Integer" visibility="package"/>
+        <Field name="dateAchat" type="Date" visibility="package"/>
+        <Field name="price" type="Integer" visibility="package"/>
+        <Field name="totalPrice" type="Integer" visibility="package"/>
+        <Field name="provider" type="String" visibility="package"/>
+        <Field name="minimalQuantity" type="Integer" visibility="package"/>
+        <Field name="marqueArticle" type="String" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="Integer" name="id"/>
+          <Argument type="String" name="designation"/>
+          <Argument type="List&lt;Fixing&gt;" name="fixings"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="Integer" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Integer" name="id"/>
+        </Method>
+        <Method name="getDesignation" returnType="String" visibility="public"/>
+        <Method name="setDesignation" returnType="void" visibility="public">
+          <Argument type="String" name="designation"/>
+        </Method>
+        <Method name="getFixings" returnType="List&lt;Fixing&gt;" visibility="public"/>
+        <Method name="setFixings" returnType="void" visibility="public">
+          <Argument type="List&lt;Fixing&gt;" name="fixings"/>
+        </Method>
+        <Method name="getQuantity" returnType="Integer" visibility="public"/>
+        <Method name="setQuantity" returnType="void" visibility="public">
+          <Argument type="Integer" name="quantity"/>
+        </Method>
+        <Method name="getDateAchat" returnType="Date" visibility="public"/>
+        <Method name="setDateAchat" returnType="void" visibility="public">
+          <Argument type="Date" name="dateAchat"/>
+        </Method>
+        <Method name="getPrice" returnType="Integer" visibility="public"/>
+        <Method name="setPrice" returnType="void" visibility="public">
+          <Argument type="Integer" name="price"/>
+        </Method>
+        <Method name="getTotalPrice" returnType="Integer" visibility="public"/>
+        <Method name="setTotalPrice" returnType="void" visibility="public">
+          <Argument type="Integer" name="totalPrice"/>
+        </Method>
+        <Method name="getProvider" returnType="String" visibility="public"/>
+        <Method name="setProvider" returnType="void" visibility="public">
+          <Argument type="String" name="provider"/>
+        </Method>
+        <Method name="getMinimalQuantity" returnType="Integer" visibility="public"/>
+        <Method name="setMinimalQuantity" returnType="void" visibility="public">
+          <Argument type="Integer" name="minimalQuantity"/>
+        </Method>
+        <Method name="getMarqueArticle" returnType="String" visibility="public"/>
+        <Method name="setMarqueArticle" returnType="void" visibility="public">
+          <Argument type="String" name="marqueArticle"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="BonDeCarburant" package="Entities" visibility="public" xPosition="2912.0" yPosition="915.0">
+      <Fields>
+        <Field name="soucheNumber" type="String" visibility="package"/>
+        <Field name="useType" type="String" visibility="package"/>
+        <Field name="quantity" type="Integer" visibility="package"/>
+        <Field name="unitPrice" type="Float" visibility="package"/>
+        <Field name="deliveryDate" type="Date" visibility="package"/>
+        <Field name="car" type="Car" visibility="package"/>
+        <Field name="type" type="String" visibility="package"/>
+        <Field name="bonPrice" type="Float" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getSoucheNumber" returnType="String" visibility="public"/>
+        <Method name="setSoucheNumber" returnType="void" visibility="public">
+          <Argument type="String" name="soucheNumber"/>
+        </Method>
+        <Method name="getUseType" returnType="String" visibility="public"/>
+        <Method name="setUseType" returnType="void" visibility="public">
+          <Argument type="String" name="useType"/>
+        </Method>
+        <Method name="getQuantity" returnType="Integer" visibility="public"/>
+        <Method name="setQuantity" returnType="void" visibility="public">
+          <Argument type="Integer" name="quantity"/>
+        </Method>
+        <Method name="getUnitPrice" returnType="Float" visibility="public"/>
+        <Method name="setUnitPrice" returnType="void" visibility="public">
+          <Argument type="Float" name="unitPrice"/>
+        </Method>
+        <Method name="getDeliveryDate" returnType="Date" visibility="public"/>
+        <Method name="setDeliveryDate" returnType="void" visibility="public">
+          <Argument type="Date" name="deliveryDate"/>
+        </Method>
+        <Method name="getCar" returnType="Car" visibility="public"/>
+        <Method name="setCar" returnType="void" visibility="public">
+          <Argument type="Car" name="car"/>
+        </Method>
+        <Method name="getType" returnType="String" visibility="public"/>
+        <Method name="setType" returnType="void" visibility="public">
+          <Argument type="String" name="type"/>
+        </Method>
+        <Method name="getBonPrice" returnType="Float" visibility="public"/>
+        <Method name="setBonPrice" returnType="void" visibility="public">
+          <Argument type="Float" name="bonPrice"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="BonDeLavage" package="Entities" visibility="public" xPosition="2443.0" yPosition="1591.0">
+      <Fields>
+        <Field name="bonNumber" type="String" visibility="package"/>
+        <Field name="Supplier" type="String" visibility="package"/>
+        <Field name="unitPrice" type="Float" visibility="package"/>
+        <Field name="deliveryDate" type="Date" visibility="package"/>
+        <Field name="car" type="Car" visibility="package"/>
+        <Field name="useType" type="String" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getBonNumber" returnType="String" visibility="public"/>
+        <Method name="setBonNumber" returnType="void" visibility="public">
+          <Argument type="String" name="bonNumber"/>
+        </Method>
+        <Method name="getSupplier" returnType="String" visibility="public"/>
+        <Method name="setSupplier" returnType="void" visibility="public">
+          <Argument type="String" name="Supplier"/>
+        </Method>
+        <Method name="getUnitPrice" returnType="Float" visibility="public"/>
+        <Method name="setUnitPrice" returnType="void" visibility="public">
+          <Argument type="Float" name="unitPrice"/>
+        </Method>
+        <Method name="getDeliveryDate" returnType="Date" visibility="public"/>
+        <Method name="setDeliveryDate" returnType="void" visibility="public">
+          <Argument type="Date" name="deliveryDate"/>
+        </Method>
+        <Method name="getCar" returnType="Car" visibility="public"/>
+        <Method name="setCar" returnType="void" visibility="public">
+          <Argument type="Car" name="car"/>
+        </Method>
+        <Method name="getUseType" returnType="String" visibility="public"/>
+        <Method name="setUseType" returnType="void" visibility="public">
+          <Argument type="String" name="useType"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Car" package="Entities" visibility="public" xPosition="186.0" yPosition="-18.0">
+      <Fields>
+        <Field name="id" type="Integer" visibility="package"/>
+        <Field name="immatriculation" type="String" visibility="package"/>
+        <Field name="departement" type="Departement" visibility="package"/>
+        <Field name="dateDeMiseEnCirculation" type="Date" visibility="package"/>
+        <Field name="bonDeCarburants" type="List&lt;BonDeCarburant&gt;" visibility="package"/>
+        <Field name="bonDeLavages" type="List&lt;BonDeLavage&gt;" visibility="package"/>
+        <Field name="puissance" type="Integer" visibility="package"/>
+        <Field name="nombreDePlaces" type="Integer" visibility="package"/>
+        <Field name="marque" type="String" visibility="package"/>
+        <Field name="category" type="String" visibility="package"/>
+        <Field name="numDeChassis" type="Integer" visibility="package"/>
+        <Field name="carburant" type="String" visibility="package"/>
+        <Field name="utilisation" type="String" visibility="package"/>
+        <Field name="etat" type="String" visibility="package"/>
+        <Field name="dateDeReforme" type="Date" visibility="package"/>
+        <Field name="compagnieDassurance" type="String" visibility="package"/>
+        <Field name="dateDebutDassurance" type="Date" visibility="package"/>
+        <Field name="dateProchaineAssurance" type="Date" visibility="package"/>
+        <Field name="montantAssurance" type="Float" visibility="package"/>
+        <Field name="dateVisiteTechnique" type="Date" visibility="package"/>
+        <Field name="dateProchaineVisiteTechnique" type="Date" visibility="package"/>
+        <Field name="montantVisiteTechnique" type="Float" visibility="package"/>
+        <Field name="agenceVisiteTechnique" type="String" visibility="package"/>
+        <Field name="dateProchaineVigniette" type="Date" visibility="package"/>
+        <Field name="montantVigniette" type="Float" visibility="package"/>
+        <Field name="dateProchaineTaxe" type="Date" visibility="package"/>
+        <Field name="montantTaxeVigniette" type="Float" visibility="package"/>
+        <Field name="prixAchat" type="Float" visibility="package"/>
+        <Field name="concessionnaire" type="String" visibility="package"/>
+        <Field name="indexKm" type="Integer" visibility="package"/>
+        <Field name="fixings" type="List&lt;Fixing&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="immatriculation"/>
+          <Argument type="Departement" name="departement"/>
+          <Argument type="Date" name="dateDeMiseEnCirculation"/>
+          <Argument type="List&lt;BonDeCarburant&gt;" name="bonDeCarburants"/>
+          <Argument type="Integer" name="puissance"/>
+          <Argument type="Integer" name="nombreDePlaces"/>
+          <Argument type="String" name="marque"/>
+          <Argument type="String" name="category"/>
+          <Argument type="Integer" name="numDeChassis"/>
+          <Argument type="String" name="carburant"/>
+          <Argument type="String" name="utilisation"/>
+          <Argument type="String" name="etat"/>
+          <Argument type="Date" name="dateDeReforme"/>
+          <Argument type="String" name="compagnieDassurance"/>
+          <Argument type="Date" name="dateDebutDassurance"/>
+          <Argument type="Date" name="dateProchaineAssurance"/>
+          <Argument type="Float" name="montantAssurance"/>
+          <Argument type="Date" name="dateVisiteTechnique"/>
+          <Argument type="Date" name="dateProchaineVisiteTechnique"/>
+          <Argument type="Float" name="montantVisiteTechnique"/>
+          <Argument type="String" name="agenceVisiteTechnique"/>
+          <Argument type="Date" name="dateProchaineVigniette"/>
+          <Argument type="Float" name="montantVigniette"/>
+          <Argument type="Float" name="montantTaxeVigniette"/>
+          <Argument type="Float" name="prixAchat"/>
+          <Argument type="String" name="concessionnaire"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getIndexKm" returnType="Integer" visibility="public"/>
+        <Method name="setIndexKm" returnType="void" visibility="public">
+          <Argument type="Integer" name="indexKm"/>
+        </Method>
+        <Method name="getDateProchaineTaxe" returnType="Date" visibility="public"/>
+        <Method name="setDateProchaineTaxe" returnType="void" visibility="public">
+          <Argument type="Date" name="dateProchaineTaxe"/>
+        </Method>
+        <Method name="getId" returnType="Integer" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Integer" name="id"/>
+        </Method>
+        <Method name="getImmatriculation" returnType="String" visibility="public"/>
+        <Method name="setImmatriculation" returnType="void" visibility="public">
+          <Argument type="String" name="immatriculation"/>
+        </Method>
+        <Method name="getDepartement" returnType="Departement" visibility="public"/>
+        <Method name="setDepartement" returnType="void" visibility="public">
+          <Argument type="Departement" name="departement"/>
+        </Method>
+        <Method name="getDateDeMiseEnCirculation" returnType="Date" visibility="public"/>
+        <Method name="setDateDeMiseEnCirculation" returnType="void" visibility="public">
+          <Argument type="Date" name="dateDeMiseEnCirculation"/>
+        </Method>
+        <Method name="getPuissance" returnType="Integer" visibility="public"/>
+        <Method name="setPuissance" returnType="void" visibility="public">
+          <Argument type="Integer" name="puissance"/>
+        </Method>
+        <Method name="getNombreDePlaces" returnType="Integer" visibility="public"/>
+        <Method name="setNombreDePlaces" returnType="void" visibility="public">
+          <Argument type="Integer" name="nombreDePlaces"/>
+        </Method>
+        <Method name="getMarque" returnType="String" visibility="public"/>
+        <Method name="setMarque" returnType="void" visibility="public">
+          <Argument type="String" name="marque"/>
+        </Method>
+        <Method name="getCategory" returnType="String" visibility="public"/>
+        <Method name="setCategory" returnType="void" visibility="public">
+          <Argument type="String" name="category"/>
+        </Method>
+        <Method name="getNumDeChassis" returnType="Integer" visibility="public"/>
+        <Method name="setNumDeChassis" returnType="void" visibility="public">
+          <Argument type="Integer" name="numDeChassis"/>
+        </Method>
+        <Method name="getCarburant" returnType="String" visibility="public"/>
+        <Method name="setCarburant" returnType="void" visibility="public">
+          <Argument type="String" name="carburant"/>
+        </Method>
+        <Method name="getUtilisation" returnType="String" visibility="public"/>
+        <Method name="setUtilisation" returnType="void" visibility="public">
+          <Argument type="String" name="utilisation"/>
+        </Method>
+        <Method name="getEtat" returnType="String" visibility="public"/>
+        <Method name="setEtat" returnType="void" visibility="public">
+          <Argument type="String" name="etat"/>
+        </Method>
+        <Method name="getDateDeReforme" returnType="Date" visibility="public"/>
+        <Method name="setDateDeReforme" returnType="void" visibility="public">
+          <Argument type="Date" name="dateDeReforme"/>
+        </Method>
+        <Method name="getCompagnieDassurance" returnType="String" visibility="public"/>
+        <Method name="setCompagnieDassurance" returnType="void" visibility="public">
+          <Argument type="String" name="compagnieDassurance"/>
+        </Method>
+        <Method name="getDateDebutDassurance" returnType="Date" visibility="public"/>
+        <Method name="setDateDebutDassurance" returnType="void" visibility="public">
+          <Argument type="Date" name="dateDebutDassurance"/>
+        </Method>
+        <Method name="getDateProchaineAssurance" returnType="Date" visibility="public"/>
+        <Method name="setDateProchaineAssurance" returnType="void" visibility="public">
+          <Argument type="Date" name="dateProchaineAssurance"/>
+        </Method>
+        <Method name="getMontantAssurance" returnType="Float" visibility="public"/>
+        <Method name="setMontantAssurance" returnType="void" visibility="public">
+          <Argument type="Float" name="montantAssurance"/>
+        </Method>
+        <Method name="getDateVisiteTechnique" returnType="Date" visibility="public"/>
+        <Method name="setDateVisiteTechnique" returnType="void" visibility="public">
+          <Argument type="Date" name="dateVisiteTechnique"/>
+        </Method>
+        <Method name="getDateProchaineVisiteTechnique" returnType="Date" visibility="public"/>
+        <Method name="setDateProchaineVisiteTechnique" returnType="void" visibility="public">
+          <Argument type="Date" name="dateProchaineVisiteTechnique"/>
+        </Method>
+        <Method name="getMontantVisiteTechnique" returnType="Float" visibility="public"/>
+        <Method name="setMontantVisiteTechnique" returnType="void" visibility="public">
+          <Argument type="Float" name="montantVisiteTechnique"/>
+        </Method>
+        <Method name="getDateProchaineVigniette" returnType="Date" visibility="public"/>
+        <Method name="setDateProchaineVigniette" returnType="void" visibility="public">
+          <Argument type="Date" name="dateProchaineVigniette"/>
+        </Method>
+        <Method name="getMontantVigniette" returnType="Float" visibility="public"/>
+        <Method name="setMontantVigniette" returnType="void" visibility="public">
+          <Argument type="Float" name="montantVigniette"/>
+        </Method>
+        <Method name="getMontantTaxeVigniette" returnType="Float" visibility="public"/>
+        <Method name="setMontantTaxeVigniette" returnType="void" visibility="public">
+          <Argument type="Float" name="montantTaxeVigniette"/>
+        </Method>
+        <Method name="getBonDeCarburants" returnType="List&lt;BonDeCarburant&gt;" visibility="public"/>
+        <Method name="setBonDeCarburants" returnType="void" visibility="public">
+          <Argument type="List&lt;BonDeCarburant&gt;" name="bonDeCarburants"/>
+        </Method>
+        <Method name="getAgenceVisiteTechnique" returnType="String" visibility="public"/>
+        <Method name="setAgenceVisiteTechnique" returnType="void" visibility="public">
+          <Argument type="String" name="agenceVisiteTechnique"/>
+        </Method>
+        <Method name="getPrixAchat" returnType="Float" visibility="public"/>
+        <Method name="setPrixAchat" returnType="void" visibility="public">
+          <Argument type="Float" name="prixAchat"/>
+        </Method>
+        <Method name="getConcessionnaire" returnType="String" visibility="public"/>
+        <Method name="setConcessionnaire" returnType="void" visibility="public">
+          <Argument type="String" name="concessionnaire"/>
+        </Method>
+        <Method name="getFixing" returnType="List&lt;Fixing&gt;" visibility="public"/>
+        <Method name="setFixing" returnType="void" visibility="public">
+          <Argument type="List&lt;Fixing&gt;" name="fixing"/>
+        </Method>
+        <Method name="getBonDeLavages" returnType="List&lt;BonDeLavage&gt;" visibility="public"/>
+        <Method name="setBonDeLavages" returnType="void" visibility="public">
+          <Argument type="List&lt;BonDeLavage&gt;" name="bonDeLavages"/>
+        </Method>
+        <Method name="getFixings" returnType="List&lt;Fixing&gt;" visibility="public"/>
+        <Method name="setFixings" returnType="void" visibility="public">
+          <Argument type="List&lt;Fixing&gt;" name="fixings"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="DemandeArticle" package="Entities" visibility="public" xPosition="906.0" yPosition="434.0">
+      <Fields>
+        <Field name="id" type="Integer" visibility="package"/>
+        <Field name="fixing" type="Fixing" visibility="private"/>
+        <Field name="articles" type="List&lt;Article&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getFixing" returnType="Fixing" visibility="public"/>
+        <Method name="setFixing" returnType="void" visibility="public">
+          <Argument type="Fixing" name="fixing"/>
+        </Method>
+        <Method name="getArticles" returnType="List&lt;Article&gt;" visibility="public"/>
+        <Method name="setArticles" returnType="void" visibility="public">
+          <Argument type="List&lt;Article&gt;" name="articles"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Departement" package="Entities" visibility="public" xPosition="2534.0" yPosition="131.0">
+      <Fields>
+        <Field name="id" type="Integer" visibility="package"/>
+        <Field name="nom" type="String" visibility="package"/>
+        <Field name="address" type="String" visibility="package"/>
+        <Field name="cars" type="List&lt;Car&gt;" visibility="package"/>
+        <Field name="users" type="List&lt;User&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="Integer" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Integer" name="id"/>
+        </Method>
+        <Method name="getNom" returnType="String" visibility="public"/>
+        <Method name="setNom" returnType="void" visibility="public">
+          <Argument type="String" name="nom"/>
+        </Method>
+        <Method name="getAddress" returnType="String" visibility="public"/>
+        <Method name="setAddress" returnType="void" visibility="public">
+          <Argument type="String" name="address"/>
+        </Method>
+        <Method name="getCars" returnType="List&lt;Car&gt;" visibility="public"/>
+        <Method name="setCars" returnType="void" visibility="public">
+          <Argument type="List&lt;Car&gt;" name="cars"/>
+        </Method>
+        <Method name="getUsers" returnType="List&lt;User&gt;" visibility="public"/>
+        <Method name="setUsers" returnType="void" visibility="public">
+          <Argument type="List&lt;User&gt;" name="users"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Fixing" package="Entities" visibility="public" xPosition="1100.0" yPosition="1318.0">
+      <Fields>
+        <Field name="soucheNumber" type="String" visibility="package"/>
+        <Field name="car" type="Car" visibility="package"/>
+        <Field name="article" type="Article" visibility="package"/>
+        <Field name="fixingDate" type="Date" visibility="package"/>
+        <Field name="supplier" type="String" visibility="package"/>
+        <Field name="fixingDestination" type="String" visibility="package"/>
+        <Field name="designationD" type="String" visibility="package"/>
+        <Field name="dateDemande" type="Date" visibility="package"/>
+        <Field name="responsableMission" type="String" visibility="package"/>
+        <Field name="utilisation" type="String" visibility="package"/>
+        <Field name="price" type="Float" visibility="package"/>
+        <Field name="indexKM" type="Integer" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getSoucheNumber" returnType="String" visibility="public"/>
+        <Method name="setSoucheNumber" returnType="void" visibility="public">
+          <Argument type="String" name="soucheNumber"/>
+        </Method>
+        <Method name="getCar" returnType="Car" visibility="public"/>
+        <Method name="setCar" returnType="void" visibility="public">
+          <Argument type="Car" name="car"/>
+        </Method>
+        <Method name="getArticle" returnType="Article" visibility="public"/>
+        <Method name="setArticle" returnType="void" visibility="public">
+          <Argument type="Article" name="article"/>
+        </Method>
+        <Method name="getFixingDate" returnType="Date" visibility="public"/>
+        <Method name="setFixingDate" returnType="void" visibility="public">
+          <Argument type="Date" name="fixingDate"/>
+        </Method>
+        <Method name="getSupplier" returnType="String" visibility="public"/>
+        <Method name="setSupplier" returnType="void" visibility="public">
+          <Argument type="String" name="supplier"/>
+        </Method>
+        <Method name="getFixingDestination" returnType="String" visibility="public"/>
+        <Method name="setFixingDestination" returnType="void" visibility="public">
+          <Argument type="String" name="fixingDestination"/>
+        </Method>
+        <Method name="getDesignationD" returnType="String" visibility="public"/>
+        <Method name="setDesignationD" returnType="void" visibility="public">
+          <Argument type="String" name="designationD"/>
+        </Method>
+        <Method name="getDateDemande" returnType="Date" visibility="public"/>
+        <Method name="setDateDemande" returnType="void" visibility="public">
+          <Argument type="Date" name="dateDemande"/>
+        </Method>
+        <Method name="getResponsableMission" returnType="String" visibility="public"/>
+        <Method name="setResponsableMission" returnType="void" visibility="public">
+          <Argument type="String" name="responsableMission"/>
+        </Method>
+        <Method name="getUtilisation" returnType="String" visibility="public"/>
+        <Method name="setUtilisation" returnType="void" visibility="public">
+          <Argument type="String" name="utilisation"/>
+        </Method>
+        <Method name="getPrice" returnType="Float" visibility="public"/>
+        <Method name="setPrice" returnType="void" visibility="public">
+          <Argument type="Float" name="price"/>
+        </Method>
+        <Method name="getIndexKM" returnType="Integer" visibility="public"/>
+        <Method name="setIndexKM" returnType="void" visibility="public">
+          <Argument type="Integer" name="indexKM"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="User" package="Entities" visibility="public" xPosition="1173.0" yPosition="-198.0">
+      <Fields>
+        <Field name="id" type="Integer" visibility="package"/>
+        <Field name="username" type="String" visibility="package"/>
+        <Field name="cin" type="Integer" visibility="package"/>
+        <Field name="name" type="String" visibility="package"/>
+        <Field name="surname" type="String" visibility="package"/>
+        <Field name="password" type="String" visibility="package"/>
+        <Field name="Address" type="String" visibility="package"/>
+        <Field name="phoneNumber" type="Integer" visibility="package"/>
+        <Field name="address" type="String" visibility="package"/>
+        <Field name="role" type="Role" visibility="package"/>
+        <Field name="departement" type="Departement" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="username"/>
+          <Argument type="Integer" name="cin"/>
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="surname"/>
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="Address"/>
+          <Argument type="Integer" name="phoneNumber"/>
+          <Argument type="String" name="address"/>
+          <Argument type="Role" name="role"/>
+          <Argument type="Departement" name="departement"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Integer" name="cin"/>
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="surname"/>
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="Address"/>
+          <Argument type="Integer" name="phoneNumber"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="Integer" name="id"/>
+          <Argument type="Integer" name="cin"/>
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="surname"/>
+          <Argument type="String" name="username"/>
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="Address"/>
+          <Argument type="Integer" name="phoneNumber"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="Integer" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="Integer" name="id"/>
+        </Method>
+        <Method name="getCin" returnType="Integer" visibility="public"/>
+        <Method name="setCin" returnType="void" visibility="public">
+          <Argument type="Integer" name="cin"/>
+        </Method>
+        <Method name="getName" returnType="String" visibility="public"/>
+        <Method name="setName" returnType="void" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="getSurname" returnType="String" visibility="public"/>
+        <Method name="setSurname" returnType="void" visibility="public">
+          <Argument type="String" name="surname"/>
+        </Method>
+        <Method name="getUsername" returnType="String" visibility="public"/>
+        <Method name="setUsername" returnType="void" visibility="public">
+          <Argument type="String" name="username"/>
+        </Method>
+        <Method name="getPassword" returnType="String" visibility="public"/>
+        <Method name="setPassword" returnType="void" visibility="public">
+          <Argument type="String" name="password"/>
+        </Method>
+        <Method name="getAddress" returnType="String" visibility="public"/>
+        <Method name="setAddress" returnType="void" visibility="public">
+          <Argument type="String" name="Address"/>
+        </Method>
+        <Method name="getPhoneNumber" returnType="Integer" visibility="public"/>
+        <Method name="setPhoneNumber" returnType="void" visibility="public">
+          <Argument type="Integer" name="phoneNumber"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="getRole" returnType="Role" visibility="public"/>
+        <Method name="setRole" returnType="void" visibility="public">
+          <Argument type="Role" name="role"/>
+        </Method>
+        <Method name="getDepartement" returnType="Departement" visibility="public"/>
+        <Method name="setDepartement" returnType="void" visibility="public">
+          <Argument type="Departement" name="departement"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Enum name="Role" package="Entities" visibility="public" xPosition="1604.0" yPosition="56.0">
+      <Literals>
+        <Literal name="CHEF_DE_PARK"/>
+        <Literal name="CHEF_DEPARTEMENT"/>
+      </Literals>
+    </Enum>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <UseRelation source="Entities.Car" target="Entities.Fixing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="article" source="Entities.Fixing" target="Entities.Article" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="bonDeLavages" source="Entities.Car" target="Entities.BonDeLavage" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;BonDeLavage&gt;"/>
+    <UseRelation source="Entities.Departement" target="Entities.User" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="bonDeCarburants" source="Entities.Car" target="Entities.BonDeCarburant" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;BonDeCarburant&gt;"/>
+    <HasRelation name="car" source="Entities.Fixing" target="Entities.Car" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entities.User" target="Entities.Role" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entities.DemandeArticle" target="Entities.Fixing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entities.Car" target="Entities.Departement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cars" source="Entities.Departement" target="Entities.Car" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Car&gt;"/>
+    <UseRelation source="Entities.Fixing" target="Entities.Car" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="users" source="Entities.Departement" target="Entities.User" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;User&gt;"/>
+    <HasRelation name="car" source="Entities.BonDeLavage" target="Entities.Car" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entities.BonDeLavage" target="Entities.Car" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entities.Car" target="Entities.Car" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entities.Fixing" target="Entities.Article" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="departement" source="Entities.User" target="Entities.Departement" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entities.Article" target="Entities.Fixing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entities.Departement" target="Entities.Car" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fixings" source="Entities.Article" target="Entities.Fixing" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Fixing&gt;"/>
+    <UseRelation source="Entities.User" target="Entities.Departement" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entities.BonDeCarburant" target="Entities.Car" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Entities.DemandeArticle" target="Entities.Article" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fixing" source="Entities.DemandeArticle" target="Entities.Fixing" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="departement" source="Entities.Car" target="Entities.Departement" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="role" source="Entities.User" target="Entities.Role" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="car" source="Entities.BonDeCarburant" target="Entities.Car" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fixings" source="Entities.Car" target="Entities.Fixing" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Fixing&gt;"/>
+    <UseRelation source="Entities.Car" target="Entities.BonDeLavage" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="articles" source="Entities.DemandeArticle" target="Entities.Article" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Article&gt;"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
