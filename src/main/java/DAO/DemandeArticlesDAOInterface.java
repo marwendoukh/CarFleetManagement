@@ -6,6 +6,8 @@
 package DAO;
 
 import Entities.DemandeArticle;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
@@ -14,6 +16,11 @@ import Entities.DemandeArticle;
 public interface DemandeArticlesDAOInterface {
 
     void addDemandeArticles(DemandeArticle demandeArticles);
+    List<DemandeArticle> findDemandeArticlesByMarqueArticle(String marqueArticle);
+    List<DemandeArticle> findDemandeArticlesByResponsable(String responsable);
+    List<DemandeArticle> findDemandeArticlesByDate(Date date);
+
+
 
     
 

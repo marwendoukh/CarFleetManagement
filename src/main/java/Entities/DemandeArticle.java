@@ -6,6 +6,7 @@
 package Entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -15,6 +16,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
@@ -36,6 +39,12 @@ public class DemandeArticle implements Serializable {
      private  List<Article> articles ;
 
      
+     private Integer quanity;
+     
+     
+     @Temporal(TemporalType.DATE)
+     private Date dateDemande;
+     
      
      
     public DemandeArticle() {
@@ -56,7 +65,33 @@ public class DemandeArticle implements Serializable {
     public void setArticles(List<Article> articles) {
         this.articles = articles;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getQuanity() {
+        return quanity;
+    }
+
+    public void setQuanity(Integer quanity) {
+        this.quanity = quanity;
+    }
+
+    public Date getDateDemande() {
+        return dateDemande;
+    }
+
+    public void setDateDemande(Date dateDemande) {
+        this.dateDemande = dateDemande;
+    }
      
      
+    
+    
     
 }
