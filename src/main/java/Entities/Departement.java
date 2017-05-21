@@ -13,8 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import org.hibernate.annotations.Cascade;
-import static org.hibernate.engine.internal.Cascade.cascade;
 
 /**
  *
@@ -31,18 +29,15 @@ public class Departement implements Serializable {
 
     String address;
 // By specifying the above options you tell hibernate to save them to the database when saving their parent.
-    @OneToMany(mappedBy = "departement",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "departement", cascade = CascadeType.ALL)
     List<Car> cars;
 
-    @OneToMany(mappedBy = "departement",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "departement", cascade = CascadeType.ALL)
     List<User> users;
 
     public Departement() {
     }
 
-    
-    
-    
     public Integer getId() {
         return id;
     }
@@ -82,8 +77,5 @@ public class Departement implements Serializable {
     public void setUsers(List<User> users) {
         this.users = users;
     }
-    
-    
-    
 
 }

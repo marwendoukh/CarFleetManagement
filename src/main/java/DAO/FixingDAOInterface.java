@@ -18,13 +18,13 @@ public interface FixingDAOInterface {
     void addOrUpdateFixing(Fixing f);
 
     List<Fixing> findFixingByYear(Integer year);
-    
+
     List<Fixing> findFixingsByImmatriculation(String immatriculation);
-    
+
     List<Fixing> findFixingsByDepartement(String departementName);
-    
+
     List<Fixing> findFixingsByDate(Date date);
-    
-    Fixing findFixingBySoucheNumer (String soucheNum);
+
+    Fixing findFixingBySoucheNumer(String soucheNum);
 
 }

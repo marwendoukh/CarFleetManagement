@@ -21,37 +21,34 @@ public class CarsAlerts extends javax.swing.JFrame {
      */
     public CarsAlerts() {
         initComponents();
-        
+
         CarDAO carDao = new CarDAO();
-        
+
         List<Car> alerts = carDao.findAllCarsAlerts();
-        
-          /// add to the table
-            
-            Object[] tableColumnNames = new Object[5];
-        tableColumnNames[0]="Immatriculation";
-        tableColumnNames[1]="Deadline Assurance";
-        tableColumnNames[2]="Deadline Vignette";
-        tableColumnNames[3]="Deadline taxes";
-        tableColumnNames[4]="Km";
 
-        
-         DefaultTableModel tbd = new DefaultTableModel() ;
-         tbd.setColumnIdentifiers(tableColumnNames);
-        Object [] RowService=new Object[5];
+        /// add to the table
+        Object[] tableColumnNames = new Object[5];
+        tableColumnNames[0] = "Immatriculation";
+        tableColumnNames[1] = "Deadline Assurance";
+        tableColumnNames[2] = "Deadline Vignette";
+        tableColumnNames[3] = "Deadline taxes";
+        tableColumnNames[4] = "Km";
+
+        DefaultTableModel tbd = new DefaultTableModel();
+        tbd.setColumnIdentifiers(tableColumnNames);
+        Object[] RowService = new Object[5];
         this.tableJT.setModel(tbd);
-        for (int i=0;i<alerts.size();i++){
-            RowService[0]=alerts.get(i).getImmatriculation();
-            RowService[1]=alerts.get(i).getDateProchaineAssurance();
-            RowService[2]=alerts.get(i).getDateProchaineVigniette();
-            RowService[3]=alerts.get(i).getDateProchaineTaxe();
-            RowService[4]=alerts.get(i).getIndexKm();
+        for (int i = 0; i < alerts.size(); i++) {
+            RowService[0] = alerts.get(i).getImmatriculation();
+            RowService[1] = alerts.get(i).getDateProchaineAssurance();
+            RowService[2] = alerts.get(i).getDateProchaineVigniette();
+            RowService[3] = alerts.get(i).getDateProchaineTaxe();
+            RowService[4] = alerts.get(i).getIndexKm();
 
-            
             tbd.addRow(RowService);
 
         }
-        
+
     }
 
     /**

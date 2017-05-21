@@ -5,9 +5,7 @@
  */
 package DAO;
 
-import Entities.Article;
 import Entities.Departement;
-import java.util.List;
 
 /**
  *
@@ -16,8 +14,7 @@ import java.util.List;
 public interface DepartementDAOInterface {
 
     Departement findDepartement(String name);
-    void addDepartement(String name);
 
-    
+    void addDepartement(String name);
 
 }

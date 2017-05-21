@@ -24,22 +24,19 @@ public class CarDAO implements CarDAOInterface {
     Transaction transaction;
 
     public CarDAO() {
-         
-         session = HibernateUtil.getSessionFactory().getCurrentSession();
-        
-       try{
+
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+        try {
             transaction.isActive();
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             transaction = session.beginTransaction();
         }
-       
-        
+
     }
-    
+
     public CarDAO(Boolean flase) {
-        
+
     }
 
     @Override
@@ -54,7 +51,7 @@ public class CarDAO implements CarDAOInterface {
             session.close();
             return true;
         } catch (Exception e) {
-            System.out.println("Exception "+e.toString());
+            System.out.println("Exception " + e.toString());
             session.close();
             return false;
 
@@ -68,7 +65,6 @@ public class CarDAO implements CarDAOInterface {
         transaction = session.getTransaction();
 
         Car car = session.get(Car.class, immatriculation);
-       
 
         session.close();
         return car;
@@ -92,7 +88,6 @@ public class CarDAO implements CarDAOInterface {
         }
         session.close();
 
-
         return cars;
 
     }
@@ -115,7 +110,7 @@ public class CarDAO implements CarDAOInterface {
         }
         session.close();
 
-         return cars;
+        return cars;
     }
 
     @Override
@@ -123,7 +118,7 @@ public class CarDAO implements CarDAOInterface {
 
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.getTransaction();
-        
+
         session.close();
         return session.createCriteria(Car.class).list();
     }
@@ -159,7 +154,6 @@ public class CarDAO implements CarDAOInterface {
         List<Car> cars = new ArrayList<>();
 
         // get alerts before 10 days of the deadline
-        
         try {
             String hql = "FROM Car WHERE dateProchaineAssurance < CURRENT_DATE()+10 OR dateProchaineVisiteTechnique < CURRENT_DATE()+10 OR dateProchaineVigniette < CURRENT_DATE()+10";
             Query query = session.createQuery(hql);
@@ -171,10 +165,7 @@ public class CarDAO implements CarDAOInterface {
         session.close();
 
         return cars;
-        
-    }
 
-    
-    
+    }
 
 }

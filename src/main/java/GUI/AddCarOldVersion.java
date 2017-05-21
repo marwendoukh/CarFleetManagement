@@ -5,9 +5,6 @@
  */
 package GUI;
 
-import DAO.CarDAO;
-import Entities.Car;
-
 /**
  *
  * @author marwen

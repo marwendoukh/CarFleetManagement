@@ -643,7 +643,6 @@ public class Cars extends javax.swing.JFrame {
 
         }
 
-
     }//GEN-LAST:event_seachBTActionPerformed
 
     private void addCarBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCarBTActionPerformed

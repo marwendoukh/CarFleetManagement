@@ -21,29 +21,28 @@ public class ArticleAlerts extends javax.swing.JFrame {
      */
     public ArticleAlerts() {
         initComponents();
-        
+
         ArticleDAO articleDao = new ArticleDAO();
-        
+
         List<Article> alerts = articleDao.findAllAlertes();
-        
-          /// add to the table
-            
-            Object[] tableColumnNames = new Object[4];
-        tableColumnNames[0]="Code";
-        tableColumnNames[1]="Designation";
-        tableColumnNames[2]="Stock disponible";
-        tableColumnNames[3]="Stock minimal";
-        
-         DefaultTableModel tbd = new DefaultTableModel() ;
-         tbd.setColumnIdentifiers(tableColumnNames);
-        Object [] RowService=new Object[4];
+
+        /// add to the table
+        Object[] tableColumnNames = new Object[4];
+        tableColumnNames[0] = "Code";
+        tableColumnNames[1] = "Designation";
+        tableColumnNames[2] = "Stock disponible";
+        tableColumnNames[3] = "Stock minimal";
+
+        DefaultTableModel tbd = new DefaultTableModel();
+        tbd.setColumnIdentifiers(tableColumnNames);
+        Object[] RowService = new Object[4];
         this.tableJT.setModel(tbd);
-        for (int i=0;i<alerts.size();i++){
-            RowService[0]=alerts.get(i).getId();
-            RowService[1]=alerts.get(i).getDesignation();
-            RowService[2]=alerts.get(i).getQuantity();
-            RowService[3]=alerts.get(i).getMinimalQuantity();
-            
+        for (int i = 0; i < alerts.size(); i++) {
+            RowService[0] = alerts.get(i).getId();
+            RowService[1] = alerts.get(i).getDesignation();
+            RowService[2] = alerts.get(i).getQuantity();
+            RowService[3] = alerts.get(i).getMinimalQuantity();
+
             tbd.addRow(RowService);
 
         }

@@ -18,11 +18,11 @@ public interface BonCarburantDAOInterface {
     void addBonCarburant(BonDeCarburant bonCarburant);
 
     List<BonDeCarburant> findBonCarburantByImmatriculation(String immatriculation);
-    
+
     List<BonDeCarburant> findBonCarburantByUseType(String useType);
+
     List<BonDeCarburant> findBonCarburantByDate(Date date);
+
     BonDeCarburant findBonCarburantByNumSouche(String numSouche);
-
-
 
 }

@@ -26,14 +26,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BonLavage extends javax.swing.JFrame {
 
-   
-    
     /**
      * Creates new form InterfaceAtelier
      */
     public BonLavage() {
         initComponents();
-        
 
     }
 
@@ -385,76 +382,66 @@ public class BonLavage extends javax.swing.JFrame {
 
     private void ajouterBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterBTActionPerformed
 
-             
+        BonDeLavage bonLavage = new BonDeLavage();
 
-            BonDeLavage bonLavage = new BonDeLavage();
-            
-            bonLavage.setBonNumber(numBonET.getText());
-            bonLavage.setSupplier(fournisseurET.getText());
-            
-            // get car object
-            CarDAO carDAO = new CarDAO();
-            Car car= carDAO.getCarByImmatriculation(immatriculationET.getText());
+        bonLavage.setBonNumber(numBonET.getText());
+        bonLavage.setSupplier(fournisseurET.getText());
 
-            bonLavage.setCar(car);
-            
-            bonLavage.setUnitPrice(Float.parseFloat(prixBonET.getText()));
-            bonLavage.setUseType(typeUtilisationSP.getSelectedItem().toString());
-            
-            // parse Date
-             try {
+        // get car object
+        CarDAO carDAO = new CarDAO();
+        Car car = carDAO.getCarByImmatriculation(immatriculationET.getText());
+
+        bonLavage.setCar(car);
+
+        bonLavage.setUnitPrice(Float.parseFloat(prixBonET.getText()));
+        bonLavage.setUseType(typeUtilisationSP.getSelectedItem().toString());
+
+        // parse Date
+        try {
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
             Date date;
             date = format.parse(dateBonET.getText());
             bonLavage.setDeliveryDate(date);
 
-                 } 
-             catch (ParseException ex) {
+        } catch (ParseException ex) {
             Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-            BonDeLavageDAO bonLavageDao = new BonDeLavageDAO();
-             bonLavageDao.addBonDeLavage(bonLavage); 
- 
+
+        BonDeLavageDAO bonLavageDao = new BonDeLavageDAO();
+        bonLavageDao.addBonDeLavage(bonLavage);
+
     }//GEN-LAST:event_ajouterBTActionPerformed
 
     private void searchBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBTActionPerformed
-        
-        
+
         BonDeLavageDAO bonLavageDao = new BonDeLavageDAO();
         List<BonDeLavage> bonLavages = new ArrayList<>();
-        
-             if(numBonCB.isSelected() && !immatCB.isSelected())
-            {
-               bonLavages.add(bonLavageDao.findBonLavageByNumBon(searchBonET.getText()));
-            }
-            else if(!numBonCB.isSelected() && immatCB.isSelected())
-            {
-                bonLavages.addAll(bonLavageDao.findBonLavageByImmatriculation(searchImmatET.getText()));
-            }
 
-             
-             
-               /// add to the table
-            
-            Object[] tableColumnNames = new Object[11];
-        tableColumnNames[0]="Num Bon";
-        tableColumnNames[1]="Fournisseur";
-        tableColumnNames[2]="Immatriculation";
-        tableColumnNames[3]="Prix";
-        tableColumnNames[4]="Date";
-        
-         DefaultTableModel tbd = new DefaultTableModel() ;
-         tbd.setColumnIdentifiers(tableColumnNames);
-        Object [] RowService=new Object[11];
+        if (numBonCB.isSelected() && !immatCB.isSelected()) {
+            bonLavages.add(bonLavageDao.findBonLavageByNumBon(searchBonET.getText()));
+        } else if (!numBonCB.isSelected() && immatCB.isSelected()) {
+            bonLavages.addAll(bonLavageDao.findBonLavageByImmatriculation(searchImmatET.getText()));
+        }
+
+        /// add to the table
+        Object[] tableColumnNames = new Object[11];
+        tableColumnNames[0] = "Num Bon";
+        tableColumnNames[1] = "Fournisseur";
+        tableColumnNames[2] = "Immatriculation";
+        tableColumnNames[3] = "Prix";
+        tableColumnNames[4] = "Date";
+
+        DefaultTableModel tbd = new DefaultTableModel();
+        tbd.setColumnIdentifiers(tableColumnNames);
+        Object[] RowService = new Object[11];
         this.tableTB.setModel(tbd);
-        for (int i=0;i<bonLavages.size();i++){
-            RowService[0]=bonLavages.get(i).getBonNumber();
-            RowService[1]=bonLavages.get(i).getSupplier();
-            RowService[2]=bonLavages.get(i).getCar().getImmatriculation();
-            RowService[3]=bonLavages.get(i).getUnitPrice().toString();
-            RowService[4]=bonLavages.get(i).getDeliveryDate();
-            
+        for (int i = 0; i < bonLavages.size(); i++) {
+            RowService[0] = bonLavages.get(i).getBonNumber();
+            RowService[1] = bonLavages.get(i).getSupplier();
+            RowService[2] = bonLavages.get(i).getCar().getImmatriculation();
+            RowService[3] = bonLavages.get(i).getUnitPrice().toString();
+            RowService[4] = bonLavages.get(i).getDeliveryDate();
+
             tbd.addRow(RowService);
 
         }

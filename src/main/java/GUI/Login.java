@@ -5,20 +5,8 @@
  */
 package GUI;
 
-import DAO.CarDAO;
-import DAO.FixingDAO;
 import DAO.LoginDAO;
-import Entities.Car;
-import Entities.Fixing;
-import Entities.Article;
-
-import Utils.HibernateUtil;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import javax.swing.JOptionPane;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
 
 /**
  *

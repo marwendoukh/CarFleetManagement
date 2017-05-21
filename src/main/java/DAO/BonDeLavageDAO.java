@@ -10,7 +10,6 @@ import Utils.HibernateUtil;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.NoResultException;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -25,27 +24,22 @@ public class BonDeLavageDAO implements BonDeLavageDAOInterface {
     Transaction transaction;
 
     public BonDeLavageDAO() {
-         
+
         session = HibernateUtil.getSessionFactory().getCurrentSession();
-        
-       try{
+
+        try {
             transaction.isActive();
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             transaction = session.beginTransaction();
         }
-       
-        
+
     }
 
-    
-    
     @Override
     public void addBonDeLavage(BonDeLavage bdl) {
-         session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-         transaction = session.getTransaction();
+        transaction = session.getTransaction();
 
         session.save(bdl);
         transaction.commit();
@@ -57,9 +51,9 @@ public class BonDeLavageDAO implements BonDeLavageDAOInterface {
 
     @Override
     public List<BonDeLavage> findBonLavageByImmatriculation(String immatriculation) {
-         session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-         transaction = session.getTransaction();
+        transaction = session.getTransaction();
 
         List<BonDeLavage> bonLavages = new ArrayList<>();
 
@@ -74,7 +68,6 @@ public class BonDeLavageDAO implements BonDeLavageDAOInterface {
         }
         session.close();
 
-
         return bonLavages;
     }
 
@@ -82,7 +75,7 @@ public class BonDeLavageDAO implements BonDeLavageDAOInterface {
     public BonDeLavage findBonLavageByNumBon(String numBon) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
 
-         transaction = session.getTransaction();
+        transaction = session.getTransaction();
 
         BonDeLavage bonLavage = session.get(BonDeLavage.class, numBon);
 
@@ -90,6 +83,5 @@ public class BonDeLavageDAO implements BonDeLavageDAOInterface {
         return bonLavage;
 
     }
-    
-   
+
 }

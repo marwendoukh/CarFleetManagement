@@ -21,9 +21,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 
 /**
  *
@@ -79,22 +76,22 @@ public class Car implements Serializable {
 
     @Temporal(javax.persistence.TemporalType.DATE)
     Date dateProchaineVigniette;
-    
+
     Float montantVigniette;
-    
+
     @Temporal(javax.persistence.TemporalType.DATE)
     Date dateProchaineTaxe;
-    
+
     Float montantTaxeVigniette;
 
     Float prixAchat;
 
     String concessionnaire;
-    
+
     Integer indexKm;
 
-    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-     @JoinTable(foreignKey = @ForeignKey,joinColumns = @JoinColumn) 
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(foreignKey = @ForeignKey, joinColumns = @JoinColumn)
     private List<Fixing> fixings;
 
     public Car() {
@@ -145,9 +142,6 @@ public class Car implements Serializable {
         this.dateProchaineTaxe = dateProchaineTaxe;
     }
 
-    
-    
-    
     public Integer getId() {
         return id;
     }

@@ -7,11 +7,9 @@ package GUI;
 
 import DAO.ArticleDAO;
 import DAO.CarDAO;
-import DAO.DepartementDAO;
 import DAO.FixingDAO;
 import Entities.Article;
 import Entities.Car;
-import Entities.Departement;
 import Entities.Fixing;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -467,27 +465,24 @@ public class Fixings extends javax.swing.JFrame {
 
     private void seachBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seachBTActionPerformed
 
-            
-         FixingDAO fixingDao = new FixingDAO();
+        FixingDAO fixingDao = new FixingDAO();
         List<Fixing> fixings = new ArrayList<>();
         if (immatriculationCB.isSelected() && !departementCB.isSelected() && !dateCB.isSelected()) {
             fixings.addAll(fixingDao.findFixingsByImmatriculation(seachImmatET.getText()));
         } else if (!immatriculationCB.isSelected() && departementCB.isSelected() && !dateCB.isSelected()) {
             fixings.addAll(fixingDao.findFixingsByDepartement(searchDepartementET.getText()));
         } else if (!immatriculationCB.isSelected() && !departementCB.isSelected() && dateCB.isSelected()) {
-          
-            Date date = new Date();
-             try {
-            DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-            
-            date = format.parse(seachDateET.getText());
-           
 
-        } catch (ParseException ex) {
-            Logger.getLogger(Cars.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            
+            Date date = new Date();
+            try {
+                DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+
+                date = format.parse(seachDateET.getText());
+
+            } catch (ParseException ex) {
+                Logger.getLogger(Cars.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
             fixings.addAll(fixingDao.findFixingsByDate(date));
         }
 
@@ -501,7 +496,7 @@ public class Fixings extends javax.swing.JFrame {
         tableColumnNames[5] = "Immatriculation";
         tableColumnNames[6] = "Montant";
         tableColumnNames[7] = "Index";
-       
+
         DefaultTableModel tbd = new DefaultTableModel();
         tbd.setColumnIdentifiers(tableColumnNames);
         Object[] RowService = new Object[8];
@@ -515,7 +510,7 @@ public class Fixings extends javax.swing.JFrame {
             RowService[5] = fixings.get(i).getCar().getImmatriculation();
             RowService[6] = fixings.get(i).getPrice();
             RowService[7] = fixings.get(i).getIndexKM();
-            
+
             tbd.addRow(RowService);
 
         }
@@ -528,40 +523,31 @@ public class Fixings extends javax.swing.JFrame {
 
     private void addBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTActionPerformed
 
-            Fixing fixing = new Fixing();
-            
-            fixing.setSoucheNumber(numSoucheET.getText());
-            
-            
-            // get Article
+        Fixing fixing = new Fixing();
+
+        fixing.setSoucheNumber(numSoucheET.getText());
+
+        // get Article
         Article article = new Article();
 
-        
         try {
-             // open new session
-         ArticleDAO  articleDAO = new ArticleDAO();
-            article = articleDAO.findArticleByDesignation(DesginationArticleET.getText()).get(0);
-        
-        }
-        catch(IndexOutOfBoundsException e)
-        { 
             // open new session
-           ArticleDAO articleDAO  = new ArticleDAO();
+            ArticleDAO articleDAO = new ArticleDAO();
+            article = articleDAO.findArticleByDesignation(DesginationArticleET.getText()).get(0);
+
+        } catch (IndexOutOfBoundsException e) {
+            // open new session
+            ArticleDAO articleDAO = new ArticleDAO();
             article.setDesignation(DesginationArticleET.getText());
             articleDAO.addOrMergeArticle(article);
-             // open new session
+            // open new session
             articleDAO = new ArticleDAO();
             article = articleDAO.findArticleByDesignation(DesginationArticleET.getText()).get(0);
 
-            
         }
-                
-              
-       
-        fixing.setArticle(article);
-        
 
-            
+        fixing.setArticle(article);
+
         try {
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
             Date date;
@@ -572,13 +558,10 @@ public class Fixings extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(Cars.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
         fixing.setUtilisation(utilisationSP.getSelectedItem().toString());
         fixing.setDesignationD(designationReparationET.getText());
-        
-        
-        
+
         // get Car
         Car car = new Car();
 
@@ -588,26 +571,24 @@ public class Fixings extends javax.swing.JFrame {
             carDAO = new CarDAO();
             car = carDAO.getCarByImmatriculation(immatriculationET.getText());
         } else {
-             // open new session
+            // open new session
             carDAO = new CarDAO();
             car.setImmatriculation(immatriculationET.getText());
             carDAO.addCar(car);
-             // open new session
+            // open new session
             carDAO = new CarDAO();
             car = carDAO.getCarByImmatriculation(immatriculationET.getText());
 
         }
 
-         fixing.setCar(car);
-        
+        fixing.setCar(car);
+
         fixing.setPrice(Float.parseFloat(montantET.getText()));
         fixing.setIndexKM(Integer.parseInt(indexET.getText()));
 
+        FixingDAO fixingDao = new FixingDAO();
+        fixingDao.addOrUpdateFixing(fixing);
 
-         FixingDAO fixingDao= new FixingDAO();
-         fixingDao.addOrUpdateFixing(fixing);
-        
-        
     }//GEN-LAST:event_addBTActionPerformed
 
     /**

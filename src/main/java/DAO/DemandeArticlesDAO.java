@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import Entities.Car;
 import Entities.DemandeArticle;
 import Utils.HibernateUtil;
 import java.util.ArrayList;
@@ -26,32 +25,25 @@ public class DemandeArticlesDAO implements DemandeArticlesDAOInterface {
     Transaction transaction;
 
     public DemandeArticlesDAO() {
-         session = HibernateUtil.getSessionFactory().getCurrentSession();
-        
-       try{
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+        try {
             transaction.isActive();
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             transaction = session.beginTransaction();
         }
     }
 
-    
-    
-    
-
     @Override
     public void addDemandeArticles(DemandeArticle demandeArticles) {
 
-         session = HibernateUtil.getSessionFactory().getCurrentSession();
-            transaction = session.getTransaction();
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.getTransaction();
 
-            session.saveOrUpdate(demandeArticles);
-            transaction.commit();
-            System.out.println("Successfully inserted");
-            session.close();
-
+        session.saveOrUpdate(demandeArticles);
+        transaction.commit();
+        System.out.println("Successfully inserted");
+        session.close();
 
     }
 
@@ -64,7 +56,7 @@ public class DemandeArticlesDAO implements DemandeArticlesDAOInterface {
         List<DemandeArticle> demandesArticles = new ArrayList<>();
 
         try {
-            
+
             String hql = "FROM DemandeArticle  da  JOIN FETCH da.articles  das WHERE das.marqueArticle=:marqueArticle";
             Query query = session.createQuery(hql);
             query.setString("marqueArticle", marqueArticle);
@@ -75,23 +67,22 @@ public class DemandeArticlesDAO implements DemandeArticlesDAOInterface {
         }
         session.close();
 
-        System.out.println("dem article found "+demandesArticles.get(0).getClass().getName());
+        System.out.println("dem article found " + demandesArticles.get(0).getClass().getName());
 
         return demandesArticles;
-
 
     }
 
     @Override
     public List<DemandeArticle> findDemandeArticlesByResponsable(String responsable) {
-        
+
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.getTransaction();
 
         List<DemandeArticle> demandesArticles = new ArrayList<>();
 
         try {
-            
+
             String hql = "FROM DemandeArticle  WHERE fixing.responsableMission=:responsableMission";
             Query query = session.createQuery(hql);
             query.setString("responsableMission", responsable);
@@ -102,7 +93,7 @@ public class DemandeArticlesDAO implements DemandeArticlesDAOInterface {
         }
         session.close();
 
-        System.out.println("dem article found "+demandesArticles.get(0).getClass().getName());
+        System.out.println("dem article found " + demandesArticles.get(0).getClass().getName());
 
         return demandesArticles;
 
@@ -111,13 +102,13 @@ public class DemandeArticlesDAO implements DemandeArticlesDAOInterface {
     @Override
     public List<DemandeArticle> findDemandeArticlesByDate(Date date) {
 
-         session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.getTransaction();
 
         List<DemandeArticle> demandesArticles = new ArrayList<>();
 
         try {
-            
+
             String hql = "FROM DemandeArticle  WHERE dateDemande=:dateDemande";
             Query query = session.createQuery(hql);
             query.setDate("dateDemande", date);
@@ -128,11 +119,10 @@ public class DemandeArticlesDAO implements DemandeArticlesDAOInterface {
         }
         session.close();
 
-        System.out.println("dem article found "+demandesArticles.get(0).getClass().getName());
+        System.out.println("dem article found " + demandesArticles.get(0).getClass().getName());
 
         return demandesArticles;
-        
+
     }
 
-    
 }

@@ -17,11 +17,11 @@ public interface ArticleDAOInterface {
     void addOrMergeArticle(Article article);
 
     List<Article> findArticleByDesignation(String designation);
-    
+
     List<Article> findAllAlertes();
-    
+
     Article findArticleByCode(Integer code);
-    
+
     List<Article> findArticleBySupplier(String provider);
 
 }

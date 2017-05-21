@@ -31,7 +31,7 @@ public class BonDeLavage implements Serializable {
 
     @ManyToOne
     Car car;
-    
+
     String useType;
 
     public BonDeLavage() {
@@ -85,7 +85,4 @@ public class BonDeLavage implements Serializable {
         this.useType = useType;
     }
 
-    
-    
-    
 }

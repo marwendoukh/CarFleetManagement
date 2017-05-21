@@ -22,7 +22,6 @@ public class BonDeCarburant implements Serializable {
     @Id
     String soucheNumber;
 
-
     String useType;
 
     Integer quantity;
@@ -34,9 +33,9 @@ public class BonDeCarburant implements Serializable {
 
     @ManyToOne
     Car car;
-    
+
     String type;
-    
+
     Float bonPrice;
 
     public BonDeCarburant() {
@@ -50,7 +49,6 @@ public class BonDeCarburant implements Serializable {
         this.soucheNumber = soucheNumber;
     }
 
-   
     public String getUseType() {
         return useType;
     }
@@ -107,7 +105,4 @@ public class BonDeCarburant implements Serializable {
         this.bonPrice = bonPrice;
     }
 
-    
-    
-    
 }

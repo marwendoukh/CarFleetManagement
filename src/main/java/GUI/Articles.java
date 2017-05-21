@@ -7,7 +7,6 @@ package GUI;
 
 import DAO.ArticleDAO;
 import Entities.Article;
-import Entities.Car;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,9 +24,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Articles extends javax.swing.JFrame {
 
-    
-
-                 
     /**
      * Creates new form InterfaceMagasin
      */
@@ -428,11 +424,10 @@ public class Articles extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void seachBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seachBTActionPerformed
-   
-        
+
         ArticleDAO articleDao = new ArticleDAO();
 
-         List<Article> articles = new ArrayList<>();
+        List<Article> articles = new ArrayList<>();
         if (codeCB.isSelected() && !supplierCB.isSelected() && !designationCB.isSelected()) {
             articles.add(articleDao.findArticleByCode(Integer.parseInt(seachCodeET.getText())));
         } else if (!codeCB.isSelected() && supplierCB.isSelected() && !designationCB.isSelected()) {
@@ -470,20 +465,19 @@ public class Articles extends javax.swing.JFrame {
 
         }
 
-
     }//GEN-LAST:event_seachBTActionPerformed
 
     private void addBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTActionPerformed
 
-            Article article = new Article();
-            
-            article.setMarqueArticle(marqueET.getText());
-            article.setId(Integer.parseInt(codeET.getText()));
-            article.setProvider(supplierET.getText());
-            article.setDesignation(designationET.getText());
-            article.setQuantity(Integer.parseInt(quantityET.getText()));
+        Article article = new Article();
 
-             try {
+        article.setMarqueArticle(marqueET.getText());
+        article.setId(Integer.parseInt(codeET.getText()));
+        article.setProvider(supplierET.getText());
+        article.setDesignation(designationET.getText());
+        article.setQuantity(Integer.parseInt(quantityET.getText()));
+
+        try {
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
             Date date;
             date = format.parse(dateET.getText());
@@ -492,15 +486,14 @@ public class Articles extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(Cars.class.getName()).log(Level.SEVERE, null, ex);
         }
-             
-             
-             article.setPrice(Integer.parseInt(prixAchatET.getText()));
-             article.setTotalPrice(Integer.parseInt(totalPriceET.getText()));
-             article.setMinimalQuantity(Integer.parseInt(minimalStockET.getText()));
-             
-            ArticleDAO articleDao = new ArticleDAO();
 
-             articleDao.addOrMergeArticle(article);
+        article.setPrice(Integer.parseInt(prixAchatET.getText()));
+        article.setTotalPrice(Integer.parseInt(totalPriceET.getText()));
+        article.setMinimalQuantity(Integer.parseInt(minimalStockET.getText()));
+
+        ArticleDAO articleDao = new ArticleDAO();
+
+        articleDao.addOrMergeArticle(article);
 
     }//GEN-LAST:event_addBTActionPerformed
 

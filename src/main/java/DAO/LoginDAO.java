@@ -24,7 +24,6 @@ public class LoginDAO implements LoginDAOInterface {
 
     // constructor
     public LoginDAO() {
-        
 
     }
 

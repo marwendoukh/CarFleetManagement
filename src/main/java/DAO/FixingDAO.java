@@ -75,15 +75,13 @@ public class FixingDAO implements FixingDAOInterface {
 
         // get car by immatriculation
         Car car = carDao.getCarByImmatriculation(immatriculation);
-        
-        System.out.println("Car found "+car.getImmatriculation());
 
-        
+        System.out.println("Car found " + car.getImmatriculation());
+
         // reopen the session (because CarDAO has closed it)
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.beginTransaction();
 
-        
         String hql = "FROM Fixing WHERE  car = :car ";
         Query query = session.createQuery(hql);
         query.setEntity("car", car);
@@ -109,11 +107,10 @@ public class FixingDAO implements FixingDAOInterface {
         List<Car> cars = carDao.getCarByDepartement(departementName);
 
         List<Fixing> fixings = new ArrayList<>();
-        
-         // reopen the session (because CarDAO has closed it)
+
+        // reopen the session (because CarDAO has closed it)
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.beginTransaction();
-
 
         // for each car in that departement , we will get all its fixings
         for (Car car : cars) {
@@ -121,11 +118,9 @@ public class FixingDAO implements FixingDAOInterface {
             Query query = session.createQuery(hql);
             query.setEntity("car", car);
 
-            try{
-            fixings.addAll(query.getResultList());
-            }
-            catch(NullPointerException e)
-            {
+            try {
+                fixings.addAll(query.getResultList());
+            } catch (NullPointerException e) {
                 /// this car does not have any Fixings
             }
         }
@@ -156,12 +151,11 @@ public class FixingDAO implements FixingDAOInterface {
 
     @Override
     public Fixing findFixingBySoucheNumer(String soucheNum) {
-            
-         session = HibernateUtil.getSessionFactory().getCurrentSession();
+
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.getTransaction();
 
         Fixing fixing = session.get(Fixing.class, soucheNum);
-       
 
         session.close();
         return fixing;

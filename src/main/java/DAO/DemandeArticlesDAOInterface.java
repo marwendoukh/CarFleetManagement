@@ -16,12 +16,11 @@ import java.util.List;
 public interface DemandeArticlesDAOInterface {
 
     void addDemandeArticles(DemandeArticle demandeArticles);
+
     List<DemandeArticle> findDemandeArticlesByMarqueArticle(String marqueArticle);
+
     List<DemandeArticle> findDemandeArticlesByResponsable(String responsable);
+
     List<DemandeArticle> findDemandeArticlesByDate(Date date);
-
-
-
-    
 
 }

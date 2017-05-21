@@ -15,7 +15,9 @@ import java.util.List;
 public interface BonDeLavageDAOInterface {
 
     void addBonDeLavage(BonDeLavage bdl);
+
     BonDeLavage findBonLavageByNumBon(String numBon);
+
     List<BonDeLavage> findBonLavageByImmatriculation(String immatriculation);
 
 }

@@ -5,7 +5,6 @@
  */
 package DAO;
 
-import Entities.Article;
 import Entities.BonDeCarburant;
 import Utils.HibernateUtil;
 import java.util.Date;
@@ -25,17 +24,13 @@ public class BonCarburantDAO implements BonCarburantDAOInterface {
 
     public BonCarburantDAO() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
-        
-       try{
+
+        try {
             transaction.isActive();
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             transaction = session.beginTransaction();
         }
     }
-    
-    
 
     @Override
     public void addBonCarburant(BonDeCarburant bonCarburant) {
@@ -47,7 +42,7 @@ public class BonCarburantDAO implements BonCarburantDAOInterface {
         transaction.commit();
 
         System.out.println("Successfully inserted");
-     }
+    }
 
     @Override
     public List<BonDeCarburant> findBonCarburantByImmatriculation(String immatriculation) {
@@ -57,13 +52,11 @@ public class BonCarburantDAO implements BonCarburantDAOInterface {
         String hql = "FROM BonDeCarburant WHERE car.immatriculation = :immatriculation ";
         Query query = session.createQuery(hql);
         query.setString("immatriculation", immatriculation);
-        
+
         return query.getResultList();
 
     }
-    
-    
-            
+
     @Override
     public List<BonDeCarburant> findBonCarburantByUseType(String useType) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -72,7 +65,7 @@ public class BonCarburantDAO implements BonCarburantDAOInterface {
         String hql = "FROM BonDeCarburant WHERE useType = :useType ";
         Query query = session.createQuery(hql);
         query.setString("useType", useType);
-        
+
         return query.getResultList();
 
     }
@@ -85,21 +78,19 @@ public class BonCarburantDAO implements BonCarburantDAOInterface {
         String hql = "FROM BonDeCarburant WHERE deliveryDate = :date ";
         Query query = session.createQuery(hql);
         query.setDate("date", date);
-        
+
         return query.getResultList();
 
     }
-   
 
     @Override
     public BonDeCarburant findBonCarburantByNumSouche(String numSouche) {
-       session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.getTransaction();
 
         BonDeCarburant car = session.get(BonDeCarburant.class, numSouche);
-       
 
-         return car;
+        return car;
     }
-    
+
 }

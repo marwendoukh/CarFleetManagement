@@ -24,11 +24,9 @@ public class DepartementDAO implements DepartementDAOInterface {
 
         Departement dep = null;
         try {
-           dep= session.find(Departement.class, name);
-           
-        }
-        catch (Exception e)
-        {
+            dep = session.find(Departement.class, name);
+
+        } catch (Exception e) {
             return null;
         }
         session.close();
@@ -37,17 +35,16 @@ public class DepartementDAO implements DepartementDAOInterface {
 
     @Override
     public void addDepartement(String name) {
- 
-            session = HibernateUtil.getSessionFactory().getCurrentSession();
-            transaction = session.beginTransaction();
 
-            Departement dep = new Departement();
-            dep.setNom(name);
-            session.save(dep);
-            transaction.commit();
-            System.out.println("Successfully inserted");
-            session.close();
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.beginTransaction();
+
+        Departement dep = new Departement();
+        dep.setNom(name);
+        session.save(dep);
+        transaction.commit();
+        System.out.println("Successfully inserted");
+        session.close();
     }
 
-    
 }

@@ -26,7 +26,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Carburant extends javax.swing.JFrame {
 
-    
     BonCarburantDAO bonCarburantDao = new BonCarburantDAO();
 
     /**
@@ -451,33 +450,32 @@ public class Carburant extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void ajouterBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ajouterBTActionPerformed
-        
+
         BonDeCarburant bonCarburant = new BonDeCarburant();
-        
+
         bonCarburant.setSoucheNumber(soucheNumET.getText());
         bonCarburant.setQuantity(Integer.parseInt(quantiteET.getText()));
         bonCarburant.setUnitPrice(Float.parseFloat(prixUnitaireET.getText()));
-        
-            // get car object
-            
-            //we created this contractor because we already have an active transaction
-            CarDAO carDAO = new CarDAO(false);
-            Car car= carDAO.getCarByImmatriculation(immatriculationET.getText());
 
-            bonCarburant.setCar(car);
-            
-            bonCarburant.setType(natureCarburantSP.getSelectedItem().toString());
-            bonCarburant.setBonPrice(Float.parseFloat(prixBonET.getText()));
-            bonCarburant.setUseType(typeUtilisationSP.getSelectedItem().toString());
+        // get car object
+        //we created this contractor because we already have an active transaction
+        CarDAO carDAO = new CarDAO(false);
+        Car car = carDAO.getCarByImmatriculation(immatriculationET.getText());
+
+        bonCarburant.setCar(car);
+
+        bonCarburant.setType(natureCarburantSP.getSelectedItem().toString());
+        bonCarburant.setBonPrice(Float.parseFloat(prixBonET.getText()));
+        bonCarburant.setUseType(typeUtilisationSP.getSelectedItem().toString());
         try {
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
             Date date;
             date = format.parse(dateET.getText());
-                   bonCarburant.setDeliveryDate(date);
+            bonCarburant.setDeliveryDate(date);
 
         } catch (ParseException ex) {
             Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
-        }           
+        }
 
         BonCarburantDAO bonCarburantDao = new BonCarburantDAO();
         bonCarburantDao.addBonCarburant(bonCarburant);
@@ -486,68 +484,54 @@ public class Carburant extends javax.swing.JFrame {
 
     private void afficherBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_afficherBTActionPerformed
 
-        
         /// check if we already have an active transaction
-        try{
-        BonCarburantDAO bonCarburantDao = new BonCarburantDAO();
-        }
-        catch(IllegalStateException e)
-        {
-            
+        try {
+            BonCarburantDAO bonCarburantDao = new BonCarburantDAO();
+        } catch (IllegalStateException e) {
+
         }
 
         List<BonDeCarburant> bonCarburants = new ArrayList<>();
-        
-             if(immatCB.isSelected() && !utilisationCB.isSelected() && !dateCB.isSelected() && !numSoucheCB.isSelected())
-            {
-               bonCarburants.addAll(bonCarburantDao.findBonCarburantByImmatriculation(seachImmatET.getText()));
-            }
-            else if(!immatCB.isSelected() && utilisationCB.isSelected() && !dateCB.isSelected() && !numSoucheCB.isSelected())
-            {
-                bonCarburants.addAll(bonCarburantDao.findBonCarburantByUseType(typeUtilisationSP.getSelectedItem().toString()));
-            }
-             else if(!immatCB.isSelected() && !utilisationCB.isSelected() && dateCB.isSelected() && !numSoucheCB.isSelected())
-            {
-                try {
-                         DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-                         Date date;
-                         date = format.parse(searchDateET.getText());
-                         bonCarburants.addAll(bonCarburantDao.findBonCarburantByDate(date));
 
-                  } catch (ParseException ex) {
-                         Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
-                     }        
-            }
-             
-              else if(!immatCB.isSelected() && !utilisationCB.isSelected() && !dateCB.isSelected() && numSoucheCB.isSelected())
-            {
-                bonCarburants.add(bonCarburantDao.findBonCarburantByNumSouche(seachNumSoucheET.getText()));
-            }
+        if (immatCB.isSelected() && !utilisationCB.isSelected() && !dateCB.isSelected() && !numSoucheCB.isSelected()) {
+            bonCarburants.addAll(bonCarburantDao.findBonCarburantByImmatriculation(seachImmatET.getText()));
+        } else if (!immatCB.isSelected() && utilisationCB.isSelected() && !dateCB.isSelected() && !numSoucheCB.isSelected()) {
+            bonCarburants.addAll(bonCarburantDao.findBonCarburantByUseType(typeUtilisationSP.getSelectedItem().toString()));
+        } else if (!immatCB.isSelected() && !utilisationCB.isSelected() && dateCB.isSelected() && !numSoucheCB.isSelected()) {
+            try {
+                DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+                Date date;
+                date = format.parse(searchDateET.getText());
+                bonCarburants.addAll(bonCarburantDao.findBonCarburantByDate(date));
 
-             
-             System.out.println(bonCarburants.get(0).getSoucheNumber());
-             
-             
-               /// add to the table
-            
-            Object[] tableColumnNames = new Object[5];
-        tableColumnNames[0]="Num Souche";
-        tableColumnNames[1]="Immatriculation";
-        tableColumnNames[2]="Utilisation";
-        tableColumnNames[3]="Date";
-        tableColumnNames[4]="Prix de bon";
-        
-         DefaultTableModel tbd = new DefaultTableModel() ;
-         tbd.setColumnIdentifiers(tableColumnNames);
-        Object [] RowService=new Object[5];
+            } catch (ParseException ex) {
+                Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (!immatCB.isSelected() && !utilisationCB.isSelected() && !dateCB.isSelected() && numSoucheCB.isSelected()) {
+            bonCarburants.add(bonCarburantDao.findBonCarburantByNumSouche(seachNumSoucheET.getText()));
+        }
+
+        System.out.println(bonCarburants.get(0).getSoucheNumber());
+
+        /// add to the table
+        Object[] tableColumnNames = new Object[5];
+        tableColumnNames[0] = "Num Souche";
+        tableColumnNames[1] = "Immatriculation";
+        tableColumnNames[2] = "Utilisation";
+        tableColumnNames[3] = "Date";
+        tableColumnNames[4] = "Prix de bon";
+
+        DefaultTableModel tbd = new DefaultTableModel();
+        tbd.setColumnIdentifiers(tableColumnNames);
+        Object[] RowService = new Object[5];
         this.tableJT.setModel(tbd);
-        for (int i=0;i<bonCarburants.size();i++){
-            RowService[0]=bonCarburants.get(i).getSoucheNumber();
-            RowService[1]=bonCarburants.get(i).getCar().getImmatriculation();
-            RowService[2]=bonCarburants.get(i).getCar().getUtilisation();
-            RowService[3]=bonCarburants.get(i).getDeliveryDate();
-            RowService[4]=bonCarburants.get(i).getBonPrice().toString();
-            
+        for (int i = 0; i < bonCarburants.size(); i++) {
+            RowService[0] = bonCarburants.get(i).getSoucheNumber();
+            RowService[1] = bonCarburants.get(i).getCar().getImmatriculation();
+            RowService[2] = bonCarburants.get(i).getCar().getUtilisation();
+            RowService[3] = bonCarburants.get(i).getDeliveryDate();
+            RowService[4] = bonCarburants.get(i).getBonPrice().toString();
+
             tbd.addRow(RowService);
 
         }

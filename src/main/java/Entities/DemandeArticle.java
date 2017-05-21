@@ -23,30 +23,24 @@ import javax.persistence.TemporalType;
  *
  * @author marwen
  */
-
 @Entity
 public class DemandeArticle implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id; 
-    
-    
-    @OneToOne(cascade = CascadeType.ALL)
-    private  Fixing fixing;
-     
-     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-     private  List<Article> articles ;
+    Integer id;
 
-     
-     private Integer quanity;
-     
-     
-     @Temporal(TemporalType.DATE)
-     private Date dateDemande;
-     
-     
-     
+    @OneToOne(cascade = CascadeType.ALL)
+    private Fixing fixing;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Article> articles;
+
+    private Integer quanity;
+
+    @Temporal(TemporalType.DATE)
+    private Date dateDemande;
+
     public DemandeArticle() {
     }
 
@@ -89,9 +83,5 @@ public class DemandeArticle implements Serializable {
     public void setDateDemande(Date dateDemande) {
         this.dateDemande = dateDemande;
     }
-     
-     
-    
-    
-    
+
 }

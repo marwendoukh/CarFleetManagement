@@ -6,11 +6,9 @@
 package GUI;
 
 import DAO.ArticleDAO;
-import DAO.BonCarburantDAO;
 import DAO.DemandeArticlesDAO;
 import DAO.FixingDAO;
 import Entities.Article;
-import Entities.BonDeCarburant;
 import Entities.Car;
 import Entities.DemandeArticle;
 import Entities.Fixing;
@@ -406,28 +404,21 @@ public class DemandesArticles extends javax.swing.JFrame {
 
     private void addBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTActionPerformed
 
-        
         DemandeArticle demandeArticle = new DemandeArticle();
 
-                
         FixingDAO fixingDao = new FixingDAO();
-        
-        Fixing fixing =fixingDao.findFixingBySoucheNumer(numSoucheET.getText());
-        
-        System.out.println("Fixing found "+fixing.getDesignationD());
-        
+
+        Fixing fixing = fixingDao.findFixingBySoucheNumer(numSoucheET.getText());
+
+        System.out.println("Fixing found " + fixing.getDesignationD());
+
         // get Article 
         ArticleDAO articleDao = new ArticleDAO();
         Article article = articleDao.findArticleByDesignation(designationET.getText()).get(0);
-        
-        
-       
-       
-        
-        
+
         fixing.setResponsableMission(responsablMissionET.getText());
-        
-         try {
+
+        try {
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
             Date date;
             date = format.parse(dateET.getText());
@@ -436,31 +427,28 @@ public class DemandesArticles extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(Cars.class.getName()).log(Level.SEVERE, null, ex);
         }
-         
-          // restart session and update Fixing
-        fixingDao = new FixingDAO();        
+
+        // restart session and update Fixing
+        fixingDao = new FixingDAO();
         fixingDao.addOrUpdateFixing(fixing);
-        
+
         demandeArticle.setFixing(fixing);
-        
-        try{
-        demandeArticle.getArticles().add(article);
-        }
-        catch(Exception e)
-        {
+
+        try {
+            demandeArticle.getArticles().add(article);
+        } catch (Exception e) {
             // DemandeArticle does not have any Articles
-            List<Article> articles=new ArrayList<>();
+            List<Article> articles = new ArrayList<>();
             articles.add(article);
             demandeArticle.setArticles(articles);
         }
-         
+
         demandeArticle.setQuanity(Integer.parseInt(quantityET.getText()));
-        
-        DemandeArticlesDAO demandeArticleDao= new DemandeArticlesDAO();
+
+        DemandeArticlesDAO demandeArticleDao = new DemandeArticlesDAO();
         demandeArticleDao.addDemandeArticles(demandeArticle);
-         
-         
-       /* 
+
+        /* 
         // restart session and update Article
         articleDao = new ArticleDAO();        
         articleDao.addOrMergeArticle(article);
@@ -485,74 +473,55 @@ public class DemandesArticles extends javax.swing.JFrame {
        // remove article*quantity from the Quantity
 
        article.setQuantity(article.getQuantity()-Integer.parseInt(quantityET.getText()));
-*/
-
-
+         */
     }//GEN-LAST:event_addBTActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-           
-
         List<DemandeArticle> demandeArticles = new ArrayList<>();
         DemandeArticlesDAO demandeArticleDao = new DemandeArticlesDAO();
-        
-             if(marqueCB.isSelected() && !responsableCB.isSelected() && !dateCB.isSelected() )
-            {
-               demandeArticles.addAll(demandeArticleDao.findDemandeArticlesByMarqueArticle(searchMarqueET.getText()));
+
+        if (marqueCB.isSelected() && !responsableCB.isSelected() && !dateCB.isSelected()) {
+            demandeArticles.addAll(demandeArticleDao.findDemandeArticlesByMarqueArticle(searchMarqueET.getText()));
+        } else if (!marqueCB.isSelected() && responsableCB.isSelected() && !dateCB.isSelected()) {
+            demandeArticles.addAll(demandeArticleDao.findDemandeArticlesByResponsable(seachResponsableET.getText()));
+        } else if (!marqueCB.isSelected() && !responsableCB.isSelected() && dateCB.isSelected()) {
+            try {
+                DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
+                Date date;
+                date = format.parse(seachDateET.getText());
+                demandeArticles.addAll(demandeArticleDao.findDemandeArticlesByDate(date));
+
+            } catch (ParseException ex) {
+                Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
             }
-            else if(!marqueCB.isSelected() && responsableCB.isSelected() && !dateCB.isSelected() )
+        }
 
-            {
-               demandeArticles.addAll(demandeArticleDao.findDemandeArticlesByResponsable(seachResponsableET.getText()));
-            }
-           else if(!marqueCB.isSelected() && !responsableCB.isSelected() && dateCB.isSelected() )
+        /// add to the table
+        Object[] tableColumnNames = new Object[6];
+        tableColumnNames[0] = "Marque";
+        tableColumnNames[1] = "Code";
+        tableColumnNames[2] = "Designation";
+        tableColumnNames[3] = "Quantity";
+        tableColumnNames[4] = "Responsable";
+        tableColumnNames[5] = "Date";
 
-            {
-                try {
-                         DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-                         Date date;
-                         date = format.parse(seachDateET.getText());
-                         demandeArticles.addAll(demandeArticleDao.findDemandeArticlesByDate(date));
-
-                  } catch (ParseException ex) {
-                         Logger.getLogger(Car.class.getName()).log(Level.SEVERE, null, ex);
-                     }        
-            }
-             
-             
-             
-             
-               /// add to the table
-            
-            Object[] tableColumnNames = new Object[6];
-        tableColumnNames[0]="Marque";
-        tableColumnNames[1]="Code";
-        tableColumnNames[2]="Designation";
-        tableColumnNames[3]="Quantity";
-        tableColumnNames[4]="Responsable";
-        tableColumnNames[5]="Date";
-
-        
-         DefaultTableModel tbd = new DefaultTableModel() ;
-         tbd.setColumnIdentifiers(tableColumnNames);
-        Object [] RowService=new Object[6];
+        DefaultTableModel tbd = new DefaultTableModel();
+        tbd.setColumnIdentifiers(tableColumnNames);
+        Object[] RowService = new Object[6];
         this.jTable1.setModel(tbd);
-        for (int i=0;i<demandeArticles.size();i++){
-            try{
-            RowService[0]=demandeArticles.get(i).getArticles().get(0).getMarqueArticle();
-            }
-            catch(Exception e)
-            {
-                
-            }
-            RowService[1]=demandeArticles.get(i).getQuanity();
-            RowService[2]=demandeArticles.get(i).getArticles().get(0).getDesignation();
-            RowService[3]=demandeArticles.get(i).getQuanity();
-            RowService[4]=demandeArticles.get(i).getFixing().getResponsableMission();
-            RowService[5]=demandeArticles.get(i).getDateDemande().toString();
+        for (int i = 0; i < demandeArticles.size(); i++) {
+            try {
+                RowService[0] = demandeArticles.get(i).getArticles().get(0).getMarqueArticle();
+            } catch (Exception e) {
 
-            
+            }
+            RowService[1] = demandeArticles.get(i).getQuanity();
+            RowService[2] = demandeArticles.get(i).getArticles().get(0).getDesignation();
+            RowService[3] = demandeArticles.get(i).getQuanity();
+            RowService[4] = demandeArticles.get(i).getFixing().getResponsableMission();
+            RowService[5] = demandeArticles.get(i).getDateDemande().toString();
+
             tbd.addRow(RowService);
 
         }
