@@ -6,6 +6,7 @@
 package DAO;
 
 import Entities.Article;
+import Entities.Car;
 import java.util.List;
 
 /**
@@ -23,5 +24,7 @@ public interface ArticleDAOInterface {
     Article findArticleByCode(Integer code);
 
     List<Article> findArticleBySupplier(String provider);
+    
+    Long sumArticlesByCar(Car car);
 
 }

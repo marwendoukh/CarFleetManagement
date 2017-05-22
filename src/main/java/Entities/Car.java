@@ -21,6 +21,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 /**
  *
@@ -44,9 +46,13 @@ public class Car implements Serializable {
     Date dateDeMiseEnCirculation;
 
     @OneToMany(mappedBy = "car")
+    @LazyCollection(LazyCollectionOption.FALSE)
+
     List<BonDeCarburant> bonDeCarburants;
 
     @OneToMany(mappedBy = "car")
+    @LazyCollection(LazyCollectionOption.FALSE)
+
     List<BonDeLavage> bonDeLavages;
 
     Integer puissance;

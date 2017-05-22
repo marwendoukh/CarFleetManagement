@@ -6,6 +6,7 @@
 package DAO;
 
 import Entities.Article;
+import Entities.Car;
 import Utils.HibernateUtil;
 import java.util.List;
 import org.hibernate.Session;
@@ -110,6 +111,24 @@ public class ArticleDAO implements ArticleDAOInterface {
         query.setString("provider", provider);
 
         List<Article> articles = query.getResultList();
+
+        session.close();
+
+        return articles;
+
+    }
+
+    @Override
+    public Long sumArticlesByCar(Car car) {
+        
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.getTransaction();
+
+        String hql = "SELECT COUNT(*) FROM Article AS a JOIN a.fixings AS f WHERE f.car.immatriculation =:immat";
+        Query query = session.createQuery(hql);
+        query.setString("immat", car.getImmatriculation());
+
+        Long articles = (Long) query.getSingleResult();
 
         session.close();
 
