@@ -103,6 +103,7 @@ public class Cars extends javax.swing.JFrame {
         dateProchaineAssuranceET = new javax.swing.JTextField();
         dateProchaineVignietteET = new javax.swing.JTextField();
         dateProchaineTaxeET = new javax.swing.JTextField();
+        cancelBT = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -187,7 +188,7 @@ public class Cars extends javax.swing.JFrame {
 
         jLabel21.setText("Montant assurance");
 
-        etatSP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bonne", "Mauvaise" }));
+        etatSP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bonne", "Moyenne", "Mauvaise" }));
 
         jLabel17.setText("Date prochaine vignette");
 
@@ -240,6 +241,13 @@ public class Cars extends javax.swing.JFrame {
         });
 
         jLabel27.setText("Date reforme");
+
+        cancelBT.setText("Annuler");
+        cancelBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelBTActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Vehicule");
 
@@ -402,7 +410,7 @@ public class Cars extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(etatSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -442,8 +450,11 @@ public class Cars extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addComponent(addCarBT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cancelBT)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(seachBT)
                         .addGap(125, 125, 125))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -537,7 +548,9 @@ public class Cars extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
-                                    .addComponent(addCarBT)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(addCarBT)
+                                        .addComponent(cancelBT))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(nombreDePlaceET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel15)
@@ -741,6 +754,32 @@ public class Cars extends javax.swing.JFrame {
         carDAO.addCar(car);
     }//GEN-LAST:event_addCarBTActionPerformed
 
+    private void cancelBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTActionPerformed
+
+            immatriculationET.setText("");
+            departmentET.setText("");
+            concessionnaireET.setText("");
+            dateMiseEnCirculationET.setText("");
+            puissanceET.setText("");
+            nombreDePlaceET.setText("");
+            marqueET.setText("");
+            numChassisET.setText("");
+            indexKmET.setText("");
+            dateReformeET.setText("");
+            compagnieAssuranceET.setText("");
+            dateDebutAssuranceET.setText("");
+            dateProchaineAssuranceET.setText("");
+            montantAssuranceET.setText("");
+            dateProchaineVignietteET.setText("");
+            montantVignietteET.setText("");
+            dateProchaineTaxeET.setText("");
+            montantTaxeET.setText("");
+            prixAchatET.setText("");
+            
+            
+
+    }//GEN-LAST:event_cancelBTActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -809,6 +848,7 @@ public class Cars extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addCarBT;
+    private javax.swing.JButton cancelBT;
     private javax.swing.JComboBox carburantSP;
     private javax.swing.JComboBox categorieSP;
     private javax.swing.JTextField compagnieAssuranceET;
