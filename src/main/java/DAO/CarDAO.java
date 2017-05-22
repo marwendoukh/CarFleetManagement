@@ -119,8 +119,11 @@ public class CarDAO implements CarDAOInterface {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.getTransaction();
 
+        
+        List<Car> cars = session.createCriteria(Car.class).list();
         session.close();
-        return session.createCriteria(Car.class).list();
+        
+        return  cars;
     }
 
     @Override
@@ -155,7 +158,7 @@ public class CarDAO implements CarDAOInterface {
 
         // get alerts before 10 days of the deadline
         try {
-            String hql = "FROM Car WHERE dateProchaineAssurance < CURRENT_DATE()+10 OR dateProchaineVisiteTechnique < CURRENT_DATE()+10 OR dateProchaineVigniette < CURRENT_DATE()+10";
+            String hql = "FROM Car WHERE dateProchaineAssurance < CURRENT_DATE()+10 OR dateProchaineTaxe < CURRENT_DATE()+10 OR dateProchaineVigniette < CURRENT_DATE()+10";
             Query query = session.createQuery(hql);
             cars.addAll(query.getResultList());
         } catch (NoResultException e) {
