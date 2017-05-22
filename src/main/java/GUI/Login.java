@@ -6,6 +6,8 @@
 package GUI;
 
 import DAO.LoginDAO;
+import Entities.Role;
+import Entities.User;
 import javax.swing.JOptionPane;
 
 /**
@@ -196,10 +198,23 @@ Session session;
         // check credentials in DB
         LoginDAO loginDAO = new LoginDAO();
 
-        if (loginDAO.signIn(LoginTF.getText(), PasswordTF.getText())) {
+        User user =loginDAO.signIn(LoginTF.getText(), PasswordTF.getText());
+        if (user !=null) {
             System.out.println("logged in  " + loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()));
-            new AdminDashboard().setVisible(true);
-            this.setVisible(false);
+            
+            /// redirect to the right GUI according to the role
+            if(user.getRole() == Role.CHEF_DEPARTEMENT)
+            {
+                // chef departement
+              new AdminDashboard().setVisible(true);
+              this.setVisible(false);
+            }
+            else
+            {
+                // chef de park
+              new AdminDashboard().setVisible(true);
+              this.setVisible(false);
+            }
 
         } else {
             new JOptionPane().showMessageDialog(this, "Please re-check your login and password");

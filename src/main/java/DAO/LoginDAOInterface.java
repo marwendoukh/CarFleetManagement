@@ -13,7 +13,7 @@ import Entities.User;
  */
 public interface LoginDAOInterface {
 
-    Boolean signIn(String username, String password);
+    User signIn(String username, String password);
 
     Boolean signUp(User user);
 
