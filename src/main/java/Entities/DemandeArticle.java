@@ -30,7 +30,7 @@ public class DemandeArticle implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     private Fixing fixing;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

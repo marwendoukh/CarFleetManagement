@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Entities.Article;
 import Entities.DemandeArticle;
 import Utils.HibernateUtil;
 import java.util.ArrayList;
@@ -123,6 +124,53 @@ public class DemandeArticlesDAO implements DemandeArticlesDAOInterface {
 
         return demandesArticles;
 
+    }
+
+    @Override
+    public void acceptDemandeArticle(DemandeArticle demandeArticle) {
+
+        // close the current session because ArticleDao will start a new one
+        session.evict(demandeArticle.getFixing());
+        session.flush();
+        session.clear();
+        session.close();
+        
+        System.out.println("demande Article to delete "+demandeArticle.getId());
+        ArticleDAO articleDao = new ArticleDAO();
+      Article article=  articleDao.findArticleByDesignation(demandeArticle.getArticles().get(0).getDesignation()).get(0);
+
+      Integer remainingQuantity=article.getQuantity()-demandeArticle.getQuanity();
+      article.setQuantity(remainingQuantity);
+      
+      
+      
+      if(article.getFixings().indexOf(this) != -1)
+      {
+         article.getFixings().set(article.getFixings().indexOf(this), demandeArticle.getFixing());
+      }
+      else
+      {
+          article.getFixings().add(demandeArticle.getFixing());
+      }
+        // reopen the session (because ArticleDao has closed it)
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.beginTransaction();
+        
+        session.flush();
+        session.clear();
+        
+      articleDao.addOrMergeArticle(article);
+      
+      
+       // reopen the session (because CarDAO has closed it)
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.beginTransaction();
+        
+        session.delete(demandeArticle);
+        transaction.commit();
+
+        
+        session.close();
     }
 
 }

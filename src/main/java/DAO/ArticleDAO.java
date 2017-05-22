@@ -38,6 +38,11 @@ public class ArticleDAO implements ArticleDAOInterface {
         transaction = session.getTransaction();
 
         session.flush();
+        session.clear();
+        transaction.commit();
+      session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.beginTransaction();
+
 
         session.saveOrUpdate(article);
         transaction.commit();

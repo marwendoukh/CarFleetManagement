@@ -22,5 +22,7 @@ public interface DemandeArticlesDAOInterface {
     List<DemandeArticle> findDemandeArticlesByResponsable(String responsable);
 
     List<DemandeArticle> findDemandeArticlesByDate(Date date);
+    
+    void acceptDemandeArticle(DemandeArticle demandeArticle);
 
 }

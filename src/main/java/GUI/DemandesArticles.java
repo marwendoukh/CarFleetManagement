@@ -29,6 +29,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DemandesArticles extends javax.swing.JFrame {
 
+    
+            List<DemandeArticle> demandeArticles = new ArrayList<>();
+
     /**
      * Creates new form InterfaceDemandeArticle
      */
@@ -70,6 +73,8 @@ public class DemandesArticles extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         dateET = new javax.swing.JTextField();
         seachDateET = new javax.swing.JTextField();
+        acceptRequestBT = new javax.swing.JButton();
+        rejectRequestBT = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -157,6 +162,15 @@ public class DemandesArticles extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        acceptRequestBT.setText("Accepter demande");
+        acceptRequestBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                acceptRequestBTActionPerformed(evt);
+            }
+        });
+
+        rejectRequestBT.setText("Refuser demande");
 
         jMenu1.setText("Vehicule");
 
@@ -314,13 +328,17 @@ public class DemandesArticles extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGap(37, 37, 37)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 668, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(264, 264, 264))))
-                .addContainerGap(27, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(acceptRequestBT)
+                                .addComponent(rejectRequestBT))
+                            .addGap(190, 190, 190))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(237, 237, 237)
                     .addComponent(jLabel12)
-                    .addContainerGap(603, Short.MAX_VALUE)))
+                    .addContainerGap(642, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,7 +389,12 @@ public class DemandesArticles extends javax.swing.JFrame {
                     .addComponent(jButton4)
                     .addComponent(seachDateET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(acceptRequestBT)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rejectRequestBT))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(39, 39, 39)
@@ -478,7 +501,6 @@ public class DemandesArticles extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
-        List<DemandeArticle> demandeArticles = new ArrayList<>();
         DemandeArticlesDAO demandeArticleDao = new DemandeArticlesDAO();
 
         if (marqueCB.isSelected() && !responsableCB.isSelected() && !dateCB.isSelected()) {
@@ -528,6 +550,19 @@ public class DemandesArticles extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void acceptRequestBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acceptRequestBTActionPerformed
+
+        int selectedRow=this.jTable1.getSelectedRow();
+        
+        DemandeArticlesDAO demandeArticleDao=new DemandeArticlesDAO();
+        
+        demandeArticleDao.acceptDemandeArticle(demandeArticles.get(selectedRow));
+
+        
+        
+
+    }//GEN-LAST:event_acceptRequestBTActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -565,6 +600,7 @@ public class DemandesArticles extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton acceptRequestBT;
     private javax.swing.JButton addBT;
     private javax.swing.JCheckBox dateCB;
     private javax.swing.JTextField dateET;
@@ -606,6 +642,7 @@ public class DemandesArticles extends javax.swing.JFrame {
     private javax.swing.JCheckBox marqueCB;
     private javax.swing.JTextField numSoucheET;
     private javax.swing.JTextField quantityET;
+    private javax.swing.JButton rejectRequestBT;
     private javax.swing.JTextField responsablMissionET;
     private javax.swing.JCheckBox responsableCB;
     private javax.swing.JTextField seachDateET;
