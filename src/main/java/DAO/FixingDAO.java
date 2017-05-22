@@ -11,6 +11,7 @@ import Utils.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.NoResultException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -162,4 +163,49 @@ public class FixingDAO implements FixingDAOInterface {
 
     }
 
+    @Override
+    public List<Fixing> findAllFixingAlerts() {
+
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.getTransaction();
+
+        List<Fixing> fixings = new ArrayList<>();
+
+        try {
+            String hql = "FROM Fixing WHERE indexKM+9500 < indexKM OR dateProchaineTaxe < CURRENT_DATE()+10 OR dateProchaineVigniette < CURRENT_DATE()+10";
+            Query query = session.createQuery(hql);
+            fixings.addAll(query.getResultList());
+        } catch (NoResultException e) {
+            session.close();
+            return null;
+        }
+        session.close();
+
+        return fixings;
+
+    }
+    
+     @Override
+    public List<Car> findCoutKilometrique() {
+       
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.getTransaction();
+
+        List<Car> cars = new ArrayList<>();
+
+        try {
+            
+          
+            String hql = "FROM Car AS c WHERE (prixAchat*0.4 <  (SELECT SUM(f.price) FROM Fixing AS f WHERE car.immatriculation= c.immatriculation))  OR indexKm>indexKm+9500";
+            Query query = session.createQuery(hql);
+            cars.addAll(query.getResultList());
+        } catch (NoResultException e) {
+            session.close();
+            return null;
+        }
+        session.close();
+
+        return cars;
+        
+    }
 }

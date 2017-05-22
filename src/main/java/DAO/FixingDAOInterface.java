@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Entities.Car;
 import Entities.Fixing;
 import java.util.Date;
 import java.util.List;
@@ -26,5 +27,9 @@ public interface FixingDAOInterface {
     List<Fixing> findFixingsByDate(Date date);
 
     Fixing findFixingBySoucheNumer(String soucheNum);
+
+    List<Fixing> findAllFixingAlerts();
+    
+    List<Car> findCoutKilometrique();
 
 }

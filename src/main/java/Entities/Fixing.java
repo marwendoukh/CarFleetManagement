@@ -28,7 +28,7 @@ public class Fixing implements Serializable {
     @JoinColumn(name = "immatriculation", referencedColumnName = "immatriculation", insertable = true, updatable = true)
     Car car;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "idArticle", referencedColumnName = "id", insertable = true, updatable = true)
     Article article;
 
