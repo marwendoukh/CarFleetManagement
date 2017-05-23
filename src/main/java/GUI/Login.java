@@ -203,7 +203,7 @@ Session session;
             System.out.println("logged in  " + loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()));
             
             /// redirect to the right GUI according to the role
-            if(user.getRole() == Role.CHEF_DEPARTEMENT)
+            if(user.getRole() == Role.CHEF_DE_CENTRE)
             {
                 // chef departement
               new AdminDashboard().setVisible(true);

@@ -11,5 +11,6 @@ package Entities;
  */
 public enum Role {
 
-    CHEF_DE_PARK, CHEF_DEPARTEMENT
+    CHEF_DE_CENTRE, CHEF_DE_PARCK, Responsable_DE_Carburant, CHEF_DATELIER, MAGASINIER 
+
 }

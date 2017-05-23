@@ -105,7 +105,7 @@ public class SignUp extends javax.swing.JFrame {
 
         jLabel9.setText("Role");
 
-        roleSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chef de park", "Chef departement" }));
+        roleSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chef de park", "Chef de centre" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -230,9 +230,9 @@ public class SignUp extends javax.swing.JFrame {
            
             if(roleSP.getSelectedIndex()==0)
                 
-                     newUser.setRole(Role.CHEF_DE_PARK);
+                     newUser.setRole(Role.CHEF_DE_PARCK);
             else
-                     newUser.setRole(Role.CHEF_DEPARTEMENT);
+                     newUser.setRole(Role.CHEF_DE_CENTRE);
 
 
             LoginDAO loginDAO = new LoginDAO();
