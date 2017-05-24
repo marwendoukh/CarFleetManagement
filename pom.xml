@@ -37,7 +37,13 @@
             <artifactId>jfreechart</artifactId>
             <version>1.0.13</version>
         </dependency>
-
+        
+        <!-- PDF library-->       
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itextpdf</artifactId>
+            <version>5.5.11</version>
+        </dependency>
 
     </dependencies>
     
