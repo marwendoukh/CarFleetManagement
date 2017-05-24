@@ -211,6 +211,11 @@ public class Cars extends javax.swing.JFrame {
         jLabel21.setText("Montant assurance");
 
         etatSP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Bonne", "Moyenne", "Mauvaise" }));
+        etatSP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                etatSPActionPerformed(evt);
+            }
+        });
 
         jLabel17.setText("Date prochaine vignette");
 
@@ -929,7 +934,7 @@ public class Cars extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 
-        new CarsStateInAYear().setVisible(true);
+        new CarsStats().setVisible(true);
         this.setVisible(false);
 
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -990,6 +995,10 @@ public class Cars extends javax.swing.JFrame {
         this.setVisible(false);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void etatSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_etatSPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_etatSPActionPerformed
 
     /**
      * @param args the command line arguments

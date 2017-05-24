@@ -575,7 +575,7 @@ public class Articles extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         
-        new CarsStateInAYear().setVisible(true);
+        new CarsStats().setVisible(true);
         this.setVisible(false);
         
 

@@ -8,6 +8,7 @@ package DAO;
 import Entities.Car;
 import Utils.HibernateUtil;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.persistence.NoResultException;
 import org.hibernate.Session;
@@ -119,11 +120,10 @@ public class CarDAO implements CarDAOInterface {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         transaction = session.getTransaction();
 
-        
         List<Car> cars = session.createCriteria(Car.class).list();
         session.close();
-        
-        return  cars;
+
+        return cars;
     }
 
     @Override
@@ -168,6 +168,83 @@ public class CarDAO implements CarDAOInterface {
         session.close();
 
         return cars;
+
+    }
+
+    @Override
+    public Long findBonneCarCount() {
+
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.getTransaction();
+
+        HashMap<String, Integer> stats = new HashMap<>();
+
+        Long bonneNumber;
+        try {
+
+            String hql = "SELECT COUNT(*) FROM Car WHERE etat =:Bonne";
+            Query query = session.createQuery(hql);
+            query.setString("Bonne", "Bonne");
+            bonneNumber = (Long) query.getSingleResult();
+
+        } catch (NoResultException e) {
+            session.close();
+            return null;
+        }
+        session.close();
+
+        return bonneNumber;
+
+    }
+
+    @Override
+    public Long findMoyenneCarCount() {
+
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.getTransaction();
+
+        HashMap<String, Integer> stats = new HashMap<>();
+
+        Long bonneNumber;
+        try {
+
+            String hql = "SELECT COUNT(*) FROM Car WHERE etat =:Moyenne";
+            Query query = session.createQuery(hql);
+            query.setString("Moyenne", "Moyenne");
+            bonneNumber = (Long) query.getSingleResult();
+
+        } catch (NoResultException e) {
+            session.close();
+            return null;
+        }
+        session.close();
+
+        return bonneNumber;
+    }
+
+    @Override
+    public Long findMauvaiseCarCount() {
+
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.getTransaction();
+
+        HashMap<String, Integer> stats = new HashMap<>();
+
+        Long bonneNumber;
+        try {
+
+            String hql = "SELECT COUNT(*) FROM Car WHERE etat =:Mauvaise";
+            Query query = session.createQuery(hql);
+            query.setString("Mauvaise", "Mauvaise");
+            bonneNumber = (Long) query.getSingleResult();
+
+        } catch (NoResultException e) {
+            session.close();
+            return null;
+        }
+        session.close();
+
+        return bonneNumber;
 
     }
 

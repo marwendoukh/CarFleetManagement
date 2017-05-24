@@ -28,4 +28,10 @@ public interface CarDAOInterface {
 
     List<Car> findAllCarsAlerts();
 
+    Long findBonneCarCount();
+
+    Long findMoyenneCarCount();
+
+    Long findMauvaiseCarCount();
+
 }
