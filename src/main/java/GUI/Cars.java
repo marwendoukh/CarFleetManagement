@@ -9,6 +9,13 @@ import DAO.CarDAO;
 import DAO.DepartementDAO;
 import Entities.Car;
 import Entities.Departement;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +32,15 @@ import javax.swing.table.DefaultTableModel;
  * @author Marwen
  */
 public class Cars extends javax.swing.JFrame {
+
+    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+            Font.BOLD);
+    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+            Font.NORMAL, BaseColor.RED);
+    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
+            Font.BOLD);
+    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+            Font.BOLD);
 
     /**
      * Creates new form InterfaceVehicule
@@ -95,7 +111,7 @@ public class Cars extends javax.swing.JFrame {
         seachBT = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableJT = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        printBT = new javax.swing.JButton();
         addCarBT = new javax.swing.JButton();
         dateReformeET = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
@@ -231,7 +247,12 @@ public class Cars extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableJT);
 
-        jButton3.setText("Imprimmer");
+        printBT.setText("Imprimmer");
+        printBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printBTActionPerformed(evt);
+            }
+        });
 
         addCarBT.setText("Ajouter");
         addCarBT.addActionListener(new java.awt.event.ActionListener() {
@@ -465,9 +486,9 @@ public class Cars extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(19, 19, 19))
+                .addGap(18, 18, 18)
+                .addComponent(printBT)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -576,12 +597,11 @@ public class Cars extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addComponent(jButton3)
-                        .addGap(258, 258, 258))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(printBT)))
+                .addContainerGap(213, Short.MAX_VALUE))
         );
 
         pack();
@@ -756,29 +776,98 @@ public class Cars extends javax.swing.JFrame {
 
     private void cancelBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelBTActionPerformed
 
-            immatriculationET.setText("");
-            departmentET.setText("");
-            concessionnaireET.setText("");
-            dateMiseEnCirculationET.setText("");
-            puissanceET.setText("");
-            nombreDePlaceET.setText("");
-            marqueET.setText("");
-            numChassisET.setText("");
-            indexKmET.setText("");
-            dateReformeET.setText("");
-            compagnieAssuranceET.setText("");
-            dateDebutAssuranceET.setText("");
-            dateProchaineAssuranceET.setText("");
-            montantAssuranceET.setText("");
-            dateProchaineVignietteET.setText("");
-            montantVignietteET.setText("");
-            dateProchaineTaxeET.setText("");
-            montantTaxeET.setText("");
-            prixAchatET.setText("");
-            
-            
+        immatriculationET.setText("");
+        departmentET.setText("");
+        concessionnaireET.setText("");
+        dateMiseEnCirculationET.setText("");
+        puissanceET.setText("");
+        nombreDePlaceET.setText("");
+        marqueET.setText("");
+        numChassisET.setText("");
+        indexKmET.setText("");
+        dateReformeET.setText("");
+        compagnieAssuranceET.setText("");
+        dateDebutAssuranceET.setText("");
+        dateProchaineAssuranceET.setText("");
+        montantAssuranceET.setText("");
+        dateProchaineVignietteET.setText("");
+        montantVignietteET.setText("");
+        dateProchaineTaxeET.setText("");
+        montantTaxeET.setText("");
+        prixAchatET.setText("");
+
 
     }//GEN-LAST:event_cancelBTActionPerformed
+
+    private void printBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBTActionPerformed
+        try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream("/home/marwen/Desktop/carsList.pdf"));
+            document.open();
+            addMetaData(document);
+            addTitlePage(document);
+            //addContent(document);
+            document.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }        // TODO add your handling code here:
+
+    }
+
+    // iText allows to add metadata to the PDF which can be viewed in your Adobe
+    // Reader
+    // under File -> Properties
+    private static void addMetaData(Document document) {
+        document.addTitle("Cars PDF");
+        document.addSubject("subject");
+        document.addKeywords("Car Fleet Management, PDF, JAVA");
+        document.addAuthor("Marwen");
+        document.addCreator("Marwen");
+    }
+
+    private void addTitlePage(Document document)
+            throws DocumentException {
+        Paragraph preface = new Paragraph();
+        // We add one empty line
+        addEmptyLine(preface, 1);
+        // Lets write a big header
+        preface.add(new Paragraph("Cars", catFont));
+
+        addEmptyLine(preface, 1);
+
+        preface.add(new Paragraph("Report generated by: " + System.getProperty("Car Fleet Management App") + ", " + new Date(),smallBold));
+        addEmptyLine(preface, 3);
+        
+        preface.add(new Paragraph("Car details ",smallBold));
+
+        int rowNumber = this.tableJT.getSelectedRow();
+
+        // immatriculation
+        preface.add(new Paragraph("Immatriculation : ", redFont));
+        preface.add(new Paragraph(this.tableJT.getValueAt(rowNumber, 0).toString(), smallBold));
+
+        //marque
+        preface.add(new Paragraph("Marque : ", redFont));
+        preface.add(new Paragraph(this.tableJT.getValueAt(rowNumber, 2).toString(), smallBold));
+
+        //etat
+        preface.add(new Paragraph("Etat : ", redFont));
+        preface.add(new Paragraph(this.tableJT.getValueAt(rowNumber, 9).toString(), smallBold));
+
+        addEmptyLine(preface, 3);
+        preface.add(new Paragraph("Thank you for using Car Fleet Management App", smallBold));
+
+        document.add(preface);
+        // Start a new page
+        document.newPage();
+    }
+
+    private static void addEmptyLine(Paragraph paragraph, int number) {
+        for (int i = 0; i < number; i++) {
+            paragraph.add(new Paragraph(" "));
+        }
+
+     }//GEN-LAST:event_printBTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -866,7 +955,6 @@ public class Cars extends javax.swing.JFrame {
     private javax.swing.JTextField immatriculationET;
     private javax.swing.JTextField indexKmET;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -921,6 +1009,7 @@ public class Cars extends javax.swing.JFrame {
     private javax.swing.JTextField montantVignietteET;
     private javax.swing.JTextField nombreDePlaceET;
     private javax.swing.JTextField numChassisET;
+    private javax.swing.JButton printBT;
     private javax.swing.JTextField prixAchatET;
     private javax.swing.JTextField puissanceET;
     private javax.swing.JButton seachBT;

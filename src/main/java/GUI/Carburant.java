@@ -9,6 +9,13 @@ import DAO.BonCarburantDAO;
 import DAO.CarDAO;
 import Entities.BonDeCarburant;
 import Entities.Car;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,6 +34,15 @@ import javax.swing.table.DefaultTableModel;
 public class Carburant extends javax.swing.JFrame {
 
     BonCarburantDAO bonCarburantDao = new BonCarburantDAO();
+    
+     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+            Font.BOLD);
+    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+            Font.NORMAL, BaseColor.RED);
+    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
+            Font.BOLD);
+    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+            Font.BOLD);
 
     /**
      * Creates new form InterfaceCarburant
@@ -73,7 +89,7 @@ public class Carburant extends javax.swing.JFrame {
         afficherBT = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableJT = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
+        printBT = new javax.swing.JButton();
         ajouterBT = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         natureCarburantSP = new javax.swing.JComboBox<>();
@@ -175,7 +191,12 @@ public class Carburant extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tableJT);
 
-        jButton4.setText("Imprimmer");
+        printBT.setText("Imprimmer");
+        printBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                printBTActionPerformed(evt);
+            }
+        });
 
         ajouterBT.setText("Ajouter");
         ajouterBT.addActionListener(new java.awt.event.ActionListener() {
@@ -349,10 +370,8 @@ public class Carburant extends javax.swing.JFrame {
                                 .addComponent(immatriculationET, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 381, Short.MAX_VALUE)
                                 .addComponent(dateET, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(33, 256, Short.MAX_VALUE)
-                                .addComponent(jButton4)
                                 .addGap(2, 2, 2))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -361,12 +380,18 @@ public class Carburant extends javax.swing.JFrame {
                                 .addComponent(numSoucheCB)
                                 .addGap(18, 18, 18)
                                 .addComponent(seachNumSoucheET, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(58, 58, 58))))
+                                .addGap(58, 137, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(afficherBT)
-                        .addGap(163, 163, 163))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(afficherBT)
+                                .addGap(163, 163, 163))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(printBT)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -418,15 +443,13 @@ public class Carburant extends javax.swing.JFrame {
                     .addComponent(seachNumSoucheET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(utilisationSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchDateET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jButton4))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(afficherBT)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(afficherBT)
+                        .addGap(13, 13, 13)
+                        .addComponent(printBT))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 18, Short.MAX_VALUE))
         );
 
@@ -538,6 +561,76 @@ public class Carburant extends javax.swing.JFrame {
 
     }//GEN-LAST:event_afficherBTActionPerformed
 
+    private void printBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBTActionPerformed
+try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream("/home/marwen/Desktop/carburantList.pdf"));
+            document.open();
+            addMetaData(document);
+            addTitlePage(document);
+            //addContent(document);
+            document.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }        // TODO add your handling code here:
+
+    }
+
+    // iText allows to add metadata to the PDF which can be viewed in your Adobe
+    // Reader
+    // under File -> Properties
+    private static void addMetaData(Document document) {
+        document.addTitle("Carburant PDF");
+        document.addSubject("subject");
+        document.addKeywords("Car Fleet Management, PDF, JAVA");
+        document.addAuthor("Marwen");
+        document.addCreator("Marwen");
+    }
+
+    private void addTitlePage(Document document)
+            throws DocumentException {
+        Paragraph preface = new Paragraph();
+        // We add one empty line
+        addEmptyLine(preface, 1);
+        // Lets write a big header
+        preface.add(new Paragraph("Carburant", catFont));
+
+        addEmptyLine(preface, 1);
+
+        preface.add(new Paragraph("Report generated by: " + System.getProperty("Car Fleet Management App") + ", " + new Date(),smallBold));
+        addEmptyLine(preface, 3);
+        
+        preface.add(new Paragraph("Carburant details ",smallBold));
+
+        int rowNumber = this.tableJT.getSelectedRow();
+
+        // immatriculation
+        preface.add(new Paragraph("Numero de souche : ", redFont));
+        preface.add(new Paragraph(this.tableJT.getValueAt(rowNumber, 0).toString(), smallBold));
+
+        //marque
+        preface.add(new Paragraph("Immatriculation : ", redFont));
+        preface.add(new Paragraph(this.tableJT.getValueAt(rowNumber, 1).toString(), smallBold));
+
+        //etat
+        preface.add(new Paragraph("Prix de bon : ", redFont));
+        preface.add(new Paragraph(this.tableJT.getValueAt(rowNumber, 4).toString(), smallBold));
+
+        addEmptyLine(preface, 3);
+        preface.add(new Paragraph("Thank you for using Car Fleet Management App", smallBold));
+
+        document.add(preface);
+        // Start a new page
+        document.newPage();
+    }
+
+    private static void addEmptyLine(Paragraph paragraph, int number) {
+        for (int i = 0; i < number; i++) {
+            paragraph.add(new Paragraph(" "));
+        }
+
+          }//GEN-LAST:event_printBTActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -583,7 +676,6 @@ public class Carburant extends javax.swing.JFrame {
     private javax.swing.JTextField immatriculationET;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
@@ -620,6 +712,7 @@ public class Carburant extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> natureCarburantSP;
     private javax.swing.JCheckBox numSoucheCB;
+    private javax.swing.JButton printBT;
     private javax.swing.JTextField prixBonET;
     private javax.swing.JTextField prixUnitaireET;
     private javax.swing.JTextField quantiteET;

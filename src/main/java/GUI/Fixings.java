@@ -11,6 +11,13 @@ import DAO.FixingDAO;
 import Entities.Article;
 import Entities.Car;
 import Entities.Fixing;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -27,6 +34,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Marwen
  */
 public class Fixings extends javax.swing.JFrame {
+
+    
+     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+            Font.BOLD);
+    private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+            Font.NORMAL, BaseColor.RED);
+    private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
+            Font.BOLD);
+    private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+            Font.BOLD);
 
     /**
      * Creates new form InterfaceReparation
@@ -75,7 +92,7 @@ public class Fixings extends javax.swing.JFrame {
         seachBT = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableJT = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        printBT = new javax.swing.JButton();
         addBT = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         dateReparationET = new javax.swing.JTextField();
@@ -196,10 +213,10 @@ public class Fixings extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tableJT);
 
-        jButton3.setText("Imprimmer");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        printBT.setText("Imprimmer");
+        printBT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                printBTActionPerformed(evt);
             }
         });
 
@@ -347,7 +364,6 @@ public class Fixings extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(addBT)
                                         .addGap(23, 23, 23)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton5)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -371,12 +387,12 @@ public class Fixings extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(printBT))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(258, 258, 258)
                         .addComponent(jLabel2)))
-                .addGap(0, 34, Short.MAX_VALUE))
+                .addGap(0, 40, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(225, 225, 225)
@@ -429,10 +445,8 @@ public class Fixings extends javax.swing.JFrame {
                         .addComponent(seachDateET, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(215, 215, 215))))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(printBT)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(27, 27, 27)
@@ -517,9 +531,73 @@ public class Fixings extends javax.swing.JFrame {
 
     }//GEN-LAST:event_seachBTActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void printBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBTActionPerformed
+try {
+            Document document = new Document();
+            PdfWriter.getInstance(document, new FileOutputStream("/home/marwen/Desktop/carburantList.pdf"));
+            document.open();
+            addMetaData(document);
+            addTitlePage(document);
+            //addContent(document);
+            document.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }        // TODO add your handling code here:
+
+    }
+
+    // iText allows to add metadata to the PDF which can be viewed in your Adobe
+    // Reader
+    // under File -> Properties
+    private static void addMetaData(Document document) {
+        document.addTitle("Fixing PDF");
+        document.addSubject("subject");
+        document.addKeywords("Car Fleet Management, PDF, JAVA");
+        document.addAuthor("Marwen");
+        document.addCreator("Marwen");
+    }
+
+    private void addTitlePage(Document document)
+            throws DocumentException {
+        Paragraph preface = new Paragraph();
+        // We add one empty line
+        addEmptyLine(preface, 1);
+        // Lets write a big header
+        preface.add(new Paragraph("Fixing", catFont));
+
+        addEmptyLine(preface, 1);
+
+        preface.add(new Paragraph("Report generated by: " + System.getProperty("Car Fleet Management App") + ", " + new Date(),smallBold));
+        addEmptyLine(preface, 3);
+        
+        preface.add(new Paragraph("Fixing details ",smallBold));
+
+        int rowNumber = this.tableJT.getSelectedRow();
+
+        // immatriculation
+        preface.add(new Paragraph("Numero de souche : ", redFont));
+        preface.add(new Paragraph(this.tableJT.getValueAt(rowNumber, 0).toString(), smallBold));
+
+        //marque
+        preface.add(new Paragraph("Fournisseur : ", redFont));
+        preface.add(new Paragraph(this.tableJT.getValueAt(rowNumber, 1).toString(), smallBold));
+
+        //etat
+        preface.add(new Paragraph("Immatriculation : ", redFont));
+        preface.add(new Paragraph(this.tableJT.getValueAt(rowNumber, 3).toString(), smallBold));
+
+        addEmptyLine(preface, 3);
+        preface.add(new Paragraph("Thank you for using Car Fleet Management App", smallBold));
+
+        document.add(preface);
+        // Start a new page
+        document.newPage();
+    }
+
+    private static void addEmptyLine(Paragraph paragraph, int number) {
+        for (int i = 0; i < number; i++) {
+            paragraph.add(new Paragraph(" "));
+        }    }//GEN-LAST:event_printBTActionPerformed
 
     private void addBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTActionPerformed
 
@@ -638,7 +716,6 @@ public class Fixings extends javax.swing.JFrame {
     private javax.swing.JTextField immatriculationET;
     private javax.swing.JTextField indexET;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -679,6 +756,7 @@ public class Fixings extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField montantET;
     private javax.swing.JTextField numSoucheET;
+    private javax.swing.JButton printBT;
     private javax.swing.JButton seachBT;
     private javax.swing.JTextField seachDateET;
     private javax.swing.JTextField seachImmatET;
