@@ -59,6 +59,11 @@ public class AdminDashboard extends javax.swing.JFrame {
         welcomeMrLB.setText("Bienvenue MR ");
 
         signOutBT.setText("Deconnexion");
+        signOutBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                signOutBTActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -114,6 +119,14 @@ public class AdminDashboard extends javax.swing.JFrame {
         new AddCarOldVersion().setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VehiculesBTActionPerformed
+
+    private void signOutBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutBTActionPerformed
+
+        ConnectedUser.setCurrentConnectedUser(null);
+         new Login().setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_signOutBTActionPerformed
 
     /**
      * @param args the command line arguments

@@ -11,6 +11,7 @@ import DAO.FixingDAO;
 import Entities.Article;
 import Entities.Car;
 import Entities.Fixing;
+import Utils.ConnectedUser;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -34,9 +35,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Marwen
  */
 public class Fixings extends javax.swing.JFrame {
-
     
-     private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+    private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
             Font.BOLD);
     private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
             Font.NORMAL, BaseColor.RED);
@@ -139,6 +139,11 @@ public class Fixings extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Deconnecter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Bienvenue Mr");
 
@@ -232,9 +237,19 @@ public class Fixings extends javax.swing.JFrame {
         jMenu1.setText("Vehicule");
 
         jMenuItem2.setText("Ajouter vehicule");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Etat des vehicules dans une année");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Alertes");
@@ -250,12 +265,27 @@ public class Fixings extends javax.swing.JFrame {
         jMenu2.setText("Réparation");
 
         jMenuItem5.setText("Ajouter une réparation");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setText("Etat des réparations dans une année");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuItem7.setText("Alertes");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem7);
 
         jMenuBar1.add(jMenu2);
@@ -271,6 +301,11 @@ public class Fixings extends javax.swing.JFrame {
         jMenu3.add(jMenuItem8);
 
         jMenuItem9.setText("Etat des consommations dans une année");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem9);
 
         jMenuBar1.add(jMenu3);
@@ -278,6 +313,11 @@ public class Fixings extends javax.swing.JFrame {
         jMenu4.setText("Magasin");
 
         jMenuItem10.setText("Ajouter un article");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem10);
 
         jMenuItem11.setText("Etat des consommations dans une année");
@@ -301,12 +341,27 @@ public class Fixings extends javax.swing.JFrame {
         jMenu5.setText("Atelier");
 
         jMenuItem13.setText("Ajouter un bon de lavage");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem13);
 
         jMenuItem14.setText("Demander un article");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem14);
 
         jMenuItem15.setText("Etat des consommations dans une année");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem15);
 
         jMenuBar1.add(jMenu5);
@@ -458,11 +513,17 @@ public class Fixings extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        
+        new CarsAlerts().setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
+        
+        new Carburant().setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
@@ -470,7 +531,10 @@ public class Fixings extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        // TODO add your handling code here:
+        
+        new ArticleAlerts().setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void departementCBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_departementCBActionPerformed
@@ -478,7 +542,7 @@ public class Fixings extends javax.swing.JFrame {
     }//GEN-LAST:event_departementCBActionPerformed
 
     private void seachBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_seachBTActionPerformed
-
+        
         FixingDAO fixingDao = new FixingDAO();
         List<Fixing> fixings = new ArrayList<>();
         if (immatriculationCB.isSelected() && !departementCB.isSelected() && !dateCB.isSelected()) {
@@ -486,17 +550,17 @@ public class Fixings extends javax.swing.JFrame {
         } else if (!immatriculationCB.isSelected() && departementCB.isSelected() && !dateCB.isSelected()) {
             fixings.addAll(fixingDao.findFixingsByDepartement(searchDepartementET.getText()));
         } else if (!immatriculationCB.isSelected() && !departementCB.isSelected() && dateCB.isSelected()) {
-
+            
             Date date = new Date();
             try {
                 DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
-
+                
                 date = format.parse(seachDateET.getText());
-
+                
             } catch (ParseException ex) {
                 Logger.getLogger(Cars.class.getName()).log(Level.SEVERE, null, ex);
             }
-
+            
             fixings.addAll(fixingDao.findFixingsByDate(date));
         }
 
@@ -510,7 +574,7 @@ public class Fixings extends javax.swing.JFrame {
         tableColumnNames[5] = "Immatriculation";
         tableColumnNames[6] = "Montant";
         tableColumnNames[7] = "Index";
-
+        
         DefaultTableModel tbd = new DefaultTableModel();
         tbd.setColumnIdentifiers(tableColumnNames);
         Object[] RowService = new Object[8];
@@ -524,15 +588,15 @@ public class Fixings extends javax.swing.JFrame {
             RowService[5] = fixings.get(i).getCar().getImmatriculation();
             RowService[6] = fixings.get(i).getPrice();
             RowService[7] = fixings.get(i).getIndexKM();
-
+            
             tbd.addRow(RowService);
-
+            
         }
 
     }//GEN-LAST:event_seachBTActionPerformed
 
     private void printBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_printBTActionPerformed
-try {
+        try {
             Document document = new Document();
             PdfWriter.getInstance(document, new FileOutputStream("/home/marwen/Desktop/carburantList.pdf"));
             document.open();
@@ -556,7 +620,7 @@ try {
         document.addAuthor("Marwen");
         document.addCreator("Marwen");
     }
-
+    
     private void addTitlePage(Document document)
             throws DocumentException {
         Paragraph preface = new Paragraph();
@@ -564,14 +628,14 @@ try {
         addEmptyLine(preface, 1);
         // Lets write a big header
         preface.add(new Paragraph("Fixing", catFont));
-
+        
         addEmptyLine(preface, 1);
-
-        preface.add(new Paragraph("Report generated by: " + System.getProperty("Car Fleet Management App") + ", " + new Date(),smallBold));
+        
+        preface.add(new Paragraph("Report generated by: " + System.getProperty("Car Fleet Management App") + ", " + new Date(), smallBold));
         addEmptyLine(preface, 3);
         
-        preface.add(new Paragraph("Fixing details ",smallBold));
-
+        preface.add(new Paragraph("Fixing details ", smallBold));
+        
         int rowNumber = this.tableJT.getSelectedRow();
 
         // immatriculation
@@ -585,34 +649,34 @@ try {
         //etat
         preface.add(new Paragraph("Immatriculation : ", redFont));
         preface.add(new Paragraph(this.tableJT.getValueAt(rowNumber, 3).toString(), smallBold));
-
+        
         addEmptyLine(preface, 3);
         preface.add(new Paragraph("Thank you for using Car Fleet Management App", smallBold));
-
+        
         document.add(preface);
         // Start a new page
         document.newPage();
     }
-
+    
     private static void addEmptyLine(Paragraph paragraph, int number) {
         for (int i = 0; i < number; i++) {
             paragraph.add(new Paragraph(" "));
         }    }//GEN-LAST:event_printBTActionPerformed
 
     private void addBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBTActionPerformed
-
+        
         Fixing fixing = new Fixing();
-
+        
         fixing.setSoucheNumber(numSoucheET.getText());
 
         // get Article
         Article article = new Article();
-
+        
         try {
             // open new session
             ArticleDAO articleDAO = new ArticleDAO();
             article = articleDAO.findArticleByDesignation(DesginationArticleET.getText()).get(0);
-
+            
         } catch (IndexOutOfBoundsException e) {
             // open new session
             ArticleDAO articleDAO = new ArticleDAO();
@@ -621,28 +685,28 @@ try {
             // open new session
             articleDAO = new ArticleDAO();
             article = articleDAO.findArticleByDesignation(DesginationArticleET.getText()).get(0);
-
+            
         }
-
+        
         fixing.setArticle(article);
-
+        
         try {
             DateFormat format = new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH);
             Date date;
             date = format.parse(dateReparationET.getText());
             fixing.setDateDemande(date);
             fixing.setFixingDate(date);
-
+            
         } catch (ParseException ex) {
             Logger.getLogger(Cars.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        
         fixing.setUtilisation(utilisationSP.getSelectedItem().toString());
         fixing.setDesignationD(designationReparationET.getText());
 
         // get Car
         Car car = new Car();
-
+        
         CarDAO carDAO = new CarDAO();
         if (carDAO.getCarByImmatriculation(immatriculationET.getText()) != null) {
             // open new session
@@ -656,18 +720,93 @@ try {
             // open new session
             carDAO = new CarDAO();
             car = carDAO.getCarByImmatriculation(immatriculationET.getText());
-
+            
         }
-
+        
         fixing.setCar(car);
-
+        
         fixing.setPrice(Float.parseFloat(montantET.getText()));
         fixing.setIndexKM(Integer.parseInt(indexET.getText()));
-
+        
         FixingDAO fixingDao = new FixingDAO();
         fixingDao.addOrUpdateFixing(fixing);
 
     }//GEN-LAST:event_addBTActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        
+        new Fixings().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        
+        new CarsStateInAYear().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        
+        new Fixings().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        
+        new FixingStats().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        
+        new FixingsAlerts().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        
+        new CarburantStats().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        
+        new Articles().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        
+        new BonLavage().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        
+        new DemandesArticles().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        ConnectedUser.setCurrentConnectedUser(null);
+        new Login().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

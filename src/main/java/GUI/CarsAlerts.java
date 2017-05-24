@@ -7,6 +7,7 @@ package GUI;
 
 import DAO.CarDAO;
 import Entities.Car;
+import Utils.ConnectedUser;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -21,9 +22,9 @@ public class CarsAlerts extends javax.swing.JFrame {
      */
     public CarsAlerts() {
         initComponents();
-
+        
         CarDAO carDao = new CarDAO();
-
+        
         List<Car> alerts = carDao.findAllCarsAlerts();
 
         /// add to the table
@@ -33,7 +34,7 @@ public class CarsAlerts extends javax.swing.JFrame {
         tableColumnNames[2] = "Deadline Vignette";
         tableColumnNames[3] = "Deadline taxes";
         tableColumnNames[4] = "Km";
-
+        
         DefaultTableModel tbd = new DefaultTableModel();
         tbd.setColumnIdentifiers(tableColumnNames);
         Object[] RowService = new Object[5];
@@ -44,11 +45,11 @@ public class CarsAlerts extends javax.swing.JFrame {
             RowService[2] = alerts.get(i).getDateProchaineVigniette();
             RowService[3] = alerts.get(i).getDateProchaineTaxe();
             RowService[4] = alerts.get(i).getIndexKm();
-
+            
             tbd.addRow(RowService);
-
+            
         }
-
+        
     }
 
     /**
@@ -105,6 +106,11 @@ public class CarsAlerts extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Deconnecter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Bienvenue Mr");
 
@@ -134,9 +140,19 @@ public class CarsAlerts extends javax.swing.JFrame {
         jMenu1.setText("Vehicule");
 
         jMenuItem2.setText("Ajouter vehicule");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Etat des vehicules dans une année");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Alertes");
@@ -152,12 +168,27 @@ public class CarsAlerts extends javax.swing.JFrame {
         jMenu2.setText("Réparation");
 
         jMenuItem5.setText("Ajouter une réparation");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem5);
 
         jMenuItem6.setText("Etat des réparations dans une année");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem6);
 
         jMenuItem7.setText("Alertes");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem7);
 
         jMenuBar1.add(jMenu2);
@@ -173,6 +204,11 @@ public class CarsAlerts extends javax.swing.JFrame {
         jMenu3.add(jMenuItem8);
 
         jMenuItem9.setText("Etat des consommations dans une année");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem9);
 
         jMenuBar1.add(jMenu3);
@@ -180,6 +216,11 @@ public class CarsAlerts extends javax.swing.JFrame {
         jMenu4.setText("Magasin");
 
         jMenuItem10.setText("Ajouter un article");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem10);
 
         jMenuItem11.setText("Etat des consommations dans une année");
@@ -203,9 +244,19 @@ public class CarsAlerts extends javax.swing.JFrame {
         jMenu5.setText("Atelier");
 
         jMenuItem13.setText("Ajouter un bon de lavage");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem13);
 
         jMenuItem14.setText("Demander un article");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem14);
 
         jMenuItem15.setText("Etat des consommations dans une année");
@@ -250,12 +301,19 @@ public class CarsAlerts extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
+        
+        new CarsAlerts().setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
+        
+        new Carburant().setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
@@ -263,8 +321,84 @@ public class CarsAlerts extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        // TODO add your handling code here:
+        
+        new ArticleAlerts().setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        
+        new Fixings().setVisible(true);
+        this.setVisible(false);
+        
+
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        
+        new Cars().setVisible(true);
+        this.setVisible(false);
+        
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        
+        new CarsStateInAYear().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        
+        new FixingStats().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        
+        new FixingsAlerts().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        
+        new CarburantStats().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        
+        new Articles().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        
+        new BonLavage().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        
+        new DemandesArticles().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        ConnectedUser.setCurrentConnectedUser(null);
+        new Login().setVisible(true);
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

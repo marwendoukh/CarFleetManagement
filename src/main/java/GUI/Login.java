@@ -112,10 +112,6 @@ Session session;
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        LoginTF.setText("Taper votre login");
-
-        PasswordTF.setText("taper votre mot de passe");
-
         jLabel1.setText("Login");
 
         jLabel2.setText("Mot de passe");
@@ -141,16 +137,16 @@ Session session;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(69, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addGap(113, 113, 113)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(LoginTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(PasswordTF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(LoginTF, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(PasswordTF))
                         .addGap(85, 85, 85))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(signUp)
@@ -198,22 +194,19 @@ Session session;
         // check credentials in DB
         LoginDAO loginDAO = new LoginDAO();
 
-        User user =loginDAO.signIn(LoginTF.getText(), PasswordTF.getText());
-        if (user !=null) {
+        User user = loginDAO.signIn(LoginTF.getText(), PasswordTF.getText());
+        if (user != null) {
             System.out.println("logged in  " + loginDAO.signIn(LoginTF.getText(), PasswordTF.getText()));
-            
+
             /// redirect to the right GUI according to the role
-            if(user.getRole() == Role.CHEF_DE_CENTRE)
-            {
+            if (user.getRole() == Role.CHEF_DE_CENTRE) {
                 // chef departement
-              new AdminDashboard().setVisible(true);
-              this.setVisible(false);
-            }
-            else
-            {
+                new Cars().setVisible(true);
+                this.setVisible(false);
+            } else {
                 // chef de park
-              new AdminDashboard().setVisible(true);
-              this.setVisible(false);
+                new MagasinStats().setVisible(true);
+                this.setVisible(false);
             }
 
         } else {
