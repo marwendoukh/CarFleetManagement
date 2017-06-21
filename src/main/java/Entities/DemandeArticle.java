@@ -33,7 +33,7 @@ public class DemandeArticle implements Serializable {
     @OneToOne(cascade = CascadeType.MERGE)
     private Fixing fixing;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Article> articles;
 
     private Integer quanity;
