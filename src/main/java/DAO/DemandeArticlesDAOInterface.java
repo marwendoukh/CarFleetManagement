@@ -24,5 +24,9 @@ public interface DemandeArticlesDAOInterface {
     List<DemandeArticle> findDemandeArticlesByDate(Date date);
     
     void acceptDemandeArticle(DemandeArticle demandeArticle);
+    
+    void rejectDemandeArticle(DemandeArticle demandeArticle);
+
+    
 
 }

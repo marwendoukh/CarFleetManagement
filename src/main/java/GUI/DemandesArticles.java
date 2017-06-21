@@ -178,6 +178,11 @@ public class DemandesArticles extends javax.swing.JFrame {
         });
 
         rejectRequestBT.setText("Refuser demande");
+        rejectRequestBT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rejectRequestBTActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("Vehicule");
 
@@ -702,6 +707,17 @@ new FixingsAlerts().setVisible(true);
         this.setVisible(false);
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void rejectRequestBTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectRequestBTActionPerformed
+
+        int selectedRow=this.jTable1.getSelectedRow();
+        
+        DemandeArticlesDAO demandeArticleDao=new DemandeArticlesDAO();
+        
+        demandeArticleDao.rejectDemandeArticle(demandeArticles.get(selectedRow));
+
+
+    }//GEN-LAST:event_rejectRequestBTActionPerformed
 
     /**
      * @param args the command line arguments

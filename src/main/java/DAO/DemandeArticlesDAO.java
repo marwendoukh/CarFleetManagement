@@ -172,5 +172,28 @@ public class DemandeArticlesDAO implements DemandeArticlesDAOInterface {
         
         session.close();
     }
+    
+    @Override
+    public void rejectDemandeArticle(DemandeArticle demandeArticle) {
+
+        // close the current session because ArticleDao will start a new one
+        session.evict(demandeArticle.getFixing());
+        session.flush();
+        session.clear();
+        session.close();
+        
+        System.out.println("demande Article to delete "+demandeArticle.getId());
+       
+      
+       // reopen the session (because CarDAO has closed it)
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        transaction = session.beginTransaction();
+        
+        session.delete(demandeArticle);
+        transaction.commit();
+
+        
+        session.close();
+    }
 
 }
